@@ -5,36 +5,40 @@ import './App.css';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 function App() {
-  const [response, setResponse] = useState(null);
+  // const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const client = new OpenAIClient(
-          "https://opendialogue1.openai.azure.com/",
-          new AzureKeyCredential("e1a905c26e7d418bb8ce8f95518c9f45")
-        );
+  const endpoint = `https://opendialogue1.openai.azure.com/`; //エンドポイント
+  const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`; //APIキー
+  const deploymentId = "gpt35turbo"; //デプロイ名
 
-        const { choices } = await client.getCompletions(
-          "gpt-35-turbo",
-          ["Hello, world!"]
-        );
-
-        if (choices && choices.length > 0) {
-          setResponse(choices[0].text);
-        }
-      } catch (err) {
-        setError("The sample encountered an error:", err);
+  async function main(){
+      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+      const messages = [
+          { role: "system", content: "あなたはプログラミングの先生で、ユーザーはあなたの生徒です。質問に対してユーモアを混ぜて回答してください。" },
+          { role: "user", content: "JavaとJavaScriptの違いを教えてください。" }
+      ];
+      
+      console.log(`Messages: ${messages.map((m) => m.content).join("\n")}`);
+      const events = client.listChatCompletions(deploymentId, messages, { maxTokens: 256 });
+      
+      let msg = '';
+      for await (const event of events) {
+          for (const choice of event.choices) {
+              const delta = choice.delta?.content;
+              if (delta !== undefined) {
+                  msg += delta;
+                  // console.log(`Chatbot: ${delta}`);
+              }
+          }
       }
-    }
 
-    fetchData();
-  }, []); // 空の依存配列は、この効果がコンポーネントのマウント時にのみ実行されることを意味します
-
-  if (error) {
-    console.error(error);
+      console.log(msg); //結果を出力
   }
+
+  main().catch((err) => {
+    console.error("The sample encountered an error:", err);
+  });
 
   return (
     <div className="App">
