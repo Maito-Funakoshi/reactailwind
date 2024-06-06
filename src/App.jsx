@@ -1,53 +1,40 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
+import OpenAI from "openai";
 
 function App() {
-  const endpoint = `https://opendialogue1.openai.azure.com/`;
-  const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
-  const deploymentId = "gpt35turbo";
+  const resource = 'opendialogue1';
+  const model = 'gpt35turbo'; //デプロイした名前
 
-  const [response, setResponse] = useState('');
-  const [error, setError] = useState(null);
+  const apiVersion = '2023-02-01';
+  const apiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-        const messages = [
-          { role: "system", content: "あなたはプログラミングの先生で、ユーザーはあなたの生徒です。質問に対してユーモアを混ぜて回答してください。" },
-          { role: "user", content: "JavaとJavaScriptの違いを教えてください。" }
-        ];
-        
-        console.log(`Messages: ${messages.map((m) => m.content).join("\n")}`);
-        const events = client.getChatCompletions(deploymentId, messages, { maxTokens: 256 });
-        
-        let msg = '';
-        for await (const event of events) {
-          for (const choice of event.choices) {
-            const delta = choice.delta?.content;
-            if (delta !== undefined) {
-              msg += delta;
-            }
-          }
-        }
+  // Azure OpenAI requires a custom baseURL, api-version query param, and api-key header.
+  const openai = new OpenAI({
+    apiKey,
+    baseURL: `https://${resource}.openai.azure.com/openai/deployments/${model}`,
+    defaultQuery: { 'api-version': apiVersion },
+    defaultHeaders: { 'api-key': apiKey },
+  });
 
-        setResponse(msg);
-      } catch (err) {
-        setError(err);
-        console.error("The sample encountered an error:", err);
-      }
-    }
+  async function main() {
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: 'user', content: 'あなたの名前は?' }],
+      model: model,
+    });
+    
+    console.log(completion.choices[0].message.content);
+  }
+    
 
-    fetchData();
-  }, []); // 空の依存配列は、この効果がコンポーネントのマウント時にのみ実行されることを意味します
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Chatbot Response</h1>
-        {response ? <p>{response}</p> : <p>Loading...</p>}
-        {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
       </header>
     </div>
   );
