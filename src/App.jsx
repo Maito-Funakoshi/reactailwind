@@ -8,21 +8,29 @@ function App() {
   const deploymentId = "gpt35turbo";
 
   const [messages, setMessages] = useState([
-    { role: "system", content: "あなたはプログラミングの先生で、ユーザーはあなたの生徒です。質問に対してユーモアを混ぜて回答してください。" }
+    { role: "system", content: "あなたたちはユーザの発言を起点にして互いに議論を交わす4人のアシスタントで、名前はINFJ、ENTP、ISFP、ESTJです。それぞれの人物は一回の発言で120文字まで話すことができます。" }
   ]);
   const [input, setInput] = useState('');
   const [error, setError] = useState(null);
+  const [currentAssistant, setCurrentAssistant] = useState(0);
+
+  const assistants = ["INFJ", "ENTP", "ISFP", "ESTJ"];
 
   useEffect(() => {
-    if (messages.length > 1) { // 初期メッセージを除く
+    if (messages.length > 1 && messages[messages.length - 1].role === "user") { // ユーザーのメッセージが追加されたとき
       async function fetchData() {
         try {
           const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-          const result = await client.getChatCompletions(deploymentId, messages, { maxTokens: 256 });
+          const assistant = assistants[currentAssistant];
+          const response = await client.getChatCompletions(deploymentId, [
+            ...messages,
+            { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の3人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。` }
+          ], { maxTokens: 256 });
 
-          if (result.choices && result.choices.length > 0) {
-            const botMessage = result.choices[0].message.content;
-            setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage }]);
+          if (response.choices && response.choices.length > 0) {
+            const botMessage = response.choices[0].message.content.trim();
+            setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage, assistant }]);
+            setCurrentAssistant((currentAssistant + 1) % assistants.length);
           }
         } catch (err) {
           setError(err);
@@ -31,7 +39,7 @@ function App() {
       }
       fetchData();
     }
-  }, [messages]); // messagesが更新されるたびに実行
+  }, [messages, currentAssistant]); // messagesとcurrentAssistantが更新されるたびに実行
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +50,7 @@ function App() {
   };
 
   const handleGetLog = () => {
-    const log = messages.map((msg) => `${msg.role}: ${msg.content}`).join('\n');
+    const log = messages.slice(1).map((msg) => `${msg.role === "assistant" ? `${msg.assistant}: ` : ''}${msg.role === "user" ? 'あなた: ' : ''}${msg.content}`).join('\n');
     downloadLogFile(log);
   };
 
@@ -61,7 +69,7 @@ function App() {
         <h1>Self Disclosure Chatbot</h1>
         <div className="chat-box">
           {messages.slice(1).map((msg, index) => (
-            <p key={index} className={msg.role}>{msg.content}</p>
+            <p key={index} className={msg.role}>{msg.role === "assistant" ? `${msg.assistant}: ${msg.content}` : msg.content}</p>
           ))}
         </div>
         {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
