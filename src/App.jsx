@@ -6,7 +6,7 @@ function App() {
   const resource = 'opendialogue1';
   const model = 'gpt35turbo'; //デプロイした名前
 
-  const apiVersion = '2023-02-01';
+  const apiVersion = '2024-02-01';
   const apiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
 
   // Azure OpenAI requires a custom baseURL, api-version query param, and api-key header.
