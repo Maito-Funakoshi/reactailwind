@@ -17,7 +17,7 @@ function App() {
         );
 
         const { choices } = await client.getCompletions(
-          "gpt35turbo",
+          "gpt-35-turbo",
           ["Hello, world!"]
         );
 
