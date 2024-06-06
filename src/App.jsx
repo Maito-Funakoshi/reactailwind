@@ -15,6 +15,8 @@ function App() {
 
   const assistants = ["INFJ", "ENTP", "ISFP", "ESTJ"];
 
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
   useEffect(() => {
     if (messages.length > 1 && messages[messages.length - 1].role === "user") { // ユーザーのメッセージが追加されたとき
       const fetchData = async () => {
@@ -31,6 +33,9 @@ function App() {
               const botMessage = response.choices[0].message.content.trim();
               setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage, assistant }]);
             }
+
+            // 各アシスタントの間に待機時間を追加
+            await delay(10000); // 10秒の待機時間
           } catch (err) {
             setError(err);
             console.error("The sample encountered an error:", err);
