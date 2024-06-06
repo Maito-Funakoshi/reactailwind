@@ -17,7 +17,7 @@ function App() {
   const assistants = ["INFJ", "ENTP", "ISFP", "ESTJ"];
 
   useEffect(() => {
-    if (messages.length > 1 && messages.length % 5 === 1) { // ユーザーのメッセージが追加されたとき
+    if (messages.length > 1 && messages.length % 5 != 1) { // ユーザーのメッセージが追加されたとき
       async function fetchData() {
         try {
           const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
