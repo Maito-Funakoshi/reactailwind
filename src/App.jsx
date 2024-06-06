@@ -41,10 +41,24 @@ function App() {
     }
   };
 
+  const handleGetLog = () => {
+    const log = messages.map((msg) => `${msg.role}: ${msg.content}`).join('\n');
+    downloadLogFile(log);
+  };
+
+  const downloadLogFile = (log) => {
+    const element = document.createElement("a");
+    const file = new Blob([log], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = "conversation_log.txt";
+    document.body.appendChild(element); // Firefoxでは必要
+    element.click();
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Chatbot</h1>
+        <h1>Self Disclosure Chatbot</h1>
         <div className="chat-box">
           {messages.slice(1).map((msg, index) => (
             <p key={index} className={msg.role}>{msg.content}</p>
@@ -60,6 +74,7 @@ function App() {
           />
           <button type="submit">送信</button>
         </form>
+        <button onClick={handleGetLog}>会話ログをダウンロード</button>
       </header>
     </div>
   );
