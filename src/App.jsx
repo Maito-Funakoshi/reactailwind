@@ -1,21 +1,11 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import OpenAI from "openai";
+import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 function App() {
-  const resource = 'opendialogue1';
-  const model = 'gpt35turbo'; // デプロイした名前
-
-  const apiVersion = '2024-02-01';
-  const apiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
-
-  // Azure OpenAI requires a custom baseURL, api-version query param, and api-key header.
-  const openai = new OpenAI({
-    apiKey,
-    baseURL: `https://${resource}.openai.azure.com/openai/deployments/${model}`,
-    defaultQuery: { 'api-version': apiVersion },
-    defaultHeaders: { 'api-key': apiKey },
-  });
+  const endpoint = `https://opendialogue1.openai.azure.com/`;
+  const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
+  const deploymentId = "gpt35turbo";
 
   const [response, setResponse] = useState('');
   const [error, setError] = useState(null);
@@ -23,20 +13,28 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const completion = await openai.chat.completions.create({
-          messages: [{ role: 'user', content: 'あなたの名前は?' }],
-          model: model,
-        });
+        const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+        const messages = [
+          { role: "system", content: "あなたはプログラミングの先生で、ユーザーはあなたの生徒です。質問に対してユーモアを混ぜて回答してください。" },
+          { role: "user", content: "JavaとJavaScriptの違いを教えてください。" }
+        ];
         
-        setResponse(completion.choices[0].message.content);
+        console.log(`Messages: ${messages.map((m) => m.content).join("\n")}`);
+        const result = await client.getChatCompletions(deploymentId, messages, { maxTokens: 256 });
+
+        // Assuming result has a property 'choices' that contains the response text
+        if (result.choices && result.choices.length > 0) {
+          const msg = result.choices.map(choice => choice.message.content).join('\n');
+          setResponse(msg);
+        }
       } catch (err) {
         setError(err);
-        console.error(err);
+        console.error("The sample encountered an error:", err);
       }
     }
 
     fetchData();
-  }, []); // 空の依存配列で初回マウント時のみ実行
+  }, []); // 空の依存配列は、この効果がコンポーネントのマウント時にのみ実行されることを意味します
 
   return (
     <div className="App">
