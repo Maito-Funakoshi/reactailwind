@@ -52,8 +52,8 @@ function App() {
       <header className="App-header">
         <h1>Self Disclosure Chatbot</h1>
         <ChatBox messages = {messages} error = {error} />
-        {/*　<MessageInput setMessages = {setMessages} />
-        <DownloadLogButton messages = {messages} /> */}
+        <MessageInput setMessages = {setMessages} />
+        {/*　<DownloadLogButton messages = {messages} /> */}
       </header>
     </div>
   );
