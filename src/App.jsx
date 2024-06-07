@@ -9,12 +9,12 @@ function App() {
   const deploymentId = "gpt35turbo";
 
   //初期設定
+  const assistants = ["INFJ", "ESTJ", "ENTP"];
   const [messages, setMessages] = useState([
-    { role: "system", content: "あなたたちはユーザの発言を起点にして互いに議論を交わす3人のアシスタントで、名前はINFJ、ESTJ、ENTPです。それぞれの人物は一回の発言で120文字まで話すことができます。" }
+    { role: "system", content: `あなたたちはユーザの発言を起点にして互いに議論を交わす${assistants.length}人のアシスタントで、名前は${assistants[0]}、${assistants[1]}、${assistants[2]}です。それぞれの人物は一回の発言で120文字まで話すことができます。`}
   ]);
   const [input, setInput] = useState('');
   const [error, setError] = useState(null);
-  const assistants = ["INFJ", "ESTJ", "ENTP"];
 
   //API呼び出し制限超え防止のための待機(msミリ秒)
   const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -29,7 +29,7 @@ function App() {
             const assistant = assistants[i];
             const response = await client.getChatCompletions(deploymentId, [
               ...messages,
-              { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の2人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
+              { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の${assistants.length - 1}人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
             ], { maxTokens: 256 });
 
             if (response.choices && response.choices.length > 0) {
