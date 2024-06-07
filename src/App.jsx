@@ -70,7 +70,7 @@ function App() {
         <h1>Self Disclosure Chatbot</h1>
         <ChatBox messages = {messages} />
         {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
-        <MessageInput input = {input} setInput = {setInput} setMessages = {setMessage} />
+        <MessageInput input = {input} setInput = {setInput} setMessages = {setMessages} />
         <DownloadLogButton handleGetLog = {handleGetLog} />
       </header>
     </div>
