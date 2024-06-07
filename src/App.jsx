@@ -47,22 +47,6 @@ function App() {
     }
   }, [messages]); // messagesが更新されるたびに実行
 
-  //会話ログ取得
-  const handleGetLog = () => {
-    const log = messages.slice(1).map((msg) => `${msg.role === "assistant" ? `${msg.assistant}: ` : ''}${msg.role === "user" ? 'あなた: ' : ''}${msg.content}`).join('\n');
-    downloadLogFile(log);
-  };
-
-  //会話ログをelement.downloadファイルとしてダウンロード
-  const downloadLogFile = (log) => {
-    const element = document.createElement("a");
-    const file = new Blob([log], { type: 'text/plain' });
-    element.href = URL.createObjectURL(file);
-    element.download = "conversation_log.txt";
-    document.body.appendChild(element); // Firefoxでは必要
-    element.click();
-  };
-
   //HTML部分
   return (
     <div className="App">
@@ -71,7 +55,7 @@ function App() {
         <ChatBox messages = {messages} />
         {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
         <MessageInput input = {input} setInput = {setInput} setMessages = {setMessages} />
-        <DownloadLogButton handleGetLog = {handleGetLog} />
+        <DownloadLogButton messages = {messages} />
       </header>
     </div>
   );
