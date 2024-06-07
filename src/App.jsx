@@ -26,7 +26,7 @@ function App() {
             const assistant = assistants[i];
             const response = await client.getChatCompletions(deploymentId, [
               ...messages,
-              { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の3人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。` }
+              { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の3人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
             ], { maxTokens: 256 });
 
             if (response.choices && response.choices.length > 0) {
@@ -35,7 +35,7 @@ function App() {
             }
 
             // 各アシスタントの間に待機時間を追加
-            await delay(11000); // 11秒の待機時間
+            await delay(15000); // 15秒の待機時間
           } catch (err) {
             setError(err);
             console.error("The sample encountered an error:", err);
