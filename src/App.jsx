@@ -10,7 +10,7 @@ function App() {
   const names = ["A", "B", "C"];
   const characters = ["INFJ", "ESTJ", "ENTP"];
   const [messages, setMessages] = useState([
-    { role: "system", content: `あなたたちはユーザの発言を起点にして互いに議論を交わす${assistants.length}人のアシスタントで、名前は${assistants[0]}、${assistants[1]}、${assistants[2]}です。それぞれの人物は一回の発言で120文字まで話すことができます。`}
+    { role: "system", content: `あなたたちはユーザの発言を起点にして互いに議論を交わす${names.length}人のアシスタントで、名前は${names[0]}、${names[1]}、${names[2]}です。それぞれの人物は一回の発言で120文字まで話すことができます。`}
   ]);
   const [error, setError] = useState(null);
 
