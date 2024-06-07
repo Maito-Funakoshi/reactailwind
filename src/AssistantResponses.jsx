@@ -21,7 +21,7 @@ const AssistantResponses = ({ messages, setMessages, assistants, setError }) => 
 
             if (response.choices && response.choices.length > 0) {
               const botMessage = response.choices[0].message.content.trim();
-              setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage, assistant }]);
+              setMessages(prevMessages => [...prevMessages, { role: "assistant", content: `${assistant}: ${botMessage}` }]);
             }
 
           } catch (err) {
