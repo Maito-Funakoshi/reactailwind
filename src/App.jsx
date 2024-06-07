@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import ChatBox from './ChatBox';
 import MessageInput from './MessageInput';
 import DownloadLogButton from './DownloadLogButton';
-// import AssistantResponses from './AssistantResponses';
-
+import './App.css';
+import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 function App() {
-  //初期設定
+  //AzureOpenAIの設定
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
 
+  //初期設定
   const assistants = ["INFJ", "ESTJ", "ENTP"];
   const [messages, setMessages] = useState([
     { role: "system", content: `あなたたちはユーザの発言を起点にして互いに議論を交わす${assistants.length}人のアシスタントで、名前は${assistants[0]}、${assistants[1]}、${assistants[2]}です。それぞれの人物は一回の発言で120文字まで話すことができます。`}
   ]);
   const [error, setError] = useState(null);
 
-  // <AssistantResponses messages = {messages} setMessages = {setMessages} assistants = {assistants} setError = {setError} />
+  //返答作成部分
   useEffect(() => {
     if (messages.length > 1 && messages[messages.length - 1].role === "user") {
       const fetchData = async () => {
@@ -44,7 +44,7 @@ function App() {
       }
       fetchData();
     }
-  }, [messages]);
+  }, [messages]); // messagesが更新されるたびに実行
 
   //HTML部分
   return (
