@@ -14,8 +14,8 @@ function App() {
   ]);
   const [error, setError] = useState(null);
 
-  <AssistantResponses messages = {messages} setMessages = {setMessages} assistants = {assistants} setError = {setError} />
-  
+  // <AssistantResponses messages = {messages} setMessages = {setMessages} assistants = {assistants} setError = {setError} />
+
   //HTML部分
   return (
     <div className="App">
