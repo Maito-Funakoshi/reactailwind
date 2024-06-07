@@ -5,13 +5,13 @@ const AssistantResponses = ({ messages, setMessages, assistants, setError }) => 
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
+  const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
 
   useEffect(() => {
     if (messages.length > 1 && messages[messages.length - 1].role === "user") {
       const fetchData = async () => {
         for (let i = 0; i < assistants.length; i++) {
           try {
-            const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
             const assistant = assistants[i];
             const response = await client.getChatCompletions(deploymentId, [
               ...messages,
