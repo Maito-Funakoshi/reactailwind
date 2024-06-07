@@ -1,7 +1,8 @@
 import React from 'react';
 
-const ChatBox = ({ messages }) => {
+const ChatBox = ({ messages, error }) => {
   return (
+    <>
     <div className="chat-box">
       {messages.slice(1).map((msg, index) => (
         <p key={index} className={msg.role}>
@@ -9,6 +10,8 @@ const ChatBox = ({ messages }) => {
         </p>
       ))}
     </div>
+    {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
+    </>
   );
 };
 

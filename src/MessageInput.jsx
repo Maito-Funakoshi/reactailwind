@@ -1,6 +1,7 @@
 import React from 'react';
 
-const MessageInput = ({ input, setInput, setMessages }) => {
+const MessageInput = ({ setMessages }) => {
+  const [input, setInput] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim()) {
