@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import ChatBox from './ChatBox';
 import MessageInput from './MessageInput';
@@ -11,7 +11,7 @@ function App() {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
-  
+
   const assistants = ["INFJ", "ESTJ", "ENTP"];
   const [messages, setMessages] = useState([
     { role: "system", content: `あなたたちはユーザの発言を起点にして互いに議論を交わす${assistants.length}人のアシスタントで、名前は${assistants[0]}、${assistants[1]}、${assistants[2]}です。それぞれの人物は一回の発言で120文字まで話すことができます。`}
