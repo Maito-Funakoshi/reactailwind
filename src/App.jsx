@@ -14,12 +14,13 @@ function App() {
   ]);
   const [error, setError] = useState(null);
 
+  <AssistantResponses messages = {messages} setMessages = {setMessages} assistants = {assistants} setError = {setError} />
+  
   //HTML部分
   return (
     <div className="App">
       <header className="App-header">
         <h1>Self Disclosure Chatbot</h1>
-        <AssistantResponses messages = {messages} setMessages = {setMessages} assistants = {assistants} setError = {setError} />
         <ChatBox messages = {messages} error = {error} />
         <MessageInput setMessages = {setMessages} />
         <DownloadLogButton messages = {messages} />
