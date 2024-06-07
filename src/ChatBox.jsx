@@ -6,7 +6,7 @@ const ChatBox = ({ messages, error }) => {
     <div className="chat-box">
       {messages.slice(1).map((msg, index) => (
         <p key={index} className={msg.role}>
-          {msg.role === "assistant" ? `${msg.assistant}: ${msg.content}` : msg.content}
+          {msg.content}
         </p>
       ))}
     </div>
