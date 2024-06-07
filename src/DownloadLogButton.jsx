@@ -2,7 +2,7 @@ import React from 'react';
 
 const DownloadLogButton = ({ messages }) => {
   const handleGetLog = () => {
-    const log = messages.slice(1).map((msg) => `${msg.role === "assistant" ? `${msg.assistant}: ` : ''}${msg.role === "user" ? 'あなた: ' : ''}${msg.content}`).join('\n');
+    const log = messages.slice(1).map((msg) => msg.content).join('\n');
     downloadLogFile(log);
   };
 
