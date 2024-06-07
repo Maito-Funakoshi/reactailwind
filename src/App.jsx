@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import ChatBox from './ChatBox';
+import MessageInput from './MessageInput';
+import DownloadLogButton from './DownloadLogButton';
 import './App.css';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
@@ -78,11 +81,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Self Disclosure Chatbot</h1>
-        <div className="chat-box">
-          {messages.slice(1).map((msg, index) => (
-            <p key={index} className={msg.role}>{msg.role === "assistant" ? `${msg.assistant}: ${msg.content}` : msg.content}</p>
-          ))}
-        </div>
+        <ChatBox messages = {messages} />
         {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
         <form onSubmit={handleSubmit}>
           <input
@@ -93,7 +92,7 @@ function App() {
           />
           <button type="submit">送信</button>
         </form>
-        <button onClick={handleGetLog}>会話ログをダウンロード</button>
+        <DownloadLogButton handleGetLog = {handleGetLog} />
       </header>
     </div>
   );
