@@ -3,22 +3,25 @@ import './App.css';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 function App() {
+  //AzureOpenAIの設定
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
 
+  //初期設定
   const [messages, setMessages] = useState([
-    { role: "system", content: "あなたたちはユーザの発言を起点にして互いに議論を交わす4人のアシスタントで、名前はINFJ、ENTP、ISFP、ESTJです。それぞれの人物は一回の発言で120文字まで話すことができます。" }
+    { role: "system", content: "あなたたちはユーザの発言を起点にして互いに議論を交わす3人のアシスタントで、名前はINFJ、ESTJ、ENTPです。それぞれの人物は一回の発言で120文字まで話すことができます。" }
   ]);
   const [input, setInput] = useState('');
   const [error, setError] = useState(null);
+  const assistants = ["INFJ", "ESTJ", "ENTP"];
 
-  const assistants = ["INFJ", "ENTP", "ISFP", "ESTJ"];
-
+  //API呼び出し制限超え防止のための待機(msミリ秒)
   const delay = ms => new Promise(res => setTimeout(res, ms));
 
+  //返答作成部分
   useEffect(() => {
-    if (messages.length > 1 && messages[messages.length - 1].role === "user") { // ユーザーのメッセージが追加されたとき
+    if (messages.length > 1 && messages[messages.length - 1].role === "user") {
       const fetchData = async () => {
         for (let i = 0; i < assistants.length; i++) {
           try {
@@ -26,7 +29,7 @@ function App() {
             const assistant = assistants[i];
             const response = await client.getChatCompletions(deploymentId, [
               ...messages,
-              { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の3人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
+              { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の2人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
             ], { maxTokens: 256 });
 
             if (response.choices && response.choices.length > 0) {
@@ -34,8 +37,7 @@ function App() {
               setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage, assistant }]);
             }
 
-            // 各アシスタントの間に待機時間を追加
-            await delay(15000); // 15秒の待機時間
+            await delay(15000);
           } catch (err) {
             setError(err);
             console.error("The sample encountered an error:", err);
@@ -46,6 +48,7 @@ function App() {
     }
   }, [messages]); // messagesが更新されるたびに実行
 
+  //ユーザの入力をログに保存
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim()) {
@@ -54,11 +57,13 @@ function App() {
     }
   };
 
+  //会話ログ取得
   const handleGetLog = () => {
     const log = messages.slice(1).map((msg) => `${msg.role === "assistant" ? `${msg.assistant}: ` : ''}${msg.role === "user" ? 'あなた: ' : ''}${msg.content}`).join('\n');
     downloadLogFile(log);
   };
 
+  //会話ログをelement.downloadファイルとしてダウンロード
   const downloadLogFile = (log) => {
     const element = document.createElement("a");
     const file = new Blob([log], { type: 'text/plain' });
@@ -68,6 +73,7 @@ function App() {
     element.click();
   };
 
+  //HTML部分
   return (
     <div className="App">
       <header className="App-header">
