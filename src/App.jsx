@@ -47,15 +47,6 @@ function App() {
     }
   }, [messages]); // messagesが更新されるたびに実行
 
-  //ユーザの入力をログに保存
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (input.trim()) {
-      setMessages(prevMessages => [...prevMessages, { role: "user", content: input }]);
-      setInput('');
-    }
-  };
-
   //会話ログ取得
   const handleGetLog = () => {
     const log = messages.slice(1).map((msg) => `${msg.role === "assistant" ? `${msg.assistant}: ` : ''}${msg.role === "user" ? 'あなた: ' : ''}${msg.content}`).join('\n');
@@ -79,15 +70,7 @@ function App() {
         <h1>Self Disclosure Chatbot</h1>
         <ChatBox messages = {messages} />
         {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="メッセージを入力してください"
-          />
-          <button type="submit">送信</button>
-        </form>
+        <MessageInput input = {input} setInput = {setInput} setMessages = {setMessage} />
         <DownloadLogButton handleGetLog = {handleGetLog} />
       </header>
     </div>
