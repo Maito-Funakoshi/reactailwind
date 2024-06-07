@@ -12,7 +12,7 @@ const AssistantResponses = ({ messages, setMessages, assistants, setError }) => 
       const fetchData = async () => {
         for (let i = 0; i < assistants.length; i++) {
           try {
-            const assistant = assistants[i];
+            let assistant = assistants[i];
             const response = await client.getChatCompletions(deploymentId, [
               ...messages,
               { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の${assistants.length - 1}人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
