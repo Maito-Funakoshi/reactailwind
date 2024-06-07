@@ -19,9 +19,6 @@ function App() {
   const [input, setInput] = useState('');
   const [error, setError] = useState(null);
 
-  //API呼び出し制限超え防止のための待機(msミリ秒)
-  const delay = ms => new Promise(res => setTimeout(res, ms));
-
   //返答作成部分
   useEffect(() => {
     if (messages.length > 1 && messages[messages.length - 1].role === "user") {
@@ -40,7 +37,6 @@ function App() {
               setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage, assistant }]);
             }
 
-            await delay(15000);
           } catch (err) {
             setError(err);
             console.error("The sample encountered an error:", err);
