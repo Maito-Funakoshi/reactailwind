@@ -35,7 +35,7 @@ function App() {
             }
 
             // 各アシスタントの間に待機時間を追加
-            await delay(10000); // 10秒の待機時間
+            await delay(11000); // 11秒の待機時間
           } catch (err) {
             setError(err);
             console.error("The sample encountered an error:", err);
