@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import ChatBox from './ChatBox';
 import MessageInput from './MessageInput';
 import DownloadLogButton from './DownloadLogButton';
+import AssistantResponses from './AssistantResponses'
 import './App.css';
-import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
+// import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 function App() {
-  //AzureOpenAIの設定
-  const endpoint = `https://opendialogue1.openai.azure.com/`;
-  const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
-  const deploymentId = "gpt35turbo";
+  // //AzureOpenAIの設定
+  // const endpoint = `https://opendialogue1.openai.azure.com/`;
+  // const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
+  // const deploymentId = "gpt35turbo";
 
   //初期設定
   const assistants = ["INFJ", "ESTJ", "ENTP"];
@@ -19,41 +20,42 @@ function App() {
   const [error, setError] = useState(null);
 
   //返答作成部分
-  useEffect(() => {
-    if (messages.length > 1 && messages[messages.length - 1].role === "user") {
-      const fetchData = async () => {
-        for (let i = 0; i < assistants.length; i++) {
-          try {
-            const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-            const assistant = assistants[i];
-            const response = await client.getChatCompletions(deploymentId, [
-              ...messages,
-              { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の${assistants.length - 1}人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
-            ], { maxTokens: 256 });
+  // useEffect(() => {
+  //   if (messages.length > 1 && messages[messages.length - 1].role === "user") {
+  //     const fetchData = async () => {
+  //       for (let i = 0; i < assistants.length; i++) {
+  //         try {
+  //           const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+  //           const assistant = assistants[i];
+  //           const response = await client.getChatCompletions(deploymentId, [
+  //             ...messages,
+  //             { role: "system", content: `あなたの名前は${assistant}で、MBTI診断で${assistant}と診断されるパーソナリティを持ちます。他の${assistants.length - 1}人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${assistant}として回答してください。` }
+  //           ], { maxTokens: 256 });
 
-            if (response.choices && response.choices.length > 0) {
-              const botMessage = response.choices[0].message.content.trim();
-              setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage, assistant }]);
-            }
+  //           if (response.choices && response.choices.length > 0) {
+  //             const botMessage = response.choices[0].message.content.trim();
+  //             setMessages(prevMessages => [...prevMessages, { role: "assistant", content: botMessage, assistant }]);
+  //           }
 
-          } catch (err) {
-            setError(err);
-            console.error("The sample encountered an error:", err);
-          }
-        }
-      }
-      fetchData();
-    }
-  }, [messages]); // messagesが更新されるたびに実行
+  //         } catch (err) {
+  //           setError(err);
+  //           console.error("The sample encountered an error:", err);
+  //         }
+  //       }
+  //     }
+  //     fetchData();
+  //   }
+  // }, [messages]); // messagesが更新されるたびに実行
 
   //HTML部分
   return (
     <div className="App">
       <header className="App-header">
         <h1>Self Disclosure Chatbot</h1>
+        <AssistantResponses messages = {messages} setMessages = {setMessages} assistants = {assistants} setError = {setError} />
         <ChatBox messages = {messages} error = {error} />
         <MessageInput setMessages = {setMessages} />
-        {/*　<DownloadLogButton messages = {messages} /> */}
+        <DownloadLogButton messages = {messages} />
       </header>
     </div>
   );
