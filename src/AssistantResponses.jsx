@@ -18,7 +18,7 @@ const AssistantResponses = ({ messages, setMessages, characters, names, setError
             character = characters[i];
             const response = await client.getChatCompletions(deploymentId, [
               ...messages,
-              { role: "system", content: `あなたの名前は${name}で、MBTI診断で${character}と診断されるパーソナリティを持ちます。他の${names.length - 1}人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${character}として回答してください。ただし回答は"${name}:"から始めてください。` }
+              { role: "system", content: `あなたの名前は${name}で、MBTI診断で${character}と診断されるパーソナリティを持ちます。他の${names.length - 1}人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${character}として回答してください。` }
             ], { maxTokens: 256 });
 
             if (response.choices && response.choices.length > 0) {
