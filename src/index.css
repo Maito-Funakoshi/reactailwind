@@ -132,6 +132,7 @@ header.App-header {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 60px;
   z-index: 1000;
   box-sizing: border-box;
 }
@@ -151,6 +152,7 @@ header.App-header h1 span#title {
   font-size: 18px;
   color: #B4B4B4;
   margin-left: 20px;
+  line-height: 60px;
 }
 
 header.App-header h1 button {
@@ -159,14 +161,22 @@ header.App-header h1 button {
   cursor: pointer;
   padding: 0;
   margin: 0 20px 0 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+header.App-header h1 button img {
+  height: 24px;
+  width: 24px;
 }
 
 .chat-box {
   padding: 10px;
-  margin-top: 40px;
+  margin-top: 60px;
   margin-bottom: 60px;
   overflow-y: auto;
-  height: calc(100% - 100px); /* 100% - (margin-top + margin-bottom) */
+  height: calc(100% - 120px); /* 100% - (margin-top + margin-bottom) */
   background-color: #242424;
   color: white;
   box-sizing: border-box;
@@ -218,9 +228,4 @@ form button {
 
 form button:hover {
   background-color: #45a049;
-}
-
-button img {
-  height: 24px;
-  width: 24px;
 }
