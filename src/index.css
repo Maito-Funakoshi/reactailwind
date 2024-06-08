@@ -91,16 +91,6 @@ h1 span{
   font-size: 50%;
 }
 
-h1 button {
-  display: flex; /* フレックスボックスレイアウトを使用 */
-  align-items: center; /* 縦方向に中央揃え */
-  justify-content: flex-end; /* 横方向に右揃え */
-  padding: 10px; /* ボタンの内側の余白 */
-  border: 1px solid #ccc; /* ボタンの境界線 */
-  background-color: #f0f0f0; /* ボタンの背景色 */
-  cursor: pointer; /* カーソルをポインターに変更 */
-}
-
 button img {
   width: 20px; /* 画像の幅を小さくする */
   height: auto; /* 画像の高さを自動で調整 */
