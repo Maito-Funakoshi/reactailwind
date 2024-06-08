@@ -22,7 +22,7 @@ const AssistantResponses = ({ messages, setMessages, characters, names, setError
             ], { maxTokens: 256 });
 
             if (response.choices && response.choices.length > 0) {
-              const botMessage = response.choices[0].message.content.trim().replace(/\n/g, '');
+              const botMessage = response.choices[0].message.content.trim();
               setMessages(prevMessages => [...prevMessages, { role: "assistant", content: `${botMessage}` }]);
             }
 
