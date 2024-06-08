@@ -89,3 +89,9 @@ h1 span{
   width: 50%;
   font-size: 50%;
 }
+
+button img {
+  width: 20px; /* 画像の幅を小さくする */
+  height: auto; /* 画像の高さを自動で調整 */
+  margin-left: auto; /* 画像を右側に配置 */
+}
