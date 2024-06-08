@@ -68,31 +68,27 @@ button:focus-visible {
 }
 
 /* ここまでがデフォルト */
-
 h1 {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: left;
-  white-space: nowrap;
-  width: 100%;
-  display: block;
-  margin: 0;
-  padding-left: 10%;
-  z-index: 10;
-  background-color: #242424;
-}
-
-h1 span{
   display: flex;
   justify-content: space-between;
-  width: 50%;
-  font-size: 50%;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+#title {
+  margin: 0;
+}
+
+button {
+  margin: 0;
+  padding: 5px 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 button img {
-  width: 20px; /* 画像の幅を小さくする */
-  height: auto; /* 画像の高さを自動で調整 */
-  margin-left: auto; /* 画像を右側に配置 */
+  width: 20px;
+  height: auto;
 }
