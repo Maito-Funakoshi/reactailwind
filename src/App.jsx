@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ChatBox from './ChatBox';
 import MessageInput from './MessageInput';
-import DownloadLogButton from './DownloadLogButton';
+import Header from './Header';
 import AssistantResponses from './AssistantResponses'
 import './App.css';
 
@@ -21,7 +21,7 @@ function App() {
         <AssistantResponses messages = {messages} setMessages = {setMessages} characters = {characters} names = {names} setError = {setError} />
         <ChatBox messages = {messages} error = {error} />
         <MessageInput setMessages = {setMessages} />
-        <DownloadLogButton messages = {messages} />
+        <Header messages = {messages} />
       </header>
     </div>
   );

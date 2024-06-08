@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DownloadLogButton = ({ messages }) => {
+const Header = ({ messages }) => {
   const handleGetLog = () => {
     const log = messages.slice(1).map((msg) => msg.content).join('\n');
     downloadLogFile(log);
@@ -23,4 +23,4 @@ const DownloadLogButton = ({ messages }) => {
   );
 };
 
-export default DownloadLogButton;
+export default Header;
