@@ -72,7 +72,7 @@ h1 {
   position: fixed;
   top: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   white-space: nowrap;
   align-items: center;
   margin: 0;
