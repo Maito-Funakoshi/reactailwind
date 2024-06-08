@@ -16,7 +16,10 @@ const DownloadLogButton = ({ messages }) => {
   };
 
   return (
-    <button onClick={handleGetLog}>会話ログをダウンロード</button>
+    <h1>
+      <span id="title">Self Disclosure Chatbot</span>
+      <button onClick={handleGetLog}>会話ログをダウンロード</button>
+    </h1>
   );
 };
 
