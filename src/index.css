@@ -118,6 +118,7 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+  background-color: #242424;
 }
 
 header.App-header {
