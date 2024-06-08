@@ -69,10 +69,12 @@ button:focus-visible {
 
 /* ここまでがデフォルト */
 
-p.user {
-  float: right;
-}
-
-p.assistant {
-  float: left;
+.chat-box {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center; /* 中央揃えにしたい場合 */
+  margin: 0; /* 余白をリセット */
+  padding: 1em; /* 必要に応じてパディングを追加 */
+  background-color: #f8f9fa; /* 背景色を設定 */
 }
