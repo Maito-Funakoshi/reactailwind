@@ -74,8 +74,9 @@ h1 {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  margin: 0;
-  padding: 1em; /* 必要に応じてパディングを追加 */
-  background-color: #f8f9fa; /* 背景色を設定 */
   text-align: center;
+  white-space: nowrap; /* テキストを一行にする */
+  margin: 0; /* 余白をリセット */
+  padding: 1em; /* 必要に応じてパディングを追加 */
+  background-color: #f8f9fa; /* 背景色を設定 (必要に応じて変更) */
 }
