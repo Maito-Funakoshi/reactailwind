@@ -77,5 +77,6 @@ h1 {
   text-align: center;
   white-space: nowrap; /* テキストを一行にする */
   margin: 0; /* 余白をリセット */
+  z-index: 10;
   background-color: #f8f9fa; /* 背景色を設定 (必要に応じて変更) */
 }
