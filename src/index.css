@@ -73,6 +73,7 @@ h1 {
   top: 0;
   display: flex;
   justify-content: space-between;
+  white-space: nowrap;
   align-items: center;
   margin: 0;
   padding: 0;
