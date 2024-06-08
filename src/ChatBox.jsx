@@ -16,7 +16,8 @@ const ChatBox = ({ messages, error }) => {
           if (charIndex < lastMessage.content.length) {
             updatedMessages[updatedMessages.length - 1].content += lastMessage.content[charIndex];
             charIndex++;
-          } else {
+          }
+          if (charIndex >= lastMessage.content.length) {
             clearInterval(intervalId);
           }
           return updatedMessages;
