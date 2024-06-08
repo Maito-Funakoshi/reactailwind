@@ -18,7 +18,7 @@ const Header = ({ messages }) => {
   return (
     <h1>
       <span id="title">Self Disclosure Chatbot</span>
-      <button onClick={handleGetLog}>会話ログをダウンロード</button>
+      <button onClick={handleGetLog}><img src="public/downloadIcon.jpg" alt="ダウンロード" /></button>
     </h1>
   );
 };
