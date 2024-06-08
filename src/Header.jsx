@@ -1,5 +1,5 @@
 import React from 'react';
-import downloadIcon from 'assets/downloadIcon.jpg'
+import downloadIcon from '../assets/downloadIcon.jpg'
 
 const Header = ({ messages }) => {
   const handleGetLog = () => {
