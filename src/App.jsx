@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Self Disclosure Chatbot</h1>
+        <h1><span id="title">Self Disclosure Chatbot</span></h1>
         <AssistantResponses messages = {messages} setMessages = {setMessages} characters = {characters} names = {names} setError = {setError} />
         <ChatBox messages = {messages} error = {error} />
         <MessageInput setMessages = {setMessages} />

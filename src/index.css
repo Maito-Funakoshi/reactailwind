@@ -83,3 +83,8 @@ h1 {
   z-index: 10;
   background-color: #f8f9fa; /* 背景色を設定 (必要に応じて変更) */
 }
+
+h1 span{
+  display: inline-block;
+  width: 50%;
+}
