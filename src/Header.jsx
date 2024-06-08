@@ -1,5 +1,4 @@
 import React from 'react';
-import downloadIcon from '../assets/downloadIcon.jpg'
 
 const Header = ({ messages }) => {
   const handleGetLog = () => {
@@ -19,7 +18,7 @@ const Header = ({ messages }) => {
   return (
     <h1>
       <span id="title">Self Disclosure Chatbot</span>
-      <button onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
+      <button onClick={handleGetLog}><img src="./images/downloadIcon.jpg" alt="ダウンロード" /></button>
     </h1>
   );
 };
