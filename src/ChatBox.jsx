@@ -7,20 +7,20 @@ const ChatBox = ({ messages, error }) => {
     if (messages.length > 1) {
       const lastMessage = messages[messages.length - 1];
       const newMessage = { ...lastMessage, content: '' };
-      setDisplayedMessages([...displayedMessages, newMessage]);
+      setDisplayedMessages((prev) => [...prev, newMessage]);
 
       let charIndex = 0;
       const intervalId = setInterval(() => {
-        if (charIndex < lastMessage.content.length) {
-          setDisplayedMessages((prev) => {
-            const updatedMessages = [...prev];
+        setDisplayedMessages((prev) => {
+          const updatedMessages = [...prev];
+          if (charIndex < lastMessage.content.length) {
             updatedMessages[updatedMessages.length - 1].content += lastMessage.content[charIndex];
-            return updatedMessages;
-          });
-          charIndex++;
-        } else {
-          clearInterval(intervalId);
-        }
+            charIndex++;
+          } else {
+            clearInterval(intervalId);
+          }
+          return updatedMessages;
+        });
       }, 50); // 文字表示の速度を設定
 
       return () => clearInterval(intervalId);
@@ -30,7 +30,7 @@ const ChatBox = ({ messages, error }) => {
   return (
     <>
       <div className="chat-box">
-        {displayedMessages.slice(1).map((msg, index) => (
+        {displayedMessages.map((msg, index) => (
           <p key={index} className={msg.role}>
             {msg.content}
           </p>
