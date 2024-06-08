@@ -18,9 +18,9 @@ const Header = ({ messages }) => {
 
   return (
     <header className="App-header">
-      <h1　class="header-title">
+      <h1>
         <span id="title">Self Disclosure Chatbot</span>
-        <button class="header-button" onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
+        <button onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
       </h1>
     </header>
   );
