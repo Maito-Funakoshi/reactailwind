@@ -68,7 +68,7 @@ button:focus-visible {
 }
 
 /* ここまでがデフォルト */
-h1 {
+/* h1 {
   position: fixed;
   top: 0;
   display: flex;
@@ -96,4 +96,4 @@ button {
 button img {
   width: 20px;
   height: auto;
-}
+} */
