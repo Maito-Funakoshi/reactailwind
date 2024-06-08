@@ -80,6 +80,16 @@ button:focus-visible {
   z-index: 10;
   background-color: #242424;
 }*/
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.chat-box {
+  flex: 1;
+}
 
 #title {
   margin: 0;
