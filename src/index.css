@@ -81,9 +81,11 @@ h1 {
   margin: 0;
   padding: 0;
   z-index: 10;
+  background-color: #213547;
 }
 
 h1 span{
   display: inline-block;
   width: 50%;
+  font-size: 50%;
 }
