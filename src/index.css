@@ -74,14 +74,13 @@ h1 {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
   width: 100%;
   display: block;
   margin: 0;
   padding: 0;
   z-index: 10;
-  background-color: #f8f9fa; /* 背景色を設定 (必要に応じて変更) */
 }
 
 h1 span{
