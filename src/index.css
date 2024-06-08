@@ -148,6 +148,8 @@ header.App-header h1 {
 header.App-header h1 span#title {
   flex: 1;
   text-align: left;
+  font-size: 16px;
+  color: #888;
   margin-left: 20px;
 }
 
