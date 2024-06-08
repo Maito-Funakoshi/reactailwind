@@ -19,10 +19,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Header messages = {messages} />
+      </header>
         <AssistantResponses messages = {messages} setMessages = {setMessages} characters = {characters} names = {names} setError = {setError} />
         <ChatBox messages = {messages} error = {error} />
         <MessageInput setMessages = {setMessages} />
-      </header>
     </div>
   );
 }
