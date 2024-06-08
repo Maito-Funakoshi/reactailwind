@@ -139,10 +139,10 @@ h1 {
 
 .chat-box {
   padding: 10px;
-  margin-top: 105px;
+  margin-top: 48px;
   margin-bottom: 60px;
   overflow-y: auto;
-  height: calc(100% - 160px); /* 100% - (margin-top + margin-bottom) */
+  height: calc(100% - 108px); /* 100% - (margin-top + margin-bottom) */
   box-sizing: border-box;
 }
 
