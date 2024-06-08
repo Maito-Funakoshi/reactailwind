@@ -80,13 +80,13 @@ h1 {
   display: block;
   margin: 0;
   padding-left: 10%;
-  padding-bottom: 50%;
   z-index: 10;
   background-color: #242424;
 }
 
 h1 span{
   display: inline-block;
+  align-items: center;
   width: 50%;
   font-size: 50%;
 }
