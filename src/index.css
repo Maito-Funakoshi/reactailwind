@@ -133,10 +133,18 @@ header.App-header {
   top: 0;
   width: 100%;
   z-index: 1000;
+  box-sizing: border-box;
 }
 
-h1 {
-  margin: 0px;
+
+header.App-header .header-title {
+  margin: 0;
+  padding-left: 20px;
+}
+
+header.App-header .header-button {
+  margin: 0;
+  padding-right: 20px;
 }
 
 .chat-box {
