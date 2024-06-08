@@ -80,7 +80,7 @@ button:focus-visible {
   z-index: 10;
   background-color: #242424;
 }*/
-.App {
+/* .App {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -89,6 +89,7 @@ button:focus-visible {
 
 .App-header {
   position: fixed;
+  
   z-index: 10;
 }
 
@@ -111,4 +112,70 @@ button {
 button img {
   width: 30px;
   height: auto;
+} */
+header.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #282c34;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.chat-box {
+  padding: 10px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  overflow-y: auto;
+  height: calc(100% - 120px);
+  box-sizing: border-box;
+}
+
+.chat-box p {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+  padding: 10px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+form input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+button img {
+  height: 20px;
+  width: 20px;
 }
