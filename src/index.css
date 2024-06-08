@@ -69,12 +69,13 @@ button:focus-visible {
 
 /* ここまでがデフォルト */
 
-form {
+h1 {
   position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center; /* 中央揃えにしたい場合 */
-  margin: 0; /* 余白をリセット */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
   padding: 1em; /* 必要に応じてパディングを追加 */
   background-color: #f8f9fa; /* 背景色を設定 */
+  text-align: center;
 }
