@@ -85,12 +85,12 @@ h1 {
 }
 
 h1 span{
-  display: inline-block;
+  display: flex;
   width: 50%;
   font-size: 50%;
 }
 
-button {
+h1 button {
   display: flex; /* フレックスボックスレイアウトを使用 */
   align-items: center; /* 縦方向に中央揃え */
   justify-content: flex-end; /* 横方向に右揃え */
