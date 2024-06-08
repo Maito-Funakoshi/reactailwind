@@ -17,10 +17,12 @@ const Header = ({ messages }) => {
   };
 
   return (
-    <h1>
-      <span id="title">Self Disclosure Chatbot</span>
-      <button onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
-    </h1>
+    <header className="App-header">
+      <h1>
+        <span id="title">Self Disclosure Chatbot</span>
+        <button onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
+      </h1>
+    </header>
   );
 };
 

@@ -133,6 +133,10 @@ header.App-header {
   z-index: 1000;
 }
 
+h1 {
+  margin: 0px;
+}
+
 .chat-box {
   padding: 10px;
   margin-top: 105px;
