@@ -87,6 +87,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
             setError(err);
             console.error("The sample encountered an error:", err);
           }
+          console.log(messages);
         }
       }
       fetchData();
