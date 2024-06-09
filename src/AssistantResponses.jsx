@@ -17,7 +17,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
   useEffect(() => {
     if (messages.length > 1) {
       const fetchData = async () => {
-        for (let i = 0; i < clients.length; i++) {
+        for (let i = 0; i < names.length; i++) {
           try {
             // name = names[i];
             // character = characters[i];
