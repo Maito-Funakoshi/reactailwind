@@ -177,7 +177,7 @@ header.App-header h1 button img {
   margin-bottom: 60px;
   overflow-y: auto;
   height: calc(100% - 120px); /* 100% - (margin-top + margin-bottom) */
-  background-color: #2ca2e6;
+  background-color: #49bcfe;
   color: black;
   box-sizing: border-box;
 }
@@ -212,7 +212,7 @@ form input {
 }
 
 form input[type="text"]::placeholder {
-  color: #888;
+  color: #484848;
 }
 
 form button {
