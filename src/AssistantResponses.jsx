@@ -16,7 +16,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
   let character;
 
   useEffect(() => {
-    if (messages.length > 1) {
+    if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
       const fetchData = async () => {
         for (let i = 0; i < names.length; i++) {
           try {
