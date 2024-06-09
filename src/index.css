@@ -183,17 +183,22 @@ header.App-header h1 button img {
 }
 
 .chat-box p {
-  margin: 0;
+  margin: 5px 0;
   padding: 10px;
   border: none;
   border-radius: 20px;
 }
 
 .user {
+  text-align: right;
+  word-wrap: break-word;
+  max-width: 300px;
   background-color: #6DE67A;
 }
 
 .assistant {
+  word-wrap: break-word;
+  max-width: 300px;
   background-color: white;
 }
 
