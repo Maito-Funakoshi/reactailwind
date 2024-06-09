@@ -190,7 +190,7 @@ header.App-header h1 button img {
 }
 
 .user {
-  text-align: right;
+  float: right;
   word-wrap: break-word;
   max-width: 300px;
   background-color: #6DE67A;
