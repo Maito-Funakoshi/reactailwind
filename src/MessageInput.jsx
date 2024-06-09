@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import sendIcon from "../images/sendIcon.png"
 
 const MessageInput = ({ setMessages }) => {
   const [input, setInput] = useState('');
@@ -18,7 +19,7 @@ const MessageInput = ({ setMessages }) => {
         onChange={(e) => setInput(e.target.value)}
         placeholder="メッセージを入力してください"
       />
-      <button type="submit">送信</button>
+      <button type="submit"><img src={sendIcon} alt="送信"/></button>
     </form>
   );
 };
