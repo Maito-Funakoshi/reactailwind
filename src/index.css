@@ -118,7 +118,7 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #49bcfe;
+  background-color: #8CABD8;
 }
 
 header.App-header {
@@ -127,7 +127,7 @@ header.App-header {
   align-items: center;
   padding: 0px;
   margin: 0px;
-  background-color: #49bcfe;
+  background-color: #8CABD8;
   color: white;
   position: fixed;
   top: 0;
@@ -177,7 +177,7 @@ header.App-header h1 button img {
   margin-bottom: 40px;
   overflow-y: auto;
   height: calc(100% - 100px); /* 100% - (margin-top + margin-bottom) */
-  background-color: #49bcfe;
+  background-color: #8CABD8;
   color: black;
   box-sizing: border-box;
 }
@@ -185,6 +185,9 @@ header.App-header h1 button img {
 .chat-box p {
   margin: 0;
   padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #6DE67A;
 }
 
 form {
