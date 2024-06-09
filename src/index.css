@@ -220,5 +220,10 @@ form button {
   background: none;
   border: none;
   cursor: pointer;
+  height: 58.5px;
+}
+
+form button img {
   height: 38px;
+  width: 38px;
 }
