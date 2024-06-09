@@ -19,7 +19,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
     if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
       const fetchData = async () => {
         let conversationContext = messages;
-        for (let i = 0; i < names.length; i++) {
+        for (var i = 0; i < names.length; i++) {
           try {
             // name = names[i];
             // character = characters[i];
