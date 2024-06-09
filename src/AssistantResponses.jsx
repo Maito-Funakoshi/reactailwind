@@ -59,7 +59,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
                 const modifiedMessages = messages.slice(1);
                 messages2 = [...messages2, ...modifiedMessages];
                 //返信を作成
-                const response2 = await client.getChatCompletions(deploymentId, messages1, { maxTokens: 256 });
+                const response2 = await client.getChatCompletions(deploymentId, messages2, { maxTokens: 256 });
                 //ログに追加
                 if (response2.choices && response2.choices.length > 0) {
                     const botMessage2 = response2.choices[0].message.content.trim();
