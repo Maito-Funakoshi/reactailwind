@@ -221,7 +221,7 @@ form {
   box-sizing: border-box;
 }
 
-form input {
+form textarea {
   flex: 1;
   padding: 10px;
   margin: 0 10px;
@@ -232,7 +232,7 @@ form input {
   font-size: 16px;
 }
 
-form input[type="text"]::placeholder {
+form textarea::placeholder {
   color: grey;
 }
 
