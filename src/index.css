@@ -189,17 +189,19 @@ header.App-header h1 button img {
   padding: 10px;
   border: none;
   border-radius: 20px;
+  word-wrap: break-word;
 }
 
 .user {
-  float: right;
-  word-wrap: break-word;
+  align-self: flex-end;
+  text-align: right;
   max-width: 300px;
   background-color: #6DE67A;
 }
 
 .assistant {
-  word-wrap: break-word;
+  align-self: flex-start;
+  text-align: left;
   max-width: 300px;
   background-color: white;
 }
