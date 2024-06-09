@@ -9,10 +9,6 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
   const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
   let clients = Array(names.length);
   clients.fill(client);
-
-  let messages1 = [{ role: "system", content: `あなたは${names[1]}という名前のアシスタントです。あなたのMBTIは${characters[1]}です。あなたは一回の発言で120文字まで話すことができます。`}]
-  let messages2 = [{ role: "system", content: `あなたは${names[2]}という名前のアシスタントです。あなたのMBTIは${characters[2]}です。あなたは一回の発言で120文字まで話すことができます。`}]
-
   let name;
   let character;
 
