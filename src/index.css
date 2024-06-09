@@ -118,7 +118,7 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #2ca2e6;
+  background-color: #49bcfe;
 }
 
 header.App-header {
@@ -127,7 +127,7 @@ header.App-header {
   align-items: center;
   padding: 0px;
   margin: 0px;
-  background-color: #2ca2e6;
+  background-color: #49bcfe;
   color: white;
   position: fixed;
   top: 0;
