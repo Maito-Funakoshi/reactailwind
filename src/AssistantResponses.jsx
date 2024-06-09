@@ -18,6 +18,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
   useEffect(() => {
     if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
       const fetchData = async () => {
+        let conversationContext = messages;
         for (let i = 0; i < names.length; i++) {
           try {
             // name = names[i];
@@ -81,9 +82,10 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
   
               if (response.choices && response.choices.length > 0) {
                 const botMessage = response.choices[0].message.content.trim();
-                await setMessages(prevMessages => [...prevMessages, { role: "assistant", content: `${botMessage}` }]);
+                const assistantMessage = { role: "assistant", content: `${botMessage}` };
+                setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                conversationContext = [...conversationContext, assistantMessage];
               }
-              console.log(messages);
           } catch (err) {
             setError(err);
             console.error("The sample encountered an error:", err);
