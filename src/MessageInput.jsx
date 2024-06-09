@@ -13,7 +13,8 @@ const MessageInput = ({ setMessages }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea
+      <input
+        type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="メッセージを入力してください"
