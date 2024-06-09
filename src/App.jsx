@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Header messages = {messages} />
-      <AssistantResponses messages = {messages} setMessages = {setMessages} characters = {characters} names = {names} setError = {setError} />
+      <AssistantResponses messages = {messages} setMessages = {setMessages} names = {names} characters = {characters} setError = {setError} />
       <ChatBox messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} />
     </div>
