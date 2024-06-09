@@ -74,8 +74,8 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
 
             const modifiedMessages = [
                 { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。あなたのMBTIは${characters[i]}です。あなたは一回の発言で120文字まで話すことができます。` },
-                ...messages.slice(1)
-              ];
+                ...messages.slice(1).map(message => ({...message, role: "user"}))
+            ];
               
               const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages, { maxTokens: 256 });
   
