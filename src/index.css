@@ -189,11 +189,11 @@ header.App-header h1 button img {
   border-radius: 20px;
 }
 
-.chat-box p .user {
+.user {
   background-color: #6DE67A;
 }
 
-.chat-box p .assistant {
+.assistant {
   background-color: white;
 }
 
