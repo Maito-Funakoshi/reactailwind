@@ -187,8 +187,17 @@ header.App-header h1 button img {
   padding: 10px;
   border: none;
   border-radius: 20px;
+}
+
+.chat-box p .user {
   background-color: #6DE67A;
 }
+
+.chat-box p .assistant {
+  background-color: white;
+}
+
+
 
 form {
   display: flex;
