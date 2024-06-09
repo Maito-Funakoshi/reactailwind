@@ -9,8 +9,6 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
   const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
   let clients = Array(names.length);
   clients.fill(client);
-  let name;
-  let character;
 
   useEffect(() => {
     if (messages.length > 1) {
