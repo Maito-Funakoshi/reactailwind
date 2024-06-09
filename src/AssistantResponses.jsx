@@ -83,11 +83,11 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
                 const botMessage = response.choices[0].message.content.trim();
                 setMessages(prevMessages => [...prevMessages, { role: "assistant", content: `${botMessage}` }]);
               }
+              console.log(messages);
           } catch (err) {
             setError(err);
             console.error("The sample encountered an error:", err);
           }
-          console.log(messages);
         }
       }
       fetchData();
