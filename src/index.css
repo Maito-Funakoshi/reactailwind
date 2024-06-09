@@ -194,7 +194,7 @@ header.App-header h1 button img {
 
 .user {
   align-self: flex-end;
-  text-align: right;
+  text-align: left;
   max-width: 300px;
   background-color: #6DE67A;
 }
