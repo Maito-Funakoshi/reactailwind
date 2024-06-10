@@ -184,7 +184,7 @@ header.App-header h1 span#title {
   background-color: white;
   top: 0;
   bottom: 0;
-  left: 5px;
+  left: 2px;
   margin: auto;
   box-shadow: 1px 1px 7px #B7B7B7, -1px -1px 4px #CECECE inset;
   transition: left .3s ease-in-out;
