@@ -226,10 +226,9 @@ form input {
   flex: 1;
   padding: 10px;
   margin: 0 10px;
-  border: none;
   border-radius: 20px;
+  border-color: #E8E8E8;
   background-color: #F5F5F5;
-  border-color: red;
   font-size: 16px;
 }
 
