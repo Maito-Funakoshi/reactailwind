@@ -226,6 +226,7 @@ form input {
   flex: 1;
   padding: 10px;
   margin: 0 10px;
+  border: solid #E8E8E8;
   border-radius: 20px;
   background-color: #F5F5F5;
   font-size: 16px;
