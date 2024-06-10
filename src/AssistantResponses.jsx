@@ -18,8 +18,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
   useEffect(() => {
     if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
       const fetchData = async () => {
-        let conversationContext = messages;
-        for (var i = 0; i < names.length; i++) {
+        for (let i = 0; i < names.length; i++) {
           try {
             // name = names[i];
             // character = characters[i];
@@ -84,7 +83,6 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
                 const botMessage = response.choices[0].message.content.trim();
                 const assistantMessage = { role: "assistant", content: `${botMessage}` };
                 setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                conversationContext = [...conversationContext, assistantMessage];
               }
           } catch (err) {
             setError(err);
