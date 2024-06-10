@@ -229,7 +229,7 @@ form input {
   border: none;
   border-radius: 20px;
   background-color: #F5F5F5;
-  border-color: #E8E8E8;
+  border-color: red;
   font-size: 16px;
 }
 
