@@ -228,7 +228,7 @@ form input {
   border: none;
   border-radius: 20px;
   background-color: #e0e0e0;
-  color: black;
+  /* color: black; */
   font-size: 16px;
 }
 
