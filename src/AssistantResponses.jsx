@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ messages, setMessages, names, characters, setError }) => {
+const AssistantResponses = ({ messages, setMessages, names, characters, common, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
@@ -73,7 +73,7 @@ const AssistantResponses = ({ messages, setMessages, names, characters, setError
             // }
 
             const modifiedMessages = [
-                { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。あなたのMBTIは${characters[i]}です。あなたは一回の発言で120文字まで話すことができます。` },
+                { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。あなたのMBTIは${characters[i]}です。${common}` },
                 ...messages.slice(1).map(message => ({...message, role: "user"}))
             ];
               
