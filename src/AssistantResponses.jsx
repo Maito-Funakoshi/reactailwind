@@ -53,7 +53,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
         fetchData();
       }
     }
-    else {
+    else if(!inputAble) {
       if (messages.length > 1) {
         const fetchData = async () => {
           for (let i = 0; i < names.length; i++) {
