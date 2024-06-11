@@ -16,7 +16,6 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
   useEffect(() => {
-    console.log(inputAble)
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const fetchData = async () => {
@@ -80,7 +79,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
         fetchData();
       }
     }
-  }, [messages]);
+  }, [messages, inputAble]);
 
   return null;
 };
