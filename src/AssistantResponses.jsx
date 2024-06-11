@@ -78,7 +78,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
             }
           }
           fetchData();
-        }, 3000);
+        }, 5000);
 
         return () => clearInterval(intervalId);
       }
