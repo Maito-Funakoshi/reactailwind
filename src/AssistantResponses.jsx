@@ -17,7 +17,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
 
   useEffect(() => {
     if (inputAble) {
-      if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
+      if (messages.length > 2　&& messages[messages.length - 1].role == "user") {
         const fetchData = async () => {
           for (let i = 0; i < names.length; i++) {
             try {
@@ -54,7 +54,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
       }
     }
     else if(!inputAble) {
-      if (messages.length > 1) {
+      if (messages.length > 2) {
         const intervalId = setInterval(() => {
           const fetchData = async () => {
             for (let i = 0; i < names.length; i++) {
