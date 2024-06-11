@@ -18,7 +18,7 @@ const MessageInput = ({ setMessages, inputAble }) => {
         disabled={!inputAble}
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder={inputAble ? "メッセージを入力してください" : "リフレクティング中"}
+        placeholder={inputAble ? "メッセージを入力してください" : "※リフレクティング中..."}
       />
       <button type="submit"><img src={sendIcon} alt="送信"/></button>
     </form>
