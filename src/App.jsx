@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses messages = {messages} setMessages = {setMessages} ipnutAble = {inputAble} names = {names} characters = {characters} common = {common} setError = {setError} />
+      <AssistantResponses messages = {messages} setMessages = {setMessages} inputAble = {inputAble} names = {names} characters = {characters} common = {common} setError = {setError} />
       <ChatBox messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
