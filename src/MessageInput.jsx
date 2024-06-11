@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import sendIcon from "../images/sendIcon.png"
 
-const MessageInput = ({ setMessages }) => {
+const MessageInput = ({ setMessages, inputAble }) => {
   const [input, setInput] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +15,7 @@ const MessageInput = ({ setMessages }) => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
+        disabled={!inputAble}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="メッセージを入力してください"

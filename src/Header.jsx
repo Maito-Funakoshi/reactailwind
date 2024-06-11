@@ -1,14 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import downloadIcon from "../images/downloadIcon.png"
 
-const Header = ({ messages }) => {
-  const [inputAble, setInputAble] = useState(true);
-
+const Header = ({ messages, inputAble, setInputAble}) => {
   const toggleSwitch = () => {
     setInputAble(!inputAble);
   };
-
-
 
   const handleGetLog = () => {
     const log = messages.slice(1).map((msg) => msg.content).join('\n');
