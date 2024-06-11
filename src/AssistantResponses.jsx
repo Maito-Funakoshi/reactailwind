@@ -55,28 +55,32 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
     }
     else if(!inputAble) {
       if (messages.length > 1) {
-        const fetchData = async () => {
-          for (let i = 0; i < names.length; i++) {
-            try {
-              const modifiedMessages = [
-                { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。あなたのMBTIは${characters[i]}です。${common}` },
-                  ...messages.slice(1).map(message => ({...message, role: "user"}))
-              ];
-                  
-              const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages, { maxTokens: 256 });
-      
-              if (response.choices && response.choices.length > 0) {
-                const botMessage = response.choices[0].message.content.trim();
-                const assistantMessage = { role: "assistant", content: `${botMessage}` };
-                setMessages(prevMessages => [...prevMessages, assistantMessage]);
+        const intervalId = setInterval(() => {
+          const fetchData = async () => {
+            for (let i = 0; i < names.length; i++) {
+              try {
+                const modifiedMessages = [
+                  { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。あなたのMBTIは${characters[i]}です。${common}` },
+                    ...messages.slice(1).map(message => ({...message, role: "user"}))
+                ];
+                    
+                const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages, { maxTokens: 256 });
+        
+                if (response.choices && response.choices.length > 0) {
+                  const botMessage = response.choices[0].message.content.trim();
+                  const assistantMessage = { role: "assistant", content: `${botMessage}` };
+                  setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                }
+              } catch (err) {
+                setError(err);
+                console.error("The sample encountered an error:", err);
               }
-            } catch (err) {
-              setError(err);
-              console.error("The sample encountered an error:", err);
             }
           }
-        }
-        fetchData();
+          fetchData();
+        }, 3000);
+
+        return () => clearInterval(intervalId);
       }
     }
   }, [messages, inputAble]);
