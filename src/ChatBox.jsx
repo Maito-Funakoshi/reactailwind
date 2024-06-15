@@ -2,6 +2,7 @@ import React from 'react';
 import A from "../images/A.png";
 import B from "../images/B.png";
 import C from "../images/C.png"; 
+import system from "../images/system.png";
 
 const ChatBox = ({ messages, error }) => {
   const getImageSrc = (name) => {
@@ -12,6 +13,8 @@ const ChatBox = ({ messages, error }) => {
         return B;
       case 'C':
         return C;
+      case 'system':
+        return system;
       default:
         return ''; // デフォルトの画像パス、必要ならば設定
     }
