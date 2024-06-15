@@ -223,7 +223,7 @@ header.App-header h1 button img {
   box-sizing: border-box;
 }
 
-.chat-box div p {
+.chat-box p {
   margin: 5px 0;
   padding: 10px;
   border: none;
@@ -231,7 +231,7 @@ header.App-header h1 button img {
   word-wrap: break-word;
 }
 
-.user {
+p.user {
   align-self: flex-end;
   text-align: left;
   max-width: 300px;
