@@ -231,6 +231,9 @@ header.App-header h1 button img {
   word-wrap: break-word;
 }
 
+.chat-box div{
+  display: flex;
+}
 .user {
   align-self: flex-end;
   text-align: left;
