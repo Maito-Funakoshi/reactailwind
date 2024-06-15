@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import sendIcon from "../images/sendIcon.png"
 
-const MessageInput = ({ setMessages, inputAble }) => {
+const MessageInput = ({ setMessages, inputAble, recipients, setRecipients }) => {
   const [input, setInput] = useState('');
-  const [recipients, setRecipients] = useState({
-    all: false,
-    A: false,
-    B: false,
-    C: false,
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

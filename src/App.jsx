@@ -18,14 +18,20 @@ function App() {
   ]);
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
+  const [recipients, setRecipients] = useState({
+    all: false,
+    A: false,
+    B: false,
+    C: false,
+  });
 
   //HTML部分
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses messages = {messages} setMessages = {setMessages} inputAble = {inputAble} names = {names} characters = {characters} chat = {chat} reflect = {reflect} setError = {setError} />
+      <AssistantResponses messages = {messages} setMessages = {setMessages} inputAble = {inputAble} names = {names} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
       <ChatBox messages = {messages} error = {error} />
-      <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
+      <MessageInput setMessages = {setMessages} inputAble = {inputAble} recipients = {recipients} setRecipients = {setRecipients} />
     </div>
   );
 }
