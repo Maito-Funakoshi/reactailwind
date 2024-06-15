@@ -28,7 +28,7 @@ function App() {
   //HTML部分
   return (
     <div className="App">
-      <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} recipients = {recipients} setRecipients = {setRecipients} />
+      <Header names = {names} messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} recipients = {recipients} setRecipients = {setRecipients} />
       <AssistantResponses messages = {messages} setMessages = {setMessages} inputAble = {inputAble} names = {names} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
       <ChatBox messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />

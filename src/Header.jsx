@@ -1,7 +1,11 @@
 import React from 'react';
 import downloadIcon from "../images/downloadIcon.png"
 
-const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients}) => {
+const Header = ({ names, messages, inputAble, setInputAble, recipients, setRecipients}) => {
+  const first = names[0];
+  const second = names[1];
+  const third = names[2];
+
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
     setRecipients(prevRecipients => ({
@@ -36,29 +40,29 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
         　　<label>
           　　<input
             　　type="checkbox"
-            　　name="A"
-            　　checked={recipients.A}
+            　　name={first}
+            　　checked={recipients[first]}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　A
+          　　{first}
         　　</label>
         　　<label>
           　　<input
             　　type="checkbox"
-            　　name="B"
-            　　checked={recipients.B}
+            　　name={second}
+            　　checked={recipients[second]}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　B
+          　　{second}
         　　</label>
         　　<label>
           　　<input
             　　type="checkbox"
-            　　name="C"
-            　　checked={recipients.C}
+            　　name={third}
+            　　checked={recipients[third]}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　C
+          　　{third}
         　　</label>
       　</div>
         <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
