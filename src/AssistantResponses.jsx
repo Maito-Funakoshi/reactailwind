@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ messages, setMessages, inputAble, names, characters, chat, reflect, recipients, setError }) => {
+const AssistantResponses = ({ names, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
