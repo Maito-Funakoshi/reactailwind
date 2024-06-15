@@ -225,11 +225,11 @@ header.App-header h1 button img {
 
 .chat-box div{
   display: flex;
+  margin: 5px 0;
+  padding: 10px;
 }
 
 .chat-box div p {
-  margin: 5px 0;
-  padding: 10px;
   border: none;
   border-radius: 20px;
   word-wrap: break-word;
@@ -238,6 +238,7 @@ header.App-header h1 button img {
 .chat-box div.you{
   align-self: flex-end;
 }
+
 .user {
   align-self: flex-end;
   text-align: left;
