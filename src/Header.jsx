@@ -41,7 +41,7 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
   return (
     <header className="App-header">
       <h1>
-        <span id="title">Self Disclosure Chatbot</span>
+        <span id="title">SDC</span>
         <div class="recipients">
         　　<label>
           　　<input
