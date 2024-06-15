@@ -231,7 +231,7 @@ header.App-header h1 button img {
   word-wrap: break-word;
 }
 
-div.user {
+.user {
   align-self: flex-end;
   text-align: left;
   max-width: 300px;
