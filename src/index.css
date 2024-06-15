@@ -208,7 +208,7 @@ header.App-header h1 button {
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 0 20px 0 0;
+  margin: 0;
   height: 60px;
   display: flex;
   align-items: center;
