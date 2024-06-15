@@ -235,6 +235,7 @@ header.App-header h1 button img {
 }
 
 .chat-box div p {
+  margin: 0;
   padding: 10px;
   border: none;
   border-radius: 20px;
