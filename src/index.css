@@ -267,13 +267,13 @@ header.App-header h1 button img {
   align-self: flex-start;
   text-align: left;
   max-width: 60vw;
+}
+
+.assistant.chat {
   background-color: white;
 }
 
 .assistant.reflect {
-  align-self: flex-start;
-  text-align: left;
-  max-width: 60vw;
   background-color: grey;
 }
 
