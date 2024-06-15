@@ -4,20 +4,10 @@ import downloadIcon from "../images/downloadIcon.png"
 const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients}) => {
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
-    if (name === 'all') {
-      setRecipients({
-        all: checked,
-        A: checked,
-        B: checked,
-        C: checked,
-      });
-    } else {
-      setRecipients(prevRecipients => ({
-        ...prevRecipients,
-        [name]: checked,
-        all: false,
-      }));
-    }
+    setRecipients(prevRecipients => ({
+      ...prevRecipients,
+      [name]: checked,
+    }));
   };
 
   const toggleSwitch = () => {
@@ -46,20 +36,11 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
         　　<label>
           　　<input
             　　type="checkbox"
-            　　name="all"
-            　　checked={recipients.all}
-            　　onChange={handleCheckboxChange}
-          　　/>
-          　　全員
-        　　</label>
-        　　<label>
-          　　<input
-            　　type="checkbox"
             　　name="A"
             　　checked={recipients.A}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　勇人
+          　　A
         　　</label>
         　　<label>
           　　<input
@@ -68,7 +49,7 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
             　　checked={recipients.B}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　裕一郎
+          　　B
         　　</label>
         　　<label>
           　　<input
@@ -77,7 +58,7 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
             　　checked={recipients.C}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　あすか
+          　　C
         　　</label>
       　</div>
         <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>

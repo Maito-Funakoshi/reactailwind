@@ -22,7 +22,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
           let currentMessages = [...messages];
           for (let i = 0; i < names.length; i++) {
             const recipientNames =Object.keys(recipients);
-            const recipientName = recipientNames[i + 1];
+            const recipientName = recipientNames[i];
             if (recipients[recipientName]) {
               try {
                 // name = names[i];
@@ -66,7 +66,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
             let currentMessages = [...messages];
             for (let i = 0; i < names.length; i++) {
               const recipientNames =Object.keys(recipients);
-              const recipientName = recipientNames[i + 1];
+              const recipientName = recipientNames[i];
               if (recipients[recipientName]) {
                 try {
                   const modifiedMessages = [

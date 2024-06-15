@@ -19,10 +19,9 @@ function App() {
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
   const [recipients, setRecipients] = useState({
-    all: false,
-    A: false,
-    B: false,
-    C: false,
+    A: true,
+    B: true,
+    C: true,
   });
 
   //HTML部分
