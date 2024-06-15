@@ -1,7 +1,25 @@
 import React from 'react';
 import downloadIcon from "../images/downloadIcon.png"
 
-const Header = ({ messages, inputAble, setInputAble}) => {
+const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients}) => {
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    if (name === 'all') {
+      setRecipients({
+        all: checked,
+        A: checked,
+        B: checked,
+        C: checked,
+      });
+    } else {
+      setRecipients(prevRecipients => ({
+        ...prevRecipients,
+        [name]: checked,
+        all: false,
+      }));
+    }
+  };
+
   const toggleSwitch = () => {
     setInputAble(!inputAble);
   };
@@ -24,6 +42,45 @@ const Header = ({ messages, inputAble, setInputAble}) => {
     <header className="App-header">
       <h1>
         <span id="title">Self Disclosure Chatbot</span>
+        <div>
+        　　<div>返信が欲しい相手</div>
+        　　<label>
+          　　<input
+            　　type="checkbox"
+            　　name="all"
+            　　checked={recipients.all}
+            　　onChange={handleCheckboxChange}
+          　　/>
+          　　全員
+        　　</label>
+        　　<label>
+          　　<input
+            　　type="checkbox"
+            　　name="A"
+            　　checked={recipients.A}
+            　　onChange={handleCheckboxChange}
+          　　/>
+          　　A
+        　　</label>
+        　　<label>
+          　　<input
+            　　type="checkbox"
+            　　name="B"
+            　　checked={recipients.B}
+            　　onChange={handleCheckboxChange}
+          　　/>
+          　　B
+        　　</label>
+        　　<label>
+          　　<input
+            　　type="checkbox"
+            　　name="C"
+            　　checked={recipients.C}
+            　　onChange={handleCheckboxChange}
+          　　/>
+          　　C
+        　　</label>
+      　</div>
         <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
           <div className={`toggle_switch ${inputAble ? 'active' : ''}`}></div>
         </div>
