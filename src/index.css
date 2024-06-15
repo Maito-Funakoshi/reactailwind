@@ -249,14 +249,14 @@ header.App-header h1 button img {
 .user {
   align-self: flex-end;
   text-align: left;
-  max-width: 300px;
+  max-width: 50vw;
   background-color: #6DE67A;
 }
 
 .assistant {
   align-self: flex-start;
   text-align: left;
-  max-width: 300px;
+  max-width: 50vw;
   background-color: white;
 }
 
