@@ -45,7 +45,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${names[i]}`};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${names[i]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                 }
@@ -78,7 +78,7 @@ const AssistantResponses = ({ messages, setMessages, inputAble, names, character
             
                   if (response.choices && response.choices.length > 0) {
                     const botMessage = response.choices[0].message.content.trim();
-                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${names[i]}` };
+                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${names[i]}`, mode: "reflect" };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
                   }

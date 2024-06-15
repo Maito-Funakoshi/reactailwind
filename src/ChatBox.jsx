@@ -28,7 +28,7 @@ const ChatBox = ({ messages, error }) => {
         return (
           <div className={msg.name} key={index}>
             {imageSrc && <img src={imageSrc} alt={msg.name} />}
-            <p className={msg.role}>
+            <p className={`${msg.role} ${msg.mode}`}>
               {msg.content}
             </p>
           </div>
