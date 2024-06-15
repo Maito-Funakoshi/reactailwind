@@ -43,7 +43,6 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
       <h1>
         <span id="title">Self Disclosure Chatbot</span>
         <div class="recipients">
-        　　<div>返信が欲しい相手</div>
         　　<label>
           　　<input
             　　type="checkbox"
