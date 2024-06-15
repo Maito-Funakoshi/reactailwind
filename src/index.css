@@ -230,6 +230,7 @@ header.App-header h1 button img {
 }
 
 .chat-box div img{
+  padding-right: 5px;
   height: 38px;
   width: 38px;
 }
