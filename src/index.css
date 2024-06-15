@@ -156,13 +156,19 @@ header.App-header h1 span#title {
   line-height: 60px;
 }
 
+header.App-header h1 div.recipients {
+  margin-right: 20px;
+}
+
 header.App-header h1 div.recipients div {
   text-align: center;
   font-size: 16px;
+  color: black;
 }
 
 header.App-header h1 div.recipients label {
   font-size: 16px;
+  color: black;
 }
 
 .switch_outer {
