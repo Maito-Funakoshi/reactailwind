@@ -18,11 +18,12 @@ function App() {
   ]);
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
-  const [recipients, setRecipients] = useState({
-    A: true,
-    B: true,
-    C: true,
-  });
+  const [recipients, setRecipients] = useState(
+    names.reduce((acc, name) => {
+      acc[name] = true;
+      return acc;
+    }, {})
+  );
 
   //HTML部分
   return (
