@@ -40,7 +40,7 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
             　　checked={recipients.A}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　勇人
+          　　A
         　　</label>
         　　<label>
           　　<input
@@ -49,7 +49,7 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
             　　checked={recipients.B}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　裕一郎
+          　　B
         　　</label>
         　　<label>
           　　<input
@@ -58,7 +58,7 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
             　　checked={recipients.C}
             　　onChange={handleCheckboxChange}
           　　/>
-          　　あすか
+          　　C
         　　</label>
       　</div>
         <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
