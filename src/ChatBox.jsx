@@ -20,14 +20,17 @@ const ChatBox = ({ messages, error }) => {
   return (
     <>
     <div className="chat-box">
-      {messages.slice(1).map((msg, index) => (
-        <div className={msg.name}>
-          <img src={getImageSrc(msg.name)} alt={msg.name} />
-          <p key={index} className={msg.role}>
-            {msg.content}
-          </p>
-        </div>
-      ))}
+      {messages.slice(1).map((msg, index) => {
+        const imageSrc = getImageSrc(msg.name);
+        return (
+          <div className={msg.name} key={index}>
+            {imageSrc && <img src={imageSrc} alt={msg.name} />}
+            <p className={msg.role}>
+              {msg.content}
+            </p>
+          </div>
+        );
+      })}
     </div>
     {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
     </>
