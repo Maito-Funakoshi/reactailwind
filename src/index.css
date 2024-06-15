@@ -152,7 +152,7 @@ header.App-header h1 span#title {
   text-align: left;
   font-size: 18px;
   color: black;
-  margin-left: 20px;
+  margin: 0;
   line-height: 60px;
 }
 
