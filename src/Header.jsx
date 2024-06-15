@@ -42,7 +42,7 @@ const Header = ({ messages, inputAble, setInputAble, recipients, setRecipients})
     <header className="App-header">
       <h1>
         <span id="title">Self Disclosure Chatbot</span>
-        <div>
+        <div class="recipients">
         　　<div>返信が欲しい相手</div>
         　　<label>
           　　<input
