@@ -14,7 +14,7 @@ function App() {
   const greetingMessage = ["こんにちは！あなたはこのチャットボットをどのように使いたいですか？"]
   const [messages, setMessages] = useState([
     { role: "system", content: `あなたたちはユーザの発言を起点にして互いに議論を交わす${names.length}人のアシスタントで、名前は${names[0]}、${names[1]}、${names[2]}です。それぞれの人物は一回の発言で120文字まで話すことができます。`},
-    { role: "assistant", content: `${greetingMessage}`}
+    { role: "assistant", content: `${greetingMessage}`, name: "system"}
   ]);
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
