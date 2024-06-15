@@ -235,7 +235,7 @@ header.App-header h1 button img {
   display: flex;
 }
 
-.chat-box div.user{
+.chat-box div.you{
   align-self: flex-end;
 }
 .user {
