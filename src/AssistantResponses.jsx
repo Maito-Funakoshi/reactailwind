@@ -5,17 +5,9 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
-
-  const maxContextMessages = 5;
-//   const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-//   let name;
-//   let character;
-
-//   const client0 = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-//   const client1 = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-//   const client2 = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
+
+  const maxContextMessages = 13;
 
   useEffect(() => {
     if (inputAble) {
@@ -27,17 +19,6 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
             const recipientName = recipientNames[i];
             if (recipients[recipientName]) {
               try {
-                // name = names[i];
-                // character = characters[i];
-                // const response = await client.getChatCompletions(deploymentId, [
-                //   ...messages,
-                //   { role: "system", content: `あなたの名前は${name}で、MBTI診断で${character}と診断されるパーソナリティを持ちます。他の${names.length - 1}人の人物もそれぞれの名前とMBTI特性を持っており、互いに認識しています。${character}として回答してください。` }
-                // ], { maxTokens: 256 });
-
-                // if (response.choices && response.choices.length > 0) {
-                //   const botMessage = response.choices[0].message.content.trim();
-                //   setMessages(prevMessages => [...prevMessages, { role: "assistant", content: `${botMessage}` }]);
-                // }
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${chat} ${characters[i]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))

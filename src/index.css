@@ -1,119 +1,4 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
-
-/* ここまでがデフォルト */
-/* h1 {
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: start;
-  white-space: nowrap;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  z-index: 10;
-  background-color: #242424;
-}*/
-/* .App {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-}
-
-.App-header {
-  position: fixed;
-  
-  z-index: 10;
-}
-
-.chat-box {
-  flex: 1;
-}
-
-#title {
-  margin: 0;
-}
-
-button {
-  margin: 0;
-  padding: 5px 10px;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-button img {
-  width: 30px;
-  height: auto;
-} */
-
+/* 全体 */
 html, body {
   height: 100%;
   padding: 0;
@@ -122,6 +7,7 @@ html, body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+/* ヘッダー */
 header.App-header {
   display: flex;
   justify-content: space-between;
@@ -137,7 +23,6 @@ header.App-header {
   z-index: 10;
   box-sizing: border-box;
 }
-
 header.App-header h1 {
   display: flex;
   justify-content: space-between;
@@ -146,7 +31,6 @@ header.App-header h1 {
   padding: 0 20px;
   margin: 0;
 }
-
 header.App-header h1 span#title {
   flex: 1;
   text-align: left;
@@ -155,16 +39,13 @@ header.App-header h1 span#title {
   margin: 0;
   line-height: 60px;
 }
-
 header.App-header h1 div.recipients {
   margin-right: 20px;
 }
-
 header.App-header h1 div.recipients label {
   font-size: 16px;
   color: black;
 }
-
 .switch_outer {
   width: 48px;
   height: 24px;
@@ -177,11 +58,9 @@ header.App-header h1 div.recipients label {
   cursor: pointer;
   transition: background-color .2s ease-in-out;
 }
-
 .switch_outer.active {
   background-color: #51E373;
 }
-
 .toggle_switch {
   width: 20px;
   height: 20px;
@@ -198,11 +77,9 @@ header.App-header h1 div.recipients label {
   box-shadow: 1px 1px 7px #B7B7B7, -1px -1px 4px #CECECE inset;
   transition: left .3s ease-in-out;
 }
-
 .toggle_switch.active {
   left: 26px;
 }
-
 header.App-header h1 button {
   background: none;
   border: none;
@@ -213,12 +90,12 @@ header.App-header h1 button {
   display: flex;
   align-items: center;
 }
-
 header.App-header h1 button img {
   height: 24px;
   width: 24px;
 }
 
+/* チャットボックス */
 .chat-box {
   display: flex;
   flex-flow: column;
@@ -231,19 +108,16 @@ header.App-header h1 button img {
   color: black;
   box-sizing: border-box;
 }
-
 .chat-box div{
   display: flex;
   margin: 0;
   padding: 10px;
 }
-
 .chat-box div img{
   padding-right: 5px;
   height: 38px;
   width: 38px;
 }
-
 .chat-box div p {
   margin: 0;
   padding: 10px;
@@ -251,34 +125,28 @@ header.App-header h1 button img {
   border-radius: 20px;
   word-wrap: break-word;
 }
-
 .chat-box div.You{
   align-self: flex-end;
 }
-
 .user {
   align-self: flex-end;
   text-align: left;
   max-width: 60vw;
   background-color: #6DE67A;
 }
-
 .assistant {
   align-self: flex-start;
   text-align: left;
   max-width: 60vw;
 }
-
 .assistant.chat {
   background-color: white;
 }
-
 .assistant.reflect {
   background-color: grey;
 }
 
-
-
+/* 入力フォーム */
 form {
   display: flex;
   justify-content: center;
@@ -291,7 +159,6 @@ form {
   z-index: 10;
   box-sizing: border-box;
 }
-
 form input {
   flex: 1;
   padding: 10px;
@@ -302,11 +169,9 @@ form input {
   background-color: #F5F5F5;
   font-size: 16px;
 }
-
 form input[type="text"]::placeholder {
   color: grey;
 }
-
 form button {
   padding: 10px 20px;
   background: none;
@@ -314,7 +179,6 @@ form button {
   cursor: pointer;
   height: 58.5px;
 }
-
 form button img {
   height: 38px;
   width: 38px;
