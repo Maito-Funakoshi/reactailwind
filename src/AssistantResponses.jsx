@@ -5,6 +5,8 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
+
+  const maxContextMessages = 20;
 //   const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
 //   let name;
 //   let character;
@@ -19,7 +21,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const fetchData = async () => {
-          let currentMessages = [...messages];
+          let currentMessages = [...messages].slice(-maxContextMessages);
           for (let i = 0; i < names.length; i++) {
             const recipientNames =Object.keys(recipients);
             const recipientName = recipientNames[i];
@@ -63,7 +65,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
       if (messages.length > 1) {
         const intervalId = setInterval(() => {
           const fetchData = async () => {
-            let currentMessages = [...messages];
+            let currentMessages = [...messages].slice(-maxContextMessages);
             for (let i = 0; i < names.length; i++) {
               const recipientNames =Object.keys(recipients);
               const recipientName = recipientNames[i];
