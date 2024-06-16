@@ -23,7 +23,7 @@ const ChatBox = ({ namesEng, messages, error }) => {
   return (
     <>
     <div className="chat-box">
-      {messages.slice(1).map((msg, index) => {
+      {messages.map((msg, index) => {
         const imageSrc = getImageSrc(msg.name);
         return (
           <div className={msg.name} key={index}>

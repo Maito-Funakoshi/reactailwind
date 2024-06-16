@@ -17,7 +17,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
 
   useEffect(() => {
     if (inputAble) {
-      if (messages.length > 2　&& messages[messages.length - 1].role == "user") {
+      if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const fetchData = async () => {
           let currentMessages = [...messages];
           for (let i = 0; i < names.length; i++) {
@@ -38,7 +38,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 // }
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${chat} ${characters[i]}` },
-                    ...currentMessages.slice(1).map(message => ({...message, role: "user"}))
+                    ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
             
                 const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
@@ -60,7 +60,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
       }
     }
     else if(!inputAble) {
-      if (messages.length > 2) {
+      if (messages.length > 1) {
         const intervalId = setInterval(() => {
           const fetchData = async () => {
             let currentMessages = [...messages];
@@ -71,7 +71,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 try {
                   const modifiedMessages = [
                     { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
-                    ...currentMessages.slice(1).map(message => ({...message, role: "user"}))
+                    ...currentMessages.map(message => ({...message, role: "user"}))
                   ];
                         
                   const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages, { maxTokens: 256 });

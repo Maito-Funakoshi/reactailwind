@@ -19,7 +19,7 @@ const Header = ({ names, messages, inputAble, setInputAble, recipients, setRecip
   };
 
   const handleGetLog = () => {
-    const log = messages.slice(1).map((msg) =>msg.name + ": " + msg.content).join('\n');
+    const log = messages.map((msg) =>msg.name + ": " + msg.content).join('\n');
     downloadLogFile(log);
   };
 
