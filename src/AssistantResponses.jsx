@@ -7,7 +7,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
   const deploymentId = "gpt35turbo";
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
-  const maxContextMessages = 12;
+  const maxContextMessages = 15;
 
   useEffect(() => {
     if (inputAble) {
@@ -57,7 +57,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                     ...currentMessages.map(message => ({...message, role: "user"}))
                   ];
                         
-                  const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages, { maxTokens: 256 });
+                  const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
             
                   if (response.choices && response.choices.length > 0) {
                     const botMessage = response.choices[0].message.content.trim();
