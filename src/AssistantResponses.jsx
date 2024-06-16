@@ -6,7 +6,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
 
-  const maxContextMessages = 20;
+  const maxContextMessages = 18;
 //   const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
 //   let name;
 //   let character;
