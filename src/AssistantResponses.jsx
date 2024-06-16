@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ names, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
+const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
@@ -45,7 +45,7 @@ const AssistantResponses = ({ names, messages, setMessages, inputAble, character
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${names[i]}`, mode: "chat"};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                 }
@@ -78,7 +78,7 @@ const AssistantResponses = ({ names, messages, setMessages, inputAble, character
             
                   if (response.choices && response.choices.length > 0) {
                     const botMessage = response.choices[0].message.content.trim();
-                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${names[i]}`, mode: "reflect" };
+                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
                   }

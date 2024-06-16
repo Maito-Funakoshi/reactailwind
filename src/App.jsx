@@ -7,7 +7,8 @@ import './App.css';
 
 function App() {
   //初期設定
-  const names = ["Takahashi", "Nishimura", "Yamada"];
+  const names = ["高橋大輔", "西村明子", "山田聡太"];
+  const namesEng = ["Takahashi", "Nishimura", "Yamada"];
   const characters = [
     "・年齢: 45歳" +
     "・職業: 精神科医" +
@@ -76,8 +77,8 @@ function App() {
   return (
     <div className="App">
       <Header names = {names} messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} recipients = {recipients} setRecipients = {setRecipients} />
-      <AssistantResponses names = {names}　messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
-      <ChatBox names = {names}　messages = {messages} error = {error} />
+      <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
+      <ChatBox namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
   );

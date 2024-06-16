@@ -4,14 +4,14 @@ import B from "../images/B.png";
 import C from "../images/C.png"; 
 import system from "../images/system.png";
 
-const ChatBox = ({ names, messages, error }) => {
-  const getImageSrc = (name) => {
-    switch (name) {
-      case names[0]:
+const ChatBox = ({ namesEng, messages, error }) => {
+  const getImageSrc = (nameEng) => {
+    switch (nameEng) {
+      case namesEng[0]:
         return A;
-      case names[1]:
+      case namesEng[1]:
         return B;
-      case names[2]:
+      case namesEng[2]:
         return C;
       case 'system':
         return system;
