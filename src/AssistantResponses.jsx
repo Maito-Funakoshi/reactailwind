@@ -38,7 +38,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 // }
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${chat} ${characters[i]}` },
-                    ...currentMessages.slice(1)
+                    ...currentMessages.slice(1).map(message => ({...message, role: "user"}))
                 ];
             
                 const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
