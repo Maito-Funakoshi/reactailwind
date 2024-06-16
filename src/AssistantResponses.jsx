@@ -37,7 +37,7 @@ const AssistantResponses = ({ names, messages, setMessages, inputAble, character
                 //   setMessages(prevMessages => [...prevMessages, { role: "assistant", content: `${botMessage}` }]);
                 // }
                 const modifiedMessages = [
-                  { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。あなたのMBTIは${characters[i]}です。${chat}` },
+                  { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${chat} ${characters[i]}` },
                     ...currentMessages.slice(1).map(message => ({...message, role: "user"}))
                 ];
             
@@ -70,7 +70,7 @@ const AssistantResponses = ({ names, messages, setMessages, inputAble, character
               if (recipients[recipientName]) {
                 try {
                   const modifiedMessages = [
-                    { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。あなたのMBTIは${characters[i]}です。${reflect}` },
+                    { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
                     ...currentMessages.slice(1).map(message => ({...message, role: "user"}))
                   ];
                         
