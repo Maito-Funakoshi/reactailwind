@@ -7,6 +7,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
   const deploymentId = "gpt35turbo";
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
+  let i = 0;
   const maxContextMessages = 15;
 
   useEffect(() => {
@@ -14,7 +15,6 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const fetchData = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
-          let i = 0;
         //   for (let i = 0; i < names.length; i++) {
         //     const recipientNames =Object.keys(recipients);
         //     const recipientName = recipientNames[i];
