@@ -2,9 +2,9 @@ import React from 'react';
 import downloadIcon from "../images/downloadIcon.png"
 
 const Header = ({ names, messages, inputAble, setInputAble, recipients, setRecipients}) => {
-  const first = names[0];
-  const second = names[1];
-  const third = names[2];
+  // const first = names[0];
+  // const second = names[1];
+  // const third = names[2];
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;

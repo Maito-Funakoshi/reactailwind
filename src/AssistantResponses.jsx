@@ -50,9 +50,9 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
           const fetchData = async () => {
             let currentMessages = [...messages].slice(-maxContextMessages);
             for (let i = 0; i < names.length; i++) {
-              const recipientNames =Object.keys(recipients);
-              const recipientName = recipientNames[i];
-              if (recipients[recipientName]) {
+            //   const recipientNames =Object.keys(recipients);
+            //   const recipientName = recipientNames[i];
+            //   if (recipients[recipientName]) {
                 try {
                   const modifiedMessages = [
                     { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
@@ -71,9 +71,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                   setError(err);
                   console.error("The sample encountered an error:", err);
                 }
-              }
-
-
+            //   }
             }
           }
           fetchData();
