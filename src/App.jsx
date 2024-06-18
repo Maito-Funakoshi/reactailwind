@@ -88,8 +88,8 @@ function App() {
   return (
     <div className="App">
       <Header names = {names} messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} recipients = {recipients} setRecipients = {setRecipients} />
-      <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
-      <ChatBox i = {i} names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
+      <AssistantResponses　i = {i} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
+      <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
   );
