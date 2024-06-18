@@ -75,12 +75,13 @@ function App() {
   //変数設定
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
-  // const [recipients, setRecipients] = useState(
-  //   names.reduce((acc, name) => {
-  //     acc[name] = true;
-  //     return acc;
-  //   }, {})
-  // );
+  //###あとで消す###
+  const [recipients, setRecipients] = useState(
+    names.reduce((acc, name) => {
+      acc[name] = true;
+      return acc;
+    }, {})
+  );
 
   //HTML部分
   return (
