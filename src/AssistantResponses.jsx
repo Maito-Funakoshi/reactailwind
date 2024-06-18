@@ -14,10 +14,11 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const fetchData = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
-          for (let i = 0; i < names.length; i++) {
-            const recipientNames =Object.keys(recipients);
-            const recipientName = recipientNames[i];
-            if (recipients[recipientName]) {
+          let i = 0;
+        //   for (let i = 0; i < names.length; i++) {
+        //     const recipientNames =Object.keys(recipients);
+        //     const recipientName = recipientNames[i];
+        //     if (recipients[recipientName]) {
               try {
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${chat} ${characters[i]}` },
@@ -31,13 +32,14 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                  i = (i + 1) % names.length;
                 }
               } catch (err) {
                 setError(err);
                 console.error("The sample encountered an error:", err);
               }
-            }
-          }
+            // }
+        //   }
         }
         fetchData();
       }

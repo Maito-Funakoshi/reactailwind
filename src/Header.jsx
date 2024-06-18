@@ -36,7 +36,7 @@ const Header = ({ names, messages, inputAble, setInputAble, recipients, setRecip
     <header className="App-header">
       <h1>
         <span id="title">SDC</span>
-        <div class="recipients">
+        {/* <div class="recipients">
         　　<label>
           　　<input
             　　type="checkbox"
@@ -64,7 +64,7 @@ const Header = ({ names, messages, inputAble, setInputAble, recipients, setRecip
           　　/>
           　　{third}
         　　</label>
-      　</div>
+      　</div> */}
         <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
           <div className={`toggle_switch ${inputAble ? 'active' : ''}`}></div>
         </div>
