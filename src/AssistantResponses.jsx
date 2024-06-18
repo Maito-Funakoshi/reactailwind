@@ -32,8 +32,10 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  i = (i + 1) % names.length;
                 }
+
+                i = (i + 1) % names.length;
+                
               } catch (err) {
                 setError(err);
                 console.error("The sample encountered an error:", err);
