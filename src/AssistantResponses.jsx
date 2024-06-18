@@ -7,7 +7,7 @@ const AssistantResponses = ({ i, setI, names, namesEng, messages, setMessages, i
   const deploymentId = "gpt35turbo";
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
-  const maxContextMessages = 15;
+  const maxContextMessages = 12;
 
   useEffect(() => {
     if (inputAble) {
