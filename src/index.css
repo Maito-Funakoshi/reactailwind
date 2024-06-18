@@ -120,10 +120,11 @@ header.App-header h1 button img {
 }
 .message{
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   padding: 0;
 }
 .message .recipient{
+  padding: 0;
   font-size: 8px;
 }
 .message p {
