@@ -108,24 +108,24 @@ header.App-header h1 button img {
   color: black;
   box-sizing: border-box;
 }
-.chat-box div{
+.chat-box div {
   display: flex;
   margin: 0;
   padding: 10px;
 }
-.chat-box div img{
+.chat-box div img {
   padding-right: 5px;
   height: 38px;
   width: 38px;
 }
-.message{
+div.message {
   display: flex;
   flex-direction: column;
   padding: 0;
 }
 .message .recipient{
   padding: 0;
-  font-size: 8px;
+  font-size: 10px;
 }
 .message p {
   margin: 0;
