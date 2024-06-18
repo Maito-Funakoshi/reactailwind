@@ -32,6 +32,7 @@ const AssistantResponses = ({ i, names, namesEng, messages, setMessages, inputAb
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                   i = (i + 1) % names.length;
+                  console.log(i);
                 }
               } catch (err) {
                 setError(err);
