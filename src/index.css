@@ -124,7 +124,8 @@ div.message {
   padding: 0;
 }
 .message .recipient{
-  padding: 0 0 0　5px;
+  padding: 0;
+  padding-left: 5px;
   font-size: 10px;
 }
 .message p {
