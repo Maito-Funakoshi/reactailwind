@@ -4,7 +4,20 @@ import B from "../images/B.png";
 import C from "../images/C.png"; 
 import system from "../images/system.png";
 
-const ChatBox = ({ namesEng, messages, error }) => {
+const ChatBox = ({ names, namesEng, messages, error }) => {
+  const getName = (nameEng) => {
+    switch (nameEng) {
+      case namesEng[0]:
+        return names[0];
+      case namesEng[1]:
+        return names[1];
+      case namesEng[2]:
+        return names[2];
+      default:
+        return ''; // デフォルトの画像パス、必要ならば設定
+    }
+  };
+
   const getImageSrc = (nameEng) => {
     switch (nameEng) {
       case namesEng[0]:
@@ -19,15 +32,17 @@ const ChatBox = ({ namesEng, messages, error }) => {
         return ''; // デフォルトの画像パス、必要ならば設定
     }
   };
-
+  
   return (
     <>
     <div className="chat-box">
       {messages.map((msg, index) => {
+        const name = getName(msg.name);
         const imageSrc = getImageSrc(msg.name);
         return (
           <div className={msg.name} key={index}>
             {imageSrc && <img src={imageSrc} alt={msg.name} />}
+            {name && <p>{name}</p>}
             <p className={`${msg.role} ${msg.mode}`}>
               {msg.content}
             </p>
