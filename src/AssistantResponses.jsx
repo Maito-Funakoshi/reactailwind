@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ i, names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
+const AssistantResponses = ({ i, setI, names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
@@ -31,7 +31,7 @@ const AssistantResponses = ({ i, names, namesEng, messages, setMessages, inputAb
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  i = (i + 1) % names.length;
+                  setI((i + 1) % names.length);
                   console.log(i);
                 }
               } catch (err) {
