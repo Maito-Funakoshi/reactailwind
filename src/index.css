@@ -118,7 +118,7 @@ header.App-header h1 button img {
   height: 38px;
   width: 38px;
 }
-.chat-box div p {
+.message p {
   margin: 0;
   padding: 10px;
   border: none;
