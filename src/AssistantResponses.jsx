@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
+const AssistantResponses = ({ i, names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
-  let i = 0;
   const maxContextMessages = 15;
 
   useEffect(() => {
@@ -32,10 +31,8 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                  i = (i + 1) % names.length;
                 }
-
-                i = (i + 1) % names.length;
-                
               } catch (err) {
                 setError(err);
                 console.error("The sample encountered an error:", err);

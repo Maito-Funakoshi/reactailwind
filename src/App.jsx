@@ -75,6 +75,7 @@ function App() {
   //変数設定
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
+  let i = 0 //返答者の識別変数(あとで名称変更したい)
   //###あとで消す###
   const [recipients, setRecipients] = useState(
     names.reduce((acc, name) => {
@@ -88,7 +89,7 @@ function App() {
     <div className="App">
       <Header names = {names} messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} recipients = {recipients} setRecipients = {setRecipients} />
       <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
-      <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
+      <ChatBox i = {i} names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
   );
