@@ -118,6 +118,14 @@ header.App-header h1 button img {
   height: 38px;
   width: 38px;
 }
+.message{
+  display: flex;
+  flex-flow: column;
+  padding: 0;
+}
+.message .recipient{
+  font-size: 8px;
+}
 .message p {
   margin: 0;
   padding: 10px;

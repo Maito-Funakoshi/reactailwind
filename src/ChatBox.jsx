@@ -43,7 +43,7 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
           <div className={msg.name} key={index}>
             {imageSrc && <img src={imageSrc} alt={msg.name} />}
             <div className="message">
-              {name && <p>{name}</p>}
+              {name && <p className="recipient">{name}</p>}
               <p className={`${msg.role} ${msg.mode}`}>
                 {msg.content}
               </p>
