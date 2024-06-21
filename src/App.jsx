@@ -138,20 +138,13 @@ const reflect = [
   //変数設定
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
-  const [i, setI] = useState(0);//返答者の識別変数(あとで名称変更したい)
-  //###あとでrecipientsもろとも消す###
-  const [recipients, setRecipients] = useState(
-    names.reduce((acc, name) => {
-      acc[name] = true;
-      return acc;
-    }, {})
-  );
+  const [recipient, setRecipient] = useState(0);//返答者の識別変数(あとで名称変更したい)
 
   //HTML部分
   return (
     <div className="App">
-      <Header names = {names} messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} recipients = {recipients} setRecipients = {setRecipients} />
-      <AssistantResponses　i = {i} setI = {setI} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} recipients = {recipients} setError = {setError} />
+      <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} setRecipients = {setRecipients} />
+      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
