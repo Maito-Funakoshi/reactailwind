@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ i, setI, names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, recipients, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
@@ -14,13 +14,9 @@ const AssistantResponses = ({ i, setI, names, namesEng, messages, setMessages, i
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const fetchData = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
-        //   for (let i = 0; i < names.length; i++) {
-        //     const recipientNames =Object.keys(recipients);
-        //     const recipientName = recipientNames[i];
-        //     if (recipients[recipientName]) {
               try {
                 const modifiedMessages = [
-                  { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${chat} ${characters[i]}` },
+                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
             
@@ -28,17 +24,15 @@ const AssistantResponses = ({ i, setI, names, namesEng, messages, setMessages, i
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "chat"};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  setI((i + 1) % names.length);
+                  setRecipient((recipient + 1) % names.length);
                 }
               } catch (err) {
                 setError(err);
                 console.error("The sample encountered an error:", err);
               }
-            // }
-        //   }
         }
         fetchData();
       }
@@ -49,9 +43,6 @@ const AssistantResponses = ({ i, setI, names, namesEng, messages, setMessages, i
           const fetchData = async () => {
             let currentMessages = [...messages].slice(-maxContextMessages);
             for (let i = 0; i < names.length; i++) {
-            //   const recipientNames =Object.keys(recipients);
-            //   const recipientName = recipientNames[i];
-            //   if (recipients[recipientName]) {
                 try {
                   const modifiedMessages = [
                     { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
@@ -70,7 +61,6 @@ const AssistantResponses = ({ i, setI, names, namesEng, messages, setMessages, i
                   setError(err);
                   console.error("The sample encountered an error:", err);
                 }
-            //   }
             }
           }
           fetchData();

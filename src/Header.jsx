@@ -1,19 +1,7 @@
 import React from 'react';
 import downloadIcon from "../images/downloadIcon.png"
 
-const Header = ({ names, messages, inputAble, setInputAble, recipients, setRecipients}) => {
-  // const first = names[0];
-  // const second = names[1];
-  // const third = names[2];
-
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setRecipients(prevRecipients => ({
-      ...prevRecipients,
-      [name]: checked,
-    }));
-  };
-
+const Header = ({ messages, inputAble, setInputAble, setRecipients}) => {
   const toggleSwitch = () => {
     setInputAble(!inputAble);
   };
@@ -36,35 +24,6 @@ const Header = ({ names, messages, inputAble, setInputAble, recipients, setRecip
     <header className="App-header">
       <h1>
         <span id="title">SDC</span>
-        {/* <div class="recipients">
-        　　<label>
-          　　<input
-            　　type="checkbox"
-            　　name={first}
-            　　checked={recipients[first]}
-            　　onChange={handleCheckboxChange}
-          　　/>
-          　　{first}
-        　　</label>
-        　　<label>
-          　　<input
-            　　type="checkbox"
-            　　name={second}
-            　　checked={recipients[second]}
-            　　onChange={handleCheckboxChange}
-          　　/>
-          　　{second}
-        　　</label>
-        　　<label>
-          　　<input
-            　　type="checkbox"
-            　　name={third}
-            　　checked={recipients[third]}
-            　　onChange={handleCheckboxChange}
-          　　/>
-          　　{third}
-        　　</label>
-      　</div> */}
         <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
           <div className={`toggle_switch ${inputAble ? 'active' : ''}`}></div>
         </div>
