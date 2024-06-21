@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, characters, chat, reflect, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, reflectChatCount, setReflectChatCount, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
@@ -38,7 +38,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
       }
     }
     else if(!inputAble) {
-      if (messages.length > 1) {
+      if (messages.length > 1 && reflectChatCount < 6) {
         const intervalId = setInterval(() => {
           const fetchData = async () => {
             let currentMessages = [...messages].slice(-maxContextMessages);
@@ -56,6 +56,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                    setReflectChatCount(reflectChatCount + 1);
                   }
                 } catch (err) {
                   setError(err);
@@ -67,6 +68,10 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         }, 5000);
 
         return () => clearInterval(intervalId);
+      }
+      else {
+        setReflectChatCount(0);
+        setInputAble(!inputAble);
       }
     }
   }, [messages, inputAble]);

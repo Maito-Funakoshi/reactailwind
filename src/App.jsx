@@ -139,12 +139,13 @@ const reflect = [
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
   const [recipient, setRecipient] = useState(0);
+  const [reflectChatCount, setReflectChatCount] = useState(0);
 
   //HTML部分
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} setError = {setError} />
+      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} reflectChatCount = {reflectChatCount} setReflectChatCount = {setReflectChatCount} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
