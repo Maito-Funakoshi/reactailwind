@@ -20,7 +20,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
             
-                const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
+                const response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();

@@ -138,7 +138,7 @@ const reflect = [
   //変数設定
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
-  const [recipient, setRecipient] = useState(0);//返答者の識別変数(あとで名称変更したい)
+  const [recipient, setRecipient] = useState(0);
 
   //HTML部分
   return (
