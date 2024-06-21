@@ -57,6 +57,8 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
                     setReflectChatCount(reflectChatCount + 1);
+                    console.log(reflectChatCount);
+                    console.log(inputAble);
                   }
                 } catch (err) {
                   setError(err);
@@ -74,8 +76,6 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         setInputAble(!inputAble);
       }
     }
-    console.log(reflectChatCount);
-    console.log(inputAble);
   }, [messages, inputAble]);
 
   return null;
