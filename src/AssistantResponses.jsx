@@ -38,7 +38,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
       }
     }
     else if(!inputAble) {
-      if (messages.length > 1 && reflectChatCount < 6) {
+      if (messages.length > 1 && reflectChatCount < 2) {
         const intervalId = setInterval(() => {
           const fetchData = async () => {
             let currentMessages = [...messages].slice(-maxContextMessages);
