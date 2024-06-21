@@ -74,6 +74,8 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         setInputAble(!inputAble);
       }
     }
+    console.log(reflectChatCount);
+    console.log(inputAble);
   }, [messages, inputAble]);
 
   return null;
