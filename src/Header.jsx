@@ -1,7 +1,7 @@
 import React from 'react';
 import downloadIcon from "../images/downloadIcon.png"
 
-const Header = ({ messages, inputAble, setInputAble, setRecipients}) => {
+const Header = ({ messages, inputAble, setInputAble}) => {
   const toggleSwitch = () => {
     setInputAble(!inputAble);
   };

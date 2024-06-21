@@ -143,7 +143,7 @@ const reflect = [
   //HTML部分
   return (
     <div className="App">
-      <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} setRecipients = {setRecipients} />
+      <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
       <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} characters = {characters} chat = {chat} reflect = {reflect} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
