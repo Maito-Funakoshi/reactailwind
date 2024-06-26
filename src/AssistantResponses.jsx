@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, reflectChatCount, setReflectChatCount, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, guide, reflectChatCount, setReflectChatCount, setError }) => {
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
   const deploymentId = "gpt35turbo";
@@ -16,7 +16,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
                 const modifiedMessages = [
-                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
+                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${guide} ${chat} ${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
             
@@ -45,7 +45,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
             for (let i = 0; i < names.length; i++) {
                 try {
                   const modifiedMessages = [
-                    { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
+                    { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${guide} ${reflect} ${characters[i]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                   ];
                         
