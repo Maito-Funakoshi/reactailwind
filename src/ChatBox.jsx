@@ -14,7 +14,7 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
       case namesEng[2]:
         return names[2];
       default:
-        return ''; // デフォルトの画像パス、必要ならば設定
+        return '';
     }
   };
 
@@ -29,7 +29,7 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
       case 'system':
         return system;
       default:
-        return ''; // デフォルトの画像パス、必要ならば設定
+        return '';
     }
   };
   

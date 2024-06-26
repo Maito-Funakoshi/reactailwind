@@ -21,7 +21,8 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
                 const modifiedMessages = [
-                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${guide} ${chat} ${characters[recipient]}` },
+                  { role: "system", content: `${guide}`},
+                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
             
@@ -50,7 +51,8 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
             for (let i = 0; i < names.length; i++) {
                 try {
                   const modifiedMessages = [
-                    { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${guide} ${reflect} ${characters[i]}` },
+                    { role: "system", content: `${guide}`},
+                    { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                   ];
                         
