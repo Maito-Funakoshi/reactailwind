@@ -2,9 +2,14 @@ import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, guide, reflectChatCount, setReflectChatCount, setError }) => {
-  const endpoint = `https://opendialogue1.openai.azure.com/`;
-  const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
-  const deploymentId = "gpt35turbo";
+  //opendialogue1
+//   const endpoint = `https://opendialogue1.openai.azure.com/`;
+//   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
+//   const deploymentId = "gpt35turbo";
+  //opendialogue2
+  const endpoint = `https://opendialogue2.openai.azure.com/`;
+  const azureApiKey = `5854afcc0daa4f919e0e124914a512d8`;
+  const deploymentId = "gpt4o";
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
   const maxContextMessages = 12;
