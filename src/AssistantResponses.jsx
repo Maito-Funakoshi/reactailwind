@@ -25,16 +25,22 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         const fetchData = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
+                //
                 const modifiedMessages = [
-                  { role: "system", content: `${guide}`},
                   { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
-            
                 const response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
 
-                if (response.choices && response.choices.length > 0) {
-                  const botMessage = response.choices[0].message.content.trim();
+                //オープンダイアローグ的かどうかをチェックし、返答を再生成する
+                const odMessages = [
+                    { role: "system", content: `あなたは以下のガイドラインに沿って、与えられた発言をオープンダイアローグ的に修正します。${guide}`},
+                    { role: "user", content: `${response}`}
+                ];
+                const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+
+                if (odResponse.choices && odResponse.choices.length > 0) {
+                  const botMessage = odResponse.choices[0].message.content.trim();
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
@@ -60,11 +66,17 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                   ];
-                        
                   const response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
+
+                　//オープンダイアローグ的かどうかをチェックし、返答を再生成する
+                　const odMessages = [
+                    { role: "system", content: `あなたは以下のガイドラインに沿って、与えられた発言をオープンダイアローグ的に修正します。${guide}`},
+                    { role: "user", content: `${response}`}
+                　];
+                const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
             
-                  if (response.choices && response.choices.length > 0) {
-                    const botMessage = response.choices[0].message.content.trim();
+                  if (odResponse.choices && odResponse.choices.length > 0) {
+                    const botMessage = odResponse.choices[0].message.content.trim();
                     const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
