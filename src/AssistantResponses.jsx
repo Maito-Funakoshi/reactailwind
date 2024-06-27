@@ -40,14 +40,14 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
                 //返答を要約する
-                const summaryMessages = [
-                    { role: "system", content: `${summary}`},
-                    { role: "user", content: `${odResponse}`}
-                ]
-                const summaryResponse = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
+                // const summaryMessages = [
+                //     { role: "system", content: `${summary}`},
+                //     { role: "user", content: `${odResponse}`}
+                // ]
+                // const summaryResponse = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
 
-                if (summaryResponse.choices && summaryResponse.choices.length > 0) {
-                  const botMessage = summaryResponse.choices[0].message.content.trim();
+                if (odResponse.choices && odResponse.choices.length > 0) {
+                  const botMessage = odResponse.choices[0].message.content.trim();
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
@@ -82,14 +82,14 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                   const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
                   //返答を要約する
-                  const summaryMessages = [
-                    { role: "system", content: `${summary}`},
-                    { role: "user", content: `${odResponse}`}
-                  ]
-                  const summaryResponse = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
+                //   const summaryMessages = [
+                //     { role: "system", content: `${summary}`},
+                //     { role: "user", content: `${odResponse}`}
+                //   ]
+                //   const summaryResponse = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
             
-                  if (summaryResponse.choices && summaryResponse.choices.length > 0) {
-                    const botMessage = summaryResponse.choices[0].message.content.trim();
+                  if (odResponse.choices && odResponse.choices.length > 0) {
+                    const botMessage = odResponse.choices[0].message.content.trim();
                     const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
