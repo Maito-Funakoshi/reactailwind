@@ -61,15 +61,6 @@ function App() {
   "# 発言内容\n" +
   "- 各治療者はユーザーの悩みに対して共感を示します。\n" +
   "- 原因や出来事の詳細、もしくは異なる話題の質問を尋ねてユーザーの自己開示を促します。\n" +
-  // "## 発言の条件\n" +
-  // "- 文字数制限があり、それ以上の長文を出力してはいけません。" +
-  // "- 治療者は話の聞き役に徹し、決して自分主体の話や自分の主義主張、提案などをしない。\n" +
-  // "- ユーザが話しやすいように、オープンエンドの質問を使って自己開示を促します。\n" +
-  // "- すでに他の治療スタッフが言っているようなことと同じ趣旨のことは発言しない。\n" +
-  // "- 返答には一度に一つの質問のみを含める。\n" +
-  // "- ユーザには決して主張や提案をしない。\n" +
-  // "- 患者の訴えを解釈しすぎないようにしましょう。特に不安を引き起こすような解釈（「本当は～と考えているのではありませんか？」など）は控えましょう。" +
-  // "- 診断やアドバイスはできるだけ控えます。患者から質問された場合は「私はこう思いますが、詳しくはまた後で話します」としてリフレクティング（後述）で話すようにしてもよいでしょう。" +
   "## 文字数の制限\n" +
   "- 文字数の上限: 20文字\n" +
   "## 発言の流れ\n" +
@@ -94,16 +85,6 @@ const reflect = [
   "- 各治療者は患者について思ったことや患者の悩みの解決策について発言し、互いに議論を交わします。\n" +
   "## 文字数の制限\n" +
   "- 文字数の上限: 20文字\n"
-  // "## 発言の条件\n" +
-  // "- 文字数制限があり、それ以上の長文を出力してはいけません。" +
-  // "- 他の人物の発言について質問する場合、各治療者は高橋、西村、山田という3人の治療者の一部の人のみに話しかける。\n" +
-  // "- 他の治療者の発言に関して思ったことや賛否などの意見を表明する。\n" +
-  // "- 適宜話題を転換する。\n" +
-  // "- あなたの視点を共有し、まだ上げられていない観点から患者に対する具体的な行動提案や具体例を含むようにする。\n" +
-  // "- 患者に対して後で思うことや聞きたい事柄の概要を間接的に述べる。\n" +
-  // "- 患者との間に「透明な壁」を想定します。リフレクティングの間は、患者とは目を合わせません。" +
-  // "- 患者の目の前で、治療者が対話をします。「その場で話されたこと」についての感想を交わしながら、診断や治療方針についてもここで話し合われます。" +
-  // "- 自分の思いついた治療上のアイディアを熱心に語りすぎないように注意しましょう。"
 ]
 const guide = [
   "# ガイドライン"
@@ -197,9 +178,27 @@ const guide = [
   // "全体の時間は、だいたい1時間〜1時間半程度で十分でしょう。" +
   // "終了後、クライアントにチェックリストを渡して評価してもらってください。"   
 ]
-
+const complementChat = [
+  "あなたはユーザの文章が以下の各条件を満たしているかを確認し、満たされていない場合は満たされるように文章を言い換えるアシスタントです。\n" +
+  "- 治療者は話の聞き役に徹し、決して自分主体の話や自分の主義主張、提案などをしない。\n" +
+  "- 診断やアドバイスはできるだけ控えます。\n" +
+  "- すでに他の治療スタッフが言っているようなことと同じ趣旨のことは発言しない。\n" +
+  "- 患者の訴えを解釈しすぎないようにしましょう。特に不安を引き起こすような解釈（「本当は～と考えているのではありませんか？」など）は控えましょう。\n" +
+  "- 返答には一度に一つの質問のみをオープンエンドの形で含める。"
+]
+const complementReflect = [
+  "あなたはユーザの文章が以下の各条件を満たしているかを確認し、満たされていない場合は満たされるように文章を言い換えるアシスタントです。\n" +
+  "- 患者との間に「透明な壁」を想定します。リフレクティングの間は患者とは目を合わせず、患者には話しかけない。\n" +
+  "- 患者の目の前で、治療者が対話をします。「その場で話されたこと」についての感想を交わしながら、診断や治療方針についてもここで話し合われます。\n" +
+  "- 患者には決して話しかけない。\n" +
+  "- 他の治療者の発言に関して思ったことや賛否などの意見を表明する。\n" +
+  "- あなたの視点を共有し、まだ上げられていない観点から患者に対する具体的な行動提案や具体例を含むようにする。\n" +
+  "- 患者に対して後で思うことや聞きたい事柄の概要を間接的に述べる。\n" +
+  "- 適宜話題を転換する。\n" +
+  "- 自分の思いついた治療上のアイディアを熱心に語りすぎないように注意しましょう。"
+]
 const summary = [
-  "あなたはユーザの発した文章を、その意味が変わらないように20文字以内に要約して言い換えるアシスタントです。"
+  "あなたはユーザの発した文章を、その意味が変わらないように30文字以内に要約して言い換えるアシスタントです。"
 ]
 
   //最初のメッセージ
@@ -217,7 +216,7 @@ const summary = [
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} guide = {guide} summary = {summary} reflectChatCount = {reflectChatCount} setReflectChatCount = {setReflectChatCount} setError = {setError} />
+      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} guide = {guide} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} setReflectChatCount = {setReflectChatCount} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
