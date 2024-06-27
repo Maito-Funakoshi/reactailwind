@@ -39,6 +39,13 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 ];
                 response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
+                //その他修正を適宜する
+                const complementMessages = [
+                    { role: "system", content: `${complementChat}`},
+                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                ]
+                response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
+
                 //返答を要約する
                 const summaryMessages = [
                     { role: "system", content: `${summary}`},
@@ -80,6 +87,13 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     { role: "user", content: `${response.choices[0].message.content.trim()}`}
                 　];
                   response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+
+                  //その他修正を適宜する
+                  const complementMessages = [
+                    { role: "system", content: `${complementReflect}`},
+                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                  ]
+                response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
 
                   //返答を要約する
                   const summaryMessages = [
