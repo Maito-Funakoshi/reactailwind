@@ -7,13 +7,13 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 //   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
 //   const deploymentId = "gpt35turbo";
   //opendialogue2
-//   const endpoint = `https://opendialogue2.openai.azure.com/`;
-//   const azureApiKey = `5854afcc0daa4f919e0e124914a512d8`;
-//   const deploymentId = "gpt4o";
+  const endpoint = `https://opendialogue2.openai.azure.com/`;
+  const azureApiKey = `5854afcc0daa4f919e0e124914a512d8`;
+  const deploymentId = "gpt4o";
   //opendialogue3
-  const endpoint = `https://opendialogue3.openai.azure.com/`;
-  const azureApiKey = `87eb9e105c3d4b7c8ba57a050f547ca8`;
-  const deploymentId = "gpt4oGS";
+//   const endpoint = `https://opendialogue3.openai.azure.com/`;
+//   const azureApiKey = `87eb9e105c3d4b7c8ba57a050f547ca8`;
+//   const deploymentId = "gpt4oGS";
 
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
