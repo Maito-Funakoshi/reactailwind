@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, guide, reflectChatCount, setReflectChatCount, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, guide, summary, reflectChatCount, setReflectChatCount, setError }) => {
   //opendialogue1
   const endpoint = `https://opendialogue1.openai.azure.com/`;
   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
@@ -39,8 +39,15 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 ];
                 const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
-                if (odResponse.choices && odResponse.choices.length > 0) {
-                  const botMessage = odResponse.choices[0].message.content.trim();
+                //返答を要約する
+                const summaryMessages = [
+                    { role: "system", content: `${summary}`},
+                    { role: "user", content: `${odResponse}`}
+                ]
+                const summaryResponse = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
+
+                if (summaryResponse.choices && summaryResponse.choices.length > 0) {
+                  const botMessage = summaryResponse.choices[0].message.content.trim();
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
@@ -62,7 +69,6 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
             for (let i = 0; i < names.length; i++) {
                 try {
                   const modifiedMessages = [
-                    { role: "system", content: `${guide}`},
                     { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                   ];
@@ -73,10 +79,17 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     { role: "system", content: `あなたは以下のガイドラインに沿って、与えられた発言をオープンダイアローグ的に修正します。${guide}`},
                     { role: "user", content: `${response}`}
                 　];
-                const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+                  const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+
+                  //返答を要約する
+                  const summaryMessages = [
+                    { role: "system", content: `${summary}`},
+                    { role: "user", content: `${odResponse}`}
+                  ]
+                  const summaryResponse = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
             
-                  if (odResponse.choices && odResponse.choices.length > 0) {
-                    const botMessage = odResponse.choices[0].message.content.trim();
+                  if (summaryResponse.choices && summaryResponse.choices.length > 0) {
+                    const botMessage = summaryResponse.choices[0].message.content.trim();
                     const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
