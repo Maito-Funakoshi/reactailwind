@@ -35,7 +35,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 //オープンダイアローグ的かどうかをチェックし、返答を再生成する
                 const odMessages = [
                     { role: "system", content: `あなたは以下のガイドラインに沿って、与えられた発言をオープンダイアローグ的に修正します。${guide}`},
-                    { role: "user", content: `${response}`}
+                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
                 ];
                 const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
@@ -77,7 +77,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 　//オープンダイアローグ的かどうかをチェックし、返答を再生成する
                 　const odMessages = [
                     { role: "system", content: `あなたは以下のガイドラインに沿って、与えられた発言をオープンダイアローグ的に修正します。${guide}`},
-                    { role: "user", content: `${response}`}
+                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
                 　];
                   const odResponse = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
