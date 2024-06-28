@@ -68,7 +68,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
       }
     }
     else if (!inputAble) {
-        if (messages.length > 1 && reflectChatCount < 6) {
+        if (messages.length > 1 && (messages[messages.length - 1].role == "user" || messages[messages.length - 2].role == "user" || messages[messages.length - 3].role == "user")) {
             const makeResponse = async (i) => {
                 let currentMessages = [...messages].slice(-maxContextMessages);
                 try {
@@ -113,9 +113,6 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     console.error("The sample encountered an error:", err);
                 }
             };
-            makeResponse(0);
-            makeResponse(1);
-            makeResponse(2);
             makeResponse(0);
             makeResponse(1);
             makeResponse(2);
