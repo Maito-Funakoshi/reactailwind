@@ -55,7 +55,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                   setRecipient((recipient + 1) % names.length);
@@ -104,7 +104,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
             
                   if (response.choices && response.choices.length > 0) {
                     const botMessage = response.choices[0].message.content.trim();
-                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
+                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}` };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
                     setReflectChatCount(reflectChatCount + 1);
