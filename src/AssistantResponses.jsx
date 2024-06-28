@@ -19,11 +19,11 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
   const maxContextMessages = 100;
 
-  const fetchData = async () => {
+  const makeResponse = async (recipient, mode) => {
     let currentMessages = [...messages].slice(-maxContextMessages);
         try {
           const modifiedMessages = [
-            { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
+            { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${mode} ${characters[recipient]}` },
               ...currentMessages.map(message => ({...message, role: "user"}))
           ];
           let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
@@ -36,10 +36,18 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
           response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
           // その他修正を適宜する
-          const complementMessages = [
-              { role: "system", content: `${complementChat}`},
-              { role: "user", content: `${response.choices[0].message.content.trim()}`}
-          ]
+          if (mode == chat) {
+            const complementMessages = [
+                { role: "system", content: `${complementChat}`},
+                { role: "user", content: `${response.choices[0].message.content.trim()}`}
+            ]
+          }
+          else if (mode == reflect) {
+            const complementMessages = [
+                { role: "system", content: `${complementReflect}`},
+                { role: "user", content: `${response.choices[0].message.content.trim()}`}
+            ]
+          }
           response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
 
           // 返答を要約する
@@ -51,7 +59,12 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
           if (response.choices && response.choices.length > 0) {
             const botMessage = response.choices[0].message.content.trim();
-            const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
+            if (mode == chat) {
+                const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat" };
+            }
+            else if (mode == reflect) {
+                const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "reflect" };
+            }
             currentMessages = [...currentMessages, assistantMessage];
             setMessages(prevMessages => [...prevMessages, assistantMessage]);
             setRecipient((recipient + 1) % names.length);
@@ -65,7 +78,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
   useEffect(() => {
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
-        fetchData();
+        makeResponse(recipient, chat);
       }
     }
     else if (!inputAble) {
