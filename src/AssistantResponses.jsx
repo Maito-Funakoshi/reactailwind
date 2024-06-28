@@ -113,9 +113,11 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     console.error("The sample encountered an error:", err);
                 }
             };
-            makeResponse(0);
-            makeResponse(1);
-            makeResponse(2);
+            async ()=> {
+                await makeResponse(0);
+                await makeResponse(1);
+                await makeResponse(2); 
+            }
         } else {
             setInputAble(!inputAble);
         }
