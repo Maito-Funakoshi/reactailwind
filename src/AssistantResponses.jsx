@@ -71,13 +71,14 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         if (messages.length > 1 && messages[messages.length - 2].role == "user") {
             const makeResponse = async () => {
                 let currentMessages = [...messages].slice(-maxContextMessages);
-                for(let i = 0; i < names.length; i++){
+                for(let i = 0; i < names.length * 2; i++){
+                    let j = i % names.length;
                     try {
                         const modifiedMessages = [
-                            { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
+                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントです。${reflect} ${characters[j]}` },
                             ...currentMessages.map(message => ({ ...message, role: "user" }))
                         ];
-                        let response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
+                        let response = await clients[j].getChatCompletions(deploymentId, modifiedMessages);
 
                         // 発言様式を整備する
                         const odMessages = [
@@ -102,11 +103,12 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
                         if (response.choices && response.choices.length > 0) {
                             const botMessage = response.choices[0].message.content.trim();
-                            const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
+                            const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[j]}`, mode: "reflect" };
                             currentMessages = [...currentMessages, assistantMessage];
                             setMessages(prevMessages => [...prevMessages, assistantMessage]); 
                             
                             console.log(i);
+                            console.log(j);
                         }
                     } catch (err) {
                         setError(err);
