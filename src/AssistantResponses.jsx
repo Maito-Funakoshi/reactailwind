@@ -22,7 +22,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
   useEffect(() => {
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
-        const fetchData = async () => {
+        const makeResponse = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
                 const modifiedMessages = [
@@ -64,66 +64,61 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 console.error("The sample encountered an error:", err);
               }
         }
-        fetchData();
+        makeResponse();
       }
     }
     else if (!inputAble) {
-        if (messages.length > 1 && reflectChatCount < 6) {
-            const processMessages = async () => {
+        if (messages.length > 1) {
+            const makeResponse = async (i) => {
                 let currentMessages = [...messages].slice(-maxContextMessages);
+                try {
+                    const modifiedMessages = [
+                        { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
+                        ...currentMessages.map(message => ({ ...message, role: "user" }))
+                    ];
+                    let response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
 
-                for (let j = 0; j < 2; j++) {
-                    for (let i = 0; i < names.length; i++) {
-                        try {
-                            const modifiedMessages = [
-                                { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
-                                ...currentMessages.map(message => ({ ...message, role: "user" }))
-                            ];
-                            let response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
-    
-                            // 発言様式を整備する
-                            const odMessages = [
-                                { role: "system", content: `${common}` },
-                                { role: "user", content: `${response.choices[0].message.content.trim()}` }
-                            ];
-                            response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
-    
-                            // その他修正を適宜する
-                            const complementMessages = [
-                                { role: "system", content: `${complementReflect}` },
-                                { role: "user", content: `${response.choices[0].message.content.trim()}` }
-                            ];
-                            response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
-    
-                            // 返答を要約する
-                            const summaryMessages = [
-                                { role: "system", content: `${summary}` },
-                                { role: "user", content: `${response.choices[0].message.content.trim()}` }
-                            ];
-                            response = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
-    
-                            if (response.choices && response.choices.length > 0) {
-                                const botMessage = response.choices[0].message.content.trim();
-                                const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
-                                currentMessages = [...currentMessages, assistantMessage];
-                                setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                                setReflectChatCount(prevCount => prevCount + 1);
-    
-                                // 次のアシスタントのメッセージ送信を待つ
-                                await new Promise(resolve => setTimeout(resolve, 5000));
-                            }
-                        } catch (err) {
-                            setError(err);
-                            console.error("The sample encountered an error:", err);
-                        }
+                    // 発言様式を整備する
+                    const odMessages = [
+                        { role: "system", content: `${common}` },
+                        { role: "user", content: `${response.choices[0].message.content.trim()}` }
+                    ];
+                    response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+
+                    // その他修正を適宜する
+                    const complementMessages = [
+                        { role: "system", content: `${complementReflect}` },
+                        { role: "user", content: `${response.choices[0].message.content.trim()}` }
+                    ];
+                    response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
+
+                    // 返答を要約する
+                    const summaryMessages = [
+                        { role: "system", content: `${summary}` },
+                        { role: "user", content: `${response.choices[0].message.content.trim()}` }
+                    ];
+                    response = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
+
+                    if (response.choices && response.choices.length > 0) {
+                        const botMessage = response.choices[0].message.content.trim();
+                        const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
+                        currentMessages = [...currentMessages, assistantMessage];
+                        setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                        console.log(i)
+                        i = i + 1;
                     }
+                } catch (err) {
+                    setError(err);
+                    console.error("The sample encountered an error:", err);
                 }
-                setReflectChatCount(0);
-                setInputAble(!inputAble);
             };
-            processMessages();
+            makeResponse(0);
+            makeResponse(1);
+            makeResponse(2);
+            makeResponse(0);
+            makeResponse(1);
+            makeResponse(2);
         } else {
-            setReflectChatCount(0);
             setInputAble(!inputAble);
         }
     }
