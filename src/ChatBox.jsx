@@ -44,7 +44,7 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
             {imageSrc && <img src={imageSrc} alt={msg.name} />}
             <div className="message">
               {name && <p className="recipient">{name}</p>}
-              <p className={`${msg.role} `}>
+              <p className={`${msg.role} ${msg.mode}`}>
                 {msg.content}
               </p>
             </div>

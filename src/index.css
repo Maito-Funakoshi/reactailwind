@@ -149,7 +149,7 @@ div.message {
   text-align: left;
   max-width: 60vw;
 }
-.assistant {
+.assistant.chat {
   background-color: white;
 }
 .assistant.reflect {

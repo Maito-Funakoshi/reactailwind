@@ -28,7 +28,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 //
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
-                    ...currentMessages
+                    ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
 
@@ -55,7 +55,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                   setRecipient((recipient + 1) % names.length);
@@ -77,7 +77,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 try {
                   const modifiedMessages = [
                     { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
-                    ...currentMessages
+                    ...currentMessages.map(message => ({...message, role: "user"}))
                   ];
                   let response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
 
@@ -104,7 +104,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
             
                   if (response.choices && response.choices.length > 0) {
                     const botMessage = response.choices[0].message.content.trim();
-                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}` };
+                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
                     currentMessages = [...currentMessages, assistantMessage];
                     setMessages(prevMessages => [...prevMessages, assistantMessage]);
                     setReflectChatCount(reflectChatCount + 1);
