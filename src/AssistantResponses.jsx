@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, guide, complementChat, complementReflect, summary, reflectChatCount, setReflectChatCount, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, setReflectChatCount, setError }) => {
   //opendialogue1
 //   const endpoint = `https://opendialogue1.openai.azure.com/`;
 //   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
@@ -25,28 +25,27 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         const fetchData = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
-                //
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
 
-                //オープンダイアローグ的かどうかをチェックし、返答を再生成する
+                // 発言様式を整備する
                 const odMessages = [
-                    { role: "system", content: `あなたは以下のガイドラインに沿って、与えられた発言をオープンダイアローグ的に修正します。${guide}`},
+                    { role: "system", content: `${common}`},
                     { role: "user", content: `${response.choices[0].message.content.trim()}`}
                 ];
                 response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
-                //その他修正を適宜する
+                // その他修正を適宜する
                 const complementMessages = [
                     { role: "system", content: `${complementChat}`},
                     { role: "user", content: `${response.choices[0].message.content.trim()}`}
                 ]
                 response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
 
-                //返答を要約する
+                // 返答を要約する
                 const summaryMessages = [
                     { role: "system", content: `${summary}`},
                     { role: "user", content: `${response.choices[0].message.content.trim()}`}
@@ -69,62 +68,61 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
       }
     }
     else if(!inputAble) {
-      if (messages.length > 1 && reflectChatCount < 2) {
-        const intervalId = setInterval(() => {
-          const fetchData = async () => {
-            let currentMessages = [...messages].slice(-maxContextMessages);
-            for (let i = 0; i < names.length; i++) {
-                try {
-                  const modifiedMessages = [
-                    { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
-                    ...currentMessages.map(message => ({...message, role: "user"}))
-                  ];
-                  let response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
+      if (messages.length > 1) {
+        for (let c = 0; c < 2; c++) {
+            const intervalId = setInterval(() => {
+                const fetchData = async () => {
+                    let currentMessages = [...messages].slice(-maxContextMessages);
+                    for (let i = 0; i < names.length; i++) {
+                        try {
+                        const modifiedMessages = [
+                            { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
+                            ...currentMessages.map(message => ({...message, role: "user"}))
+                        ];
+                        let response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
 
-                　//オープンダイアローグ的かどうかをチェックし、返答を再生成する
-                　const odMessages = [
-                    { role: "system", content: `あなたは以下のガイドラインに沿って、与えられた発言をオープンダイアローグ的に修正します。${guide}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                　];
-                  response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+                        　// 発言様式を整備する
+                        　const odMessages = [
+                            { role: "system", content: `${common}`},
+                            { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                        　];
+                        response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
 
-                  //その他修正を適宜する
-                  const complementMessages = [
-                    { role: "system", content: `${complementReflect}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                  ]
-                response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
+                        // その他修正を適宜する
+                        const complementMessages = [
+                            { role: "system", content: `${complementReflect}`},
+                            { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                        ]
+                        response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
 
-                  //返答を要約する
-                  const summaryMessages = [
-                    { role: "system", content: `${summary}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                  ]
-                  response = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
-            
-                  if (response.choices && response.choices.length > 0) {
-                    const botMessage = response.choices[0].message.content.trim();
-                    const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
-                    currentMessages = [...currentMessages, assistantMessage];
-                    setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                    setReflectChatCount(reflectChatCount + 1);
-                    console.log(reflectChatCount);
-                    console.log(inputAble);
-                  }
-                } catch (err) {
-                  setError(err);
-                  console.error("The sample encountered an error:", err);
+                        // 返答を要約する
+                        const summaryMessages = [
+                            { role: "system", content: `${summary}`},
+                            { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                        ]
+                        response = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
+                    
+                        if (response.choices && response.choices.length > 0) {
+                            const botMessage = response.choices[0].message.content.trim();
+                            const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
+                            currentMessages = [...currentMessages, assistantMessage];
+                            setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                        }
+                        } catch (err) {
+                        setError(err);
+                        console.error("The sample encountered an error:", err);
+                        }
+                    }
                 }
+                fetchData();
+            }, 5000);
+            
+            if(c == 1) {
+                setInputAble(!inputAble);
             }
-          }
-          fetchData();
-        }, 5000);
 
-        return () => clearInterval(intervalId);
-      }
-      else {
-        setReflectChatCount(0);
-        setInputAble(!inputAble);
+            return () => clearInterval(intervalId);
+        }
       }
     }
   }, [messages, inputAble]);
