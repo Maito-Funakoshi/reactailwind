@@ -7,7 +7,7 @@ const MessageInput = ({ setMessages, inputAble }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim()) {
-      setMessages(prevMessages => [...prevMessages, { role: "user", content: input, name:"You", mode:"chat" }]);
+      setMessages(prevMessages => [...prevMessages, { role: "user", content: input, name:"You" }]);
       setInput('');
     }
   };
