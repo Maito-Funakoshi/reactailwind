@@ -28,7 +28,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 //
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
-                    ...currentMessages
+                    ...currentMessages.map(message => ({...message}))
                 ];
                 let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
 
@@ -77,7 +77,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 try {
                   const modifiedMessages = [
                     { role: "system", content: `あなたは${names[i]}という名前のアシスタントです。${reflect} ${characters[i]}` },
-                    ...currentMessages
+                    ...currentMessages.map(message => ({...message}))
                   ];
                   let response = await clients[i].getChatCompletions(deploymentId, modifiedMessages);
 
