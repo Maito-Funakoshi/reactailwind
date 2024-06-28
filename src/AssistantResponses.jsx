@@ -68,7 +68,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
       }
     }
     else if (!inputAble) {
-        if (messages.length > 1) {
+        if (messages.length > 1 && reflectChatCount < 6) {
             const makeResponse = async (i) => {
                 let currentMessages = [...messages].slice(-maxContextMessages);
                 try {
@@ -103,9 +103,10 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                         const botMessage = response.choices[0].message.content.trim();
                         const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[i]}`, mode: "reflect" };
                         currentMessages = [...currentMessages, assistantMessage];
-                        setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                        console.log(i)
-                        i = i + 1;
+                        setMessages(prevMessages => [...prevMessages, assistantMessage]); 
+                        
+                        await setReflectChatCount(reflectChatCount + 1);
+                        console.log(reflectChatCount);
                     }
                 } catch (err) {
                     setError(err);
