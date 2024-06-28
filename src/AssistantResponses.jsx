@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, setReflectChatCount, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, setError }) => {
   //opendialogue1
 //   const endpoint = `https://opendialogue1.openai.azure.com/`;
 //   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
@@ -71,7 +71,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         if (messages.length > 1 && messages[messages.length - 2].role == "user") {
             const makeResponse = async () => {
                 let currentMessages = [...messages].slice(-maxContextMessages);
-                for(let i = 0; i < names.length * 2; i++){
+                for(let i = 0; i < names.length * reflectChatCount; i++){
                     let j = i % names.length;
                     try {
                         const modifiedMessages = [
@@ -106,9 +106,6 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                             const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[j]}`, mode: "reflect" };
                             currentMessages = [...currentMessages, assistantMessage];
                             setMessages(prevMessages => [...prevMessages, assistantMessage]); 
-                            
-                            console.log(i);
-                            console.log(j);
                         }
                     } catch (err) {
                         setError(err);

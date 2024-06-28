@@ -116,13 +116,13 @@ function App() {
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
   const [recipient, setRecipient] = useState(0);
-  const [reflectChatCount, setReflectChatCount] = useState(0);
+  const [reflectChatCount, setReflectChatCount] = useState(2);
 
   //HTML部分
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} setReflectChatCount = {setReflectChatCount} setError = {setError} />
+      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} />
     </div>
