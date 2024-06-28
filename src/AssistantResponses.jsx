@@ -105,19 +105,14 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                         currentMessages = [...currentMessages, assistantMessage];
                         setMessages(prevMessages => [...prevMessages, assistantMessage]); 
                         
-                        await setReflectChatCount(reflectChatCount + 1);
-                        console.log(reflectChatCount);
+                        console.log(i);
                     }
                 } catch (err) {
                     setError(err);
                     console.error("The sample encountered an error:", err);
                 }
             };
-            async ()=> {
-                await makeResponse(0);
-                await makeResponse(1);
-                await makeResponse(2); 
-            }
+            makeResponse(0);
         } else {
             setInputAble(!inputAble);
         }
