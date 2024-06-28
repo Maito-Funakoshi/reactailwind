@@ -17,7 +17,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
-  const maxContextMessages = 12;
+  const maxContextMessages = 100;
 
   useEffect(() => {
     if (inputAble) {
