@@ -19,51 +19,52 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
   const maxContextMessages = 100;
 
+  const fetchData = async () => {
+    let currentMessages = [...messages].slice(-maxContextMessages);
+        try {
+          const modifiedMessages = [
+            { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
+              ...currentMessages.map(message => ({...message, role: "user"}))
+          ];
+          let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
+
+          // 発言様式を整備する
+          const odMessages = [
+              { role: "system", content: `${common}`},
+              { role: "user", content: `${response.choices[0].message.content.trim()}`}
+          ];
+          response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+
+          // その他修正を適宜する
+          const complementMessages = [
+              { role: "system", content: `${complementChat}`},
+              { role: "user", content: `${response.choices[0].message.content.trim()}`}
+          ]
+          response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
+
+          // 返答を要約する
+          const summaryMessages = [
+              { role: "system", content: `${summary}`},
+              { role: "user", content: `${response.choices[0].message.content.trim()}`}
+          ]
+          response = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
+
+          if (response.choices && response.choices.length > 0) {
+            const botMessage = response.choices[0].message.content.trim();
+            const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
+            currentMessages = [...currentMessages, assistantMessage];
+            setMessages(prevMessages => [...prevMessages, assistantMessage]);
+            setRecipient((recipient + 1) % names.length);
+          }
+        } catch (err) {
+          setError(err);
+          console.error("The sample encountered an error:", err);
+        }
+  }
+
   useEffect(() => {
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
-        const fetchData = async () => {
-          let currentMessages = [...messages].slice(-maxContextMessages);
-              try {
-                const modifiedMessages = [
-                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
-                    ...currentMessages.map(message => ({...message, role: "user"}))
-                ];
-                let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
-
-                // 発言様式を整備する
-                const odMessages = [
-                    { role: "system", content: `${common}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ];
-                response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
-
-                // その他修正を適宜する
-                const complementMessages = [
-                    { role: "system", content: `${complementChat}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ]
-                response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
-
-                // 返答を要約する
-                const summaryMessages = [
-                    { role: "system", content: `${summary}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ]
-                response = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
-
-                if (response.choices && response.choices.length > 0) {
-                  const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
-                  currentMessages = [...currentMessages, assistantMessage];
-                  setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  setRecipient((recipient + 1) % names.length);
-                }
-              } catch (err) {
-                setError(err);
-                console.error("The sample encountered an error:", err);
-              }
-        }
         fetchData();
       }
     }
