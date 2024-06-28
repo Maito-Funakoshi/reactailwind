@@ -108,8 +108,6 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                   setReflectChatCount(reflectChatCount + 1);
-                  console.log(reflectChatCount);
-                  console.log(inputAble);
       
                   // 次のアシスタントのメッセージ送信を待つ
                   await new Promise(resolve => setTimeout(resolve, 5000));
