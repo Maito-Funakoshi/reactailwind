@@ -101,9 +101,9 @@ header.App-header h1 button img {
   flex-flow: column;
   padding: 10px;
   margin-top: 60px;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
   overflow-y: auto;
-  height: calc(100% - 160px); /* 100% - (margin-top + margin-bottom) */
+  height: calc(100% - 100px - 58.5px); /* 100% - (margin-top + margin-bottom + "formの高さ") */
   background-color: #8CABD8;
   color: black;
   box-sizing: border-box;
