@@ -107,12 +107,14 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                             currentMessages = [...currentMessages, assistantMessage];
                             setMessages(prevMessages => [...prevMessages, assistantMessage]); 
                         }
+                        if (i == names.length * reflectChatCount - 1) {
+                            setMessages(prevMessages => [...prevMessages, {role: "assistant", content: `${endReflectingMessage}`, name: "system", mode: "chat" }]); 
+                        }
                     } catch (err) {
                         setError(err);
                         console.error("The sample encountered an error:", err);
                     }
                 }
-                setMessages(prevMessages => [...prevMessages, {role: "assistant", content: `${endReflectingMessage}`, name: "system", mode: "chat" }]); 
             };
             makeResponse();
         } else {
