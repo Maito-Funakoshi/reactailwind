@@ -1,17 +1,10 @@
-import React, {useRef, useLayoutEffect} from 'react';
+import React from 'react';
 import A from "../images/A.png";
 import B from "../images/B.png";
 import C from "../images/C.png"; 
 import system from "../images/system.png";
 
 const ChatBox = ({ names, namesEng, messages, error }) => {
-  const scrollBottomRef = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
-    if(scrollBottomRef && scrollBottomRef.current) {
-      scrollBottomRef.current.scrollIntoView()
-    }
-  }, []);
-
   const getName = (nameEng) => {
     switch (nameEng) {
       case namesEng[0]:
@@ -58,7 +51,6 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
           </div>
         );
       })}
-      <div ref={scrollBottomRef}/>
     </div>
     {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
     </>
