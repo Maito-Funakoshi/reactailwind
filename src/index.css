@@ -107,6 +107,7 @@ header.App-header h1 button img {
   background-color: #8CABD8;
   color: black;
   box-sizing: border-box;
+  overflow: scroll;
 }
 .chat-box div {
   display: flex;
