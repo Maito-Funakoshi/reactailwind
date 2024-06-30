@@ -112,7 +112,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                         console.error("The sample encountered an error:", err);
                     }
                 }
-                setMessages(prevMessages => [...prevMessages, {role: "system", content: `${endReflectingMessage}`, name: "system", mode: "chat" }]); 
+                setMessages(prevMessages => [...prevMessages, {role: "assistant", content: `${endReflectingMessage}`, name: "system", mode: "chat" }]); 
             };
             makeResponse();
         } else {
