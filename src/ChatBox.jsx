@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import A from "../images/A.png";
 import B from "../images/B.png";
 import C from "../images/C.png"; 
