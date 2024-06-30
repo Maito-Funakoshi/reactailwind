@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
   //opendialogue1
 //   const endpoint = `https://opendialogue1.openai.azure.com/`;
 //   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
@@ -26,7 +26,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
                 const modifiedMessages = [
-                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。${chat} ${characters[recipient]}` },
+                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
@@ -75,7 +75,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                     let j = i % names.length;
                     try {
                         const modifiedMessages = [
-                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントです。${reflect} ${characters[j]}` },
+                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${reflect} あなたの特徴は以下の通りです。${characters[j]}` },
                             ...currentMessages.map(message => ({ ...message, role: "user" }))
                         ];
                         let response = await clients[j].getChatCompletions(deploymentId, modifiedMessages);
@@ -114,6 +114,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 }
             };
             makeResponse();
+            setMessages(prevMessages => [...prevMessages, {role: "system", content: `${endReflectingMessage}`, name: "system", mode: "chat" }]); 
         } else {
             setInputAble(!inputAble);
         }
