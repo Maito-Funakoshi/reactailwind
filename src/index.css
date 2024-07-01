@@ -46,7 +46,7 @@ header.App-header h1 div.recipients label {
   font-size: 16px;
   color: black;
 }
-.switch_outer {
+/* .switch_outer {
   width: 48px;
   height: 24px;
   display: flex;
@@ -79,7 +79,7 @@ header.App-header h1 div.recipients label {
 }
 .toggle_switch.active {
   left: 26px;
-}
+} */
 header.App-header h1 button {
   background: none;
   border: none;
