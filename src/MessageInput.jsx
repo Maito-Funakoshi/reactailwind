@@ -6,6 +6,7 @@ const MessageInput = ({ setMessages, inputAble, setInputAble, startReflectingMes
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(inputAble);
     if (input.trim()) {
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input, name:"You", mode:"chat" }]);
       if (input == startReflectingMessage) {
@@ -13,6 +14,7 @@ const MessageInput = ({ setMessages, inputAble, setInputAble, startReflectingMes
       }
       setInput('');
     }
+    console.log(inputAble);
   };
 
   return (
