@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, startReflectingMessage, endReflectingMessage, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
   //opendialogue1
 //   const endpoint = `https://opendialogue1.openai.azure.com/`;
 //   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
@@ -18,12 +18,6 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
   const clients = names.map(() => new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey)));
 
   const maxContextMessages = 100;
-
-  useEffect(() => {
-    if (messages.length > 0 && messages[messages.length - 1].content === startReflectingMessage) {
-      setInputAble(!inputAble);
-    }
-  }, [messages]);
 
   useEffect(() => {
     if (inputAble) {
