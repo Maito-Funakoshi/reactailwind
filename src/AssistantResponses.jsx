@@ -20,10 +20,12 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
   const maxContextMessages = 100;
 
   useEffect(() => {
-    if (messages[messages.length - 1].content == startReflectingMessage) {
+    if (messages.length > 0 && messages[messages.length - 1].content === startReflectingMessage) {
       setInputAble(!inputAble);
     }
+  }, [messages]);
 
+  useEffect(() => {
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const makeResponse = async () => {
