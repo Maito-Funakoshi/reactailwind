@@ -8,10 +8,9 @@ const MessageInput = ({ setMessages, inputAble, setInputAble, startReflectingMes
     e.preventDefault();
     if (input.trim()) {
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input, name:"You", mode:"chat" }]);
-      if (input.contains(startReflectingMessage)) {
+      if (input.includes(startReflectingMessage)) {
         setInputAble(!inputAble);
       }
-
       setInput('');
     }
   };
