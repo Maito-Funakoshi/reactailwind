@@ -9,7 +9,6 @@ const MessageInput = ({ setMessages, inputAble, setInputAble, startReflectingMes
     if (input.trim()) {
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input, name:"You", mode:"chat" }]);
       if (input == startReflectingMessage) {
-        console.log("reflect start");
         setInputAble(!inputAble);
       }
 
