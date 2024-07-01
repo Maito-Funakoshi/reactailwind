@@ -111,7 +111,7 @@ function App() {
   //最初のメッセージ
   const greetingMessage = ["こんにちは！今日は何について話しましょうか？"]
   const startReflectingMessage = ["リフレクティングをしてください"]
-  const endReflectingMessage = ["今の会話を振り返って言いたいことは何かありますか？"]
+  const endReflectingMessage = ["今の会話を振り返って感想やコメント等はありますか？"]
   const [messages, setMessages] = useState([
     { role: "assistant", content: `${greetingMessage}`, name: "system", mode: "chat" }
   ]);
