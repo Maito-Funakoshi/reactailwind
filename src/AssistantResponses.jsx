@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
+const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, startReflectingMessage, endReflectingMessage, setError }) => {
   //opendialogue1
 //   const endpoint = `https://opendialogue1.openai.azure.com/`;
 //   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
@@ -20,6 +20,12 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
   const maxContextMessages = 100;
 
   useEffect(() => {
+    async () => {
+      if (messages[messages.length - 1].content == startReflectingMessage) {
+        await setInputAble(!inputAble);
+      }
+    }
+
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const makeResponse = async () => {
@@ -70,7 +76,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
     else if (!inputAble) {
         if (messages.length > 1 && messages[messages.length - 2].role == "user") {
             const makeResponse = async () => {
-                let currentMessages = [...messages].slice(-maxContextMessages);
+              let currentMessages = [...messages].slice(-maxContextMessages);
                 for(let i = 0; i < names.length * reflectChatCount; i++){
                     let j = i % names.length;
                     try {
