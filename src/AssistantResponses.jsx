@@ -25,24 +25,17 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
         const makeResponse = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
-                if (recipient < 3){
-                  const modifiedMessages = [
-                    { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[0]}` },
-                      ...currentMessages.map(message => ({...message, role: "user"}))
-                  ];
-                }
-                else if(recipient == 3){
-                  const modifiedMessages = [
-                    { role: "system", content: `あなたは${names[1]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[1]}` },
-                      ...currentMessages.map(message => ({...message, role: "user"}))
-                  ];
+                let number = 0;
+                if(recipient == 3){
+                  number = 1;
                 }
                 else if(recipient == 4){
-                  const modifiedMessages = [
-                    { role: "system", content: `あなたは${names[2]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[2]}` },
-                      ...currentMessages.map(message => ({...message, role: "user"}))
-                  ];
+                  number = 2;
                 }
+                const modifiedMessages = [
+                  { role: "system", content: `あなたは${names[number]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[number]}` },
+                    ...currentMessages.map(message => ({...message, role: "user"}))
+                ];
                 let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
 
                 // 発言様式を整備する
