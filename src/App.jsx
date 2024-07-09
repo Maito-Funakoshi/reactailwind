@@ -96,7 +96,7 @@ function App() {
 
   //最初のメッセージ
   const greetingMessage = ["こんにちは！今日は何について話しましょうか？"]
-  const startReflectingMessages = ["リフレクティングをしてください", "リフレクティングしてください", "リフレクティングを始めてください"]
+  const reflectingKeyMessages = ["リフレクティングをしてください", "リフレクティングしてください", "リフレクティングを始めてください"]
   const endReflectingMessage = ["今の会話を振り返って感想やコメント等はありますか？"]
   const [messages, setMessages] = useState([
     { role: "assistant", content: `${greetingMessage}`, name: "system", mode: "chat" }
@@ -113,7 +113,7 @@ function App() {
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
       <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} endReflectingMessage = {endReflectingMessage} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
-      <MessageInput setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} startReflectingMessages = {startReflectingMessages} />
+      <MessageInput setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} reflectingKeyMessages = {reflectingKeyMessages} />
     </div>
   );
 }
