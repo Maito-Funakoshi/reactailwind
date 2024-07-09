@@ -32,6 +32,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 else if(recipient == 4){
                   number = 2;
                 }
+                console.log(number)
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[number]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[number]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
@@ -61,7 +62,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[number]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                   setRecipient((recipient + 1) % 5);
