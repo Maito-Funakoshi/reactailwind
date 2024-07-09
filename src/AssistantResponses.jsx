@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
@@ -19,7 +19,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
   const maxContextMessages = 100;
 
-  const [count, setCount] = usestate(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (inputAble) {
