@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
 const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
@@ -19,14 +19,13 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
   const maxContextMessages = 100;
 
-  const [count, setCount] = useState(0);
-
   useEffect(() => {
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const makeResponse = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
+                setRecipient(0); //返信者をnames[0]に固定
                 const modifiedMessages = [
                   { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
@@ -59,14 +58,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  setCount(count + 1);
-                  if(count == 3){
-                    setRecipient((recipient + 1) % names.length);
-                    if(recipient == 0) {
-                      setCount(0);
-                    }
-                  }
-                  console.log(count);
+                  setRecipient((recipient + 1) % names.length);
                 }
               } catch (err) {
                 setError(err);
@@ -94,21 +86,21 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                             { role: "system", content: `${common}` },
                             { role: "user", content: `${response.choices[0].message.content.trim()}` }
                         ];
-                        response = await clients[recipient].getChatCompletions(deploymentId, odMessages);
+                        response = await clients[j].getChatCompletions(deploymentId, odMessages);
 
                         // その他修正を適宜する
                         const complementMessages = [
                             { role: "system", content: `${complementReflect}` },
                             { role: "user", content: `${response.choices[0].message.content.trim()}` }
                         ];
-                        response = await clients[recipient].getChatCompletions(deploymentId, complementMessages);
+                        response = await clients[j].getChatCompletions(deploymentId, complementMessages);
 
                         // 返答を要約する
                         const summaryMessages = [
                             { role: "system", content: `${summary}` },
                             { role: "user", content: `${response.choices[0].message.content.trim()}` }
                         ];
-                        response = await clients[recipient].getChatCompletions(deploymentId, summaryMessages);
+                        response = await clients[j].getChatCompletions(deploymentId, summaryMessages);
 
                         if (response.choices && response.choices.length > 0) {
                             const botMessage = response.choices[0].message.content.trim();
