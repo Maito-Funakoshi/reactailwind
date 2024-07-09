@@ -19,7 +19,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
   const maxContextMessages = 100;
 
-  let count = 0;
+  const [count, setCount] = usestate(0);
 
   useEffect(() => {
     if (inputAble) {
@@ -59,13 +59,14 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  count = count + 1 ;
+                  setCount(count + 1);
                   if(count == 3){
                     setRecipient((recipient + 1) % names.length);
                     if(recipient == 0) {
-                      count = 0;
+                      setCount(0);
                     }
                   }
+                  console.log(count);
                 }
               } catch (err) {
                 setError(err);
