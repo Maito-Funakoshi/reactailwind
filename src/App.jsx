@@ -62,13 +62,13 @@ function App() {
     "- 西村\n" +
     "- 山田\n" +
     "# リフレクティングの状況設定\n" +
-    "- 治療者3人（後藤、西村、山田）がユーザに対して背を向け、今までの話について議論を交わします。\n" +
-    "## 発言条件\n" +
-    "- 患者に対して思うことや後で聞きたい事柄の概要を間接的に述べる。\n" +
-    "## 発言の流れ\n" +
-    "1. 患者や他の治療者の発言についての感想を述べます。\n" +
-    "2. 患者の悩みの解決策を紹介します。\n" +
-    "3. 他の治療者に意見を仰ぎます。\n"
+    "- 治療者3人（後藤、西村、山田）がユーザに対して背を向け、今までの話について議論を交わします。\n"
+    // "## 発言条件\n" +
+    // "- 患者に対して思うことや後で聞きたい事柄の概要を間接的に述べる。\n" +
+    // "## 発言の流れ\n" +
+    // "1. 患者や他の治療者の発言についての感想を述べます。\n" +
+    // "2. 患者の悩みの解決策を紹介します。\n" +
+    // "3. 他の治療者に意見を仰ぎます。\n"
   ]
   const common = [
   "あなたは以下の要件を満たすようにユーザの発した文章を言い換えるアシスタントです。\n" +
@@ -105,7 +105,7 @@ function App() {
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
   const [recipient, setRecipient] = useState(0);
-  const [reflectChatCount, setReflectChatCount] = useState(2);
+  const [reflectChatCount, setReflectChatCount] = useState(4);
 
   //HTML部分
   return (
