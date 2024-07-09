@@ -19,22 +19,16 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
   const maxContextMessages = 100;
 
+  let count = 0;
+
   useEffect(() => {
     if (inputAble) {
       if (messages.length > 1　&& messages[messages.length - 1].role == "user") {
         const makeResponse = async () => {
           let currentMessages = [...messages].slice(-maxContextMessages);
               try {
-                let number = 0;
-                if(recipient == 3){
-                  number = 1;
-                }
-                else if(recipient == 4){
-                  number = 2;
-                }
-                console.log(number)
                 const modifiedMessages = [
-                  { role: "system", content: `あなたは${names[number]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[number]}` },
+                  { role: "system", content: `あなたは${names[recipient]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[recipient]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await clients[recipient].getChatCompletions(deploymentId, modifiedMessages);
@@ -62,10 +56,16 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[number]}`, mode: "chat"};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[recipient]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  setRecipient((recipient + 1) % 5);
+                  count = count + 1 ;
+                  if(count == 3){
+                    setRecipient((recipient + 1) % names.length);
+                    if(recipient == 0) {
+                      count = 0;
+                    }
+                  }
                 }
               } catch (err) {
                 setError(err);
