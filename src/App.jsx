@@ -95,11 +95,19 @@ function App() {
   ]
 
   //最初のメッセージ
-  const greetingMessage = ["こんにちは！今日は何について話しましょうか？"]
+  const greetingAssistantMessages = [
+    "こんにちは！後藤大輔です。あなたのお話をじっくり聞きます。よろしくお願いします。", 
+    "こんにちは！西村明子と申します。あなたのお悩みを一緒に考えましょう。よろしくお願いします。",
+    "こんにちは、山田聡太です！なんでも気軽にお話しください。よろしくお願いします。"
+  ]
+  const greetingSystemMessage = ["今日は何について話しましょうか？"]
   const reflectingKeyMessages = ["リフレクティングをしてください", "リフレクティングしてください", "リフレクティングを始めてください"]
   const endReflectingMessage = ["今の会話を振り返って感想やコメント等はありますか？"]
   const [messages, setMessages] = useState([
-    { role: "assistant", content: `${greetingMessage}`, name: "system", mode: "chat" }
+    { role: "assistant", content: `${greetingAssistantMessages[0]}`, name: `${namesEng[0]}`, mode: "chat"},
+    { role: "assistant", content: `${greetingAssistantMessages[1]}`, name: `${namesEng[1]}`, mode: "chat"},
+    { role: "assistant", content: `${greetingAssistantMessages[2]}`, name: `${namesEng[2]}`, mode: "chat"},
+    { role: "assistant", content: `${greetingSystemMessage}`, name: "system", mode: "chat" }
   ]);
   //変数設定
   const [inputAble, setInputAble] = useState(true);
