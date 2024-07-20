@@ -108,7 +108,7 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                             setMessages(prevMessages => [...prevMessages, assistantMessage]); 
                         }
                         if (i == names.length * reflectChatCount - 1) {
-                            setMessages(prevMessages => [...prevMessages, {role: "assistant", content: `${endReflectingMessage}`, name: "system", mode: "chat" }]); 
+                            setMessages(prevMessages => [...prevMessages, {role: "assistant", content: `${endReflectingMessage}`, name: `${namesEng[0]}`, mode: "chat" }]); 
                         }
                     } catch (err) {
                         setError(err);

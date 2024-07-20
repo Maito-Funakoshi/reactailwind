@@ -109,7 +109,7 @@ function App() {
     { role: "assistant", content: `${greetingAssistantMessages[0]}`, name: `${namesEng[0]}`, mode: "chat"},
     { role: "assistant", content: `${greetingAssistantMessages[1]}`, name: `${namesEng[1]}`, mode: "chat"},
     { role: "assistant", content: `${greetingAssistantMessages[2]}`, name: `${namesEng[2]}`, mode: "chat"},
-    { role: "assistant", content: `${greetingSystemMessage}`, name: "system", mode: "chat" }
+    { role: "assistant", content: `${greetingSystemMessage}`, name: `${namesEng[0]}`, mode: "chat" }
   ]);
   //変数設定
   const [inputAble, setInputAble] = useState(true);
