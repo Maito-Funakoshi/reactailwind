@@ -45,12 +45,12 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 // ]
                 // response = await clients[0].getChatCompletions(deploymentId, complementMessages);
 
-                // 返答を要約する
-                const summaryMessages = [
-                    { role: "system", content: `${summary}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ]
-                response = await clients[0].getChatCompletions(deploymentId, summaryMessages);
+                // // 返答を要約する
+                // const summaryMessages = [
+                //     { role: "system", content: `${summary}`},
+                //     { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                // ]
+                // response = await clients[0].getChatCompletions(deploymentId, summaryMessages);
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
