@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
 
-const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
+const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
   //opendialogue1
 //   const endpoint = `https://opendialogue1.openai.azure.com/`;
 //   const azureApiKey = `e1a905c26e7d418bb8ce8f95518c9f45`;
@@ -38,12 +38,12 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                 ];
                 response = await clients[0].getChatCompletions(deploymentId, odMessages);
 
-                // その他修正を適宜する
-                const complementMessages = [
-                    { role: "system", content: `${complementChat}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ]
-                response = await clients[0].getChatCompletions(deploymentId, complementMessages);
+                // // その他修正を適宜する
+                // const complementMessages = [
+                //     { role: "system", content: `${complementChat}`},
+                //     { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                // ]
+                // response = await clients[0].getChatCompletions(deploymentId, complementMessages);
 
                 // 返答を要約する
                 const summaryMessages = [
@@ -57,7 +57,6 @@ const AssistantResponses = ({ recipient, setRecipient, names, namesEng, messages
                   const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[0]}`, mode: "chat"};
                   currentMessages = [...currentMessages, assistantMessage];
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
-                  setRecipient((recipient + 1) % names.length);
                 }
               } catch (err) {
                 setError(err);

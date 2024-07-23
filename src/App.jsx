@@ -35,15 +35,15 @@ function App() {
 
   //システムプロンプト
   const chat = [
-    "# 状況設定\n" +
-    "都内大学生が集まるオープンダイアローグの場\n" +
-    "# 参加者\n" +
-    "## 患者\n" +
-    "ユーザ\n" +
-    "## 治療者\n" +
-    "- 後藤\n" +
-    "- 西村\n" +
-    "- 山田\n" +
+    // "# 状況設定\n" +
+    // "都内大学生が集まるオープンダイアローグの場\n" +
+    // "# 参加者\n" +
+    // "## 患者\n" +
+    // "ユーザ\n" +
+    // "## 治療者\n" +
+    // "- 後藤\n" +
+    // "- 西村\n" +
+    // "- 山田\n" +
     "## 発言の条件\n" +
     "- 質問はオープンエンドの形でする。\n" +
     "- 診断、説得、議論、説明、尋問、アドバイス、提案は絶対しない。\n" +
@@ -118,14 +118,13 @@ function App() {
   //変数設定
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState(null);
-  const [recipient, setRecipient] = useState(0);
   const [reflectChatCount, setReflectChatCount] = useState(4);
 
   //HTML部分
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses　recipient = {recipient} setRecipient = {setRecipient} names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} endReflectingMessage = {endReflectingMessage} setError = {setError} />
+      <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} endReflectingMessage = {endReflectingMessage} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} reflectingKeyMessages = {reflectingKeyMessages} />
     </div>
