@@ -20,6 +20,8 @@ concurrency:
   group: 'pages'
   cancel-in-progress: true
 
+env:
+  OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
 jobs:
   # デプロイするだけなので、単一のデプロイジョブ
   deploy:
