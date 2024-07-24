@@ -22,6 +22,7 @@ concurrency:
 
 env:
   OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+
 jobs:
   # デプロイするだけなので、単一のデプロイジョブ
   deploy:
