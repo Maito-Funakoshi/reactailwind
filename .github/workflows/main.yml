@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+    VITE_OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
 
 jobs:
   # デプロイするだけなので、単一のデプロイジョブ
