@@ -19,7 +19,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
 
   //openaidialogue1
   const openai = new OpenAI({
-    apiKey: OPENAI_API_KEY,
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true
   })
 
