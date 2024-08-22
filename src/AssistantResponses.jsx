@@ -80,7 +80,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                           model: "gpt-4o",
                           messages: reflectMessages,
                           // 4802=？　177776=あなた　157351=でしょう　44900=ください　7128=か　15121=です　14429=ます
-                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 15121:3, 14429:3}
+                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 15121:2, 14429:2}
                         })
 
                         // 発言様式を整備する
