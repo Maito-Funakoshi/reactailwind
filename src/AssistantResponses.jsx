@@ -74,7 +74,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                     let j = i % names.length;
                     try {
                         const reflectMessages = [
-                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しかけています。以下の設定をもとに返答を作成してください。${reflect} あなたの特徴は以下の通りです。${characters[j]}` },
+                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} あなたの特徴は以下の通りです。${characters[j]}` },
                             ...currentMessages.map(message => ({ ...message, role: "user" }))
                         ];
 
