@@ -79,8 +79,8 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: reflectMessages,
-                          // 4802=？　177776=あなた　157351=でしょう　44900=ください　7128=か　14429=ます
-                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 14429:10}
+                          // 4802=？　177776=あなた　157351=でしょう　44900=ください　7128=か　15121=です　14429=ます
+                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 15121:5, 14429:5}
                         })
 
                         // 発言様式を整備する
@@ -92,7 +92,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                         response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: commonMessages,
-                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 14429:10}
+                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 15121:5, 14429:10}
                         })
 
                         // // その他修正を適宜する
