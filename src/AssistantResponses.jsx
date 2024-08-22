@@ -92,7 +92,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                         response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: commonMessages,
-                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 15121:5, 14429:10}
+                          logit_bias: {4802:-100, 177776:-100, 157351:-100, 44900:-100, 7128:-100, 15121:2, 14429:2}
                         })
 
                         // // その他修正を適宜する
