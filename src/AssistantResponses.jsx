@@ -33,7 +33,8 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 ];
                 response = await openai.chat.completions.create({
                   model: "gpt-4o",
-                  messages: commonMessages
+                  messages: commonMessages,
+                  stream: True
                 })
 
                 // // その他修正を適宜する
@@ -78,8 +79,8 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
 
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
-                          logit_bias: {4802:-100, 177776:-100},
-                          messages: reflectMessages
+                          messages: reflectMessages,
+                          logit_bias: {4802:-100, 177776:-100, 157351:-100}
                         })
 
                         // 発言様式を整備する
@@ -90,8 +91,8 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
 
                         response = await openai.chat.completions.create({
                           model: "gpt-4o",
-                          logit_bias: {4802:-100, 177776:-100},
-                          messages: commonMessages
+                          messages: commonMessages,
+                          logit_bias: {4802:-100, 177776:-100, 157351:-100}
                         })
 
                         // // その他修正を適宜する
