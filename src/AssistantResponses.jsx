@@ -33,8 +33,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 ];
                 response = await openai.chat.completions.create({
                   model: "gpt-4o",
-                  messages: commonMessages,
-                  stream: true
+                  messages: commonMessages
                 })
 
                 // // その他修正を適宜する
