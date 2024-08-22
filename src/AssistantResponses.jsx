@@ -78,6 +78,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
 
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
+                          logit_bias: {4802:-100, 177776:-100},
                           messages: reflectMessages
                         })
 
@@ -89,6 +90,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
 
                         response = await openai.chat.completions.create({
                           model: "gpt-4o",
+                          logit_bias: {4802:-100, 177776:-100},
                           messages: commonMessages
                         })
 
