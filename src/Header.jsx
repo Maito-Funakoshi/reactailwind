@@ -2,7 +2,7 @@ import React from 'react';
 import downloadIcon from "../images/downloadIcon.png"
 
 const Header = ({ messages, inputAble, setInputAble}) => {
-  const toggleSwitch = () => {
+  const reflect = () => {
     setInputAble(!inputAble);
   };
 
@@ -24,10 +24,10 @@ const Header = ({ messages, inputAble, setInputAble}) => {
     <header className="App-header">
       <h1>
         <span id="title">Open Dialogue Chatbot</span>
-        {/* <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
+        {/* <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={reflect}>
           <div className={`toggle_switch ${inputAble ? 'active' : ''}`}></div>
         </div> */}
-        <button className="reflect-btn" onClick={toggleSwitch}>
+        <button className="reflect-btn" onClick={reflect}>
           リフレクティング
         </button>
         <button className="download" onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
