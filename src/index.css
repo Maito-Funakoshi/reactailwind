@@ -89,7 +89,7 @@ header.App-header h1 div.recipients label {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 30px;
+  padding-right: 30px;
   background-color: #51E373;
   color: white;
   position: relative;
@@ -97,6 +97,7 @@ header.App-header h1 div.recipients label {
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 1px green;
 }
 .reflect-btn:active {
   transform: translateY(3px);
