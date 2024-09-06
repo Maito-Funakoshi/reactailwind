@@ -89,7 +89,7 @@ header.App-header h1 div.recipients label {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 30px;
+  margin-right: 20px;
   background-color: #51E373;
   color: white;
   position: relative;
@@ -97,19 +97,21 @@ header.App-header h1 div.recipients label {
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.1s, box-shadow 0.1s;
-  box-shadow: 0 1px green;
+  box-shadow: 0 3px grey;
 }
 .reflect-btn:active {
   transform: translateY(3px);
   box-shadow: 0 1px green;
 }
 .reflect-btn:hover {
+  margin-top: 2px;
   background-color: #45C567;
+  box-shadow: 0 1px grey;
 }
 
 
 
-header.App-header h1 button {
+.download {
   background: none;
   border: none;
   cursor: pointer;
@@ -119,7 +121,7 @@ header.App-header h1 button {
   display: flex;
   align-items: center;
 }
-header.App-header h1 button img {
+.download img {
   height: 24px;
   width: 24px;
 }
