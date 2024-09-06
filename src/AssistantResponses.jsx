@@ -95,7 +95,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                         response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: commonMessages,
-                          logit_bias: {4802:-100, 30:-100, 177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 25885:3, 16407:3, 15121:3, 14429:3},
+                          logit_bias: {4802:-100, 30:-100, 177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 25885:2, 16407:2, 15121:2, 14429:2},
                           temperature: 1.2
                         })
 
