@@ -133,7 +133,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
             setInputAble(!inputAble);
         }
     }
-  }, [messages]);
+  }, [messages], inputAble);
 
   return null;
 };
