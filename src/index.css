@@ -90,8 +90,8 @@ header.App-header h1 div.recipients label {
   align-items: center;
   justify-content: center;
   margin-right: 20px;
-  background-color: white;
-  color: #8CABD8;
+  background-color: #8CABD8;
+  color: white;
   position: relative;
   font-size: 14px;
   border: none;
@@ -102,8 +102,10 @@ header.App-header h1 div.recipients label {
   
 }
 .reflect-btn:hover {
-  background-color: #8CABD8;
-  color: white;
+  background-color: white;
+  color: #8CABD8;
+  border-color: white;
+  transition: all 0.5s;
 }
 
 
