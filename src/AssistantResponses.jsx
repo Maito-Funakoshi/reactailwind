@@ -67,7 +67,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
       }
     }
     else if (!inputAble) {
-        if (messages.length > 4 && messages[messages.length - 1].role == "user") {
+        if (messages.length > 4 && messages[messages.length - 2].role == "user") {
             const makeResponse = async () => {
               let currentMessages = [...messages].slice(-maxContextMessages);
                 for(let i = 0; i < names.length * reflectChatCount; i++){
