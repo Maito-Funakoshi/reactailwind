@@ -67,6 +67,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
       }
     }
     else if (!inputAble) {
+      console.log("messages.length = " + messages.length + " messages[messages.length - 2].role = " + messages[messages.length - 2].role);
         if (messages.length > 4 && messages[messages.length - 2].role == "user") {
             const makeResponse = async () => {
               let currentMessages = [...messages].slice(-maxContextMessages);

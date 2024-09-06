@@ -4,6 +4,7 @@ import downloadIcon from "../images/downloadIcon.png"
 const Header = ({ messages, inputAble, setInputAble}) => {
   const reflect = () => {
     setInputAble(!inputAble);
+    console.log(inputAble);
   };
 
   const handleGetLog = () => {
