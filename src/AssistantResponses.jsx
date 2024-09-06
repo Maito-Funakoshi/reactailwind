@@ -20,7 +20,6 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                   { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[0]}` },
                     ...currentMessages.map(message => ({...message, role: "user"}))
                 ];
-
                 let response = await openai.chat.completions.create({
                   model: "gpt-4o",
                   messages: chatMessages,
@@ -45,12 +44,16 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 // ]
                 // response = await clients[0].getChatCompletions(deploymentId, complementMessages);
 
-                // // 返答を要約する
-                // const summaryMessages = [
-                //     { role: "system", content: `${summary}`},
-                //     { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                // ]
-                // response = await clients[0].getChatCompletions(deploymentId, summaryMessages);
+                // 返答を要約する
+                const summaryMessages = [
+                    { role: "system", content: `${summary}`},
+                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                ]
+                response = await openai.chat.completions.create({
+                  model: "gpt-4o",
+                  messages: summaryMessages,
+                  temperature: 1.2
+                })
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
@@ -67,7 +70,6 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
       }
     }
     else if (!inputAble) {
-      console.log("messages.length = " + messages.length + " messages[messages.length - 2].role = " + messages[messages.length - 2].role);
         if (messages.length > 4 && messages[messages.length - 2].role == "user") {
             const makeResponse = async () => {
               let currentMessages = [...messages].slice(-maxContextMessages);
@@ -78,12 +80,11 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                             { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} あなたの特徴は以下の通りです。${characters[j]}` },
                             ...currentMessages.map(message => ({ ...message, role: "user" }))
                         ];
-
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: reflectMessages,
-                          // 4802=？　30=?　177776=あなた　157351=でしょう　44900=ください　42993=ょ　103554=しょう　7128=か　165732=かな　25885=私　16407=思　15121=です　14429=ます
-                          logit_bias: {4802:-100, 30:-100, 177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 25885:2, 16407:2, 15121:2, 14429:2},
+                          // 4802=？　30=?　177776=あなた　157351=でしょう　44900=ください　42993=ょ　103554=しょう　7128=か　165732=かな　177401=ユー　25885=私　16407=思　15121=です　14429=ます
+                          logit_bias: {177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 177401:2, 25885:2, 16407:2, 15121:2, 14429:2},
                           temperature: 1.2
                         })
 
@@ -92,11 +93,10 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                             { role: "system", content: `${common}` },
                             { role: "user", content: `${response.choices[0].message.content.trim()}` }
                         ];
-
                         response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: commonMessages,
-                          logit_bias: {4802:-100, 30:-100, 177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 25885:2, 16407:2, 15121:2, 14429:2},
+                          logit_bias: {177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 177401:2, 25885:2, 16407:2, 15121:2, 14429:2},
                           temperature: 1.2
                         })
 
@@ -107,12 +107,17 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                         // ];
                         // response = await clients[j].getChatCompletions(deploymentId, complementMessages);
 
-                        // // 返答を要約する
-                        // const summaryMessages = [
-                        //     { role: "system", content: `${summary}` },
-                        //     { role: "user", content: `${response.choices[0].message.content.trim()}` }
-                        // ];
-                        // response = await clients[j].getChatCompletions(deploymentId, summaryMessages);
+                        // 返答を要約する
+                        const summaryMessages = [
+                            { role: "system", content: `${summary}` },
+                            { role: "user", content: `${response.choices[0].message.content.trim()}` }
+                        ];
+                        response = await openai.chat.completions.create({
+                          model: "gpt-4o",
+                          messages: summaryMessages,
+                          logit_bias: {177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 177401:2, 25885:2, 16407:2, 15121:2, 14429:2},
+                          temperature: 1.2
+                        })
 
                         if (response.choices && response.choices.length > 0) {
                             const botMessage = response.choices[0].message.content.trim();
