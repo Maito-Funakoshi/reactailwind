@@ -84,7 +84,7 @@ header.App-header h1 div.recipients label {
 
 
 .reflect-btn {
-  width: 120px;
+  width: 125px;
   height: 40px;
   display: flex;
   align-items: center;
@@ -96,17 +96,14 @@ header.App-header h1 div.recipients label {
   font-size: 14px;
   cursor: pointer;
   border-radius: 8px;
-  transition: transform 0.1s, box-shadow 0.1s;
   box-shadow: 0 3px grey;
 }
 .reflect-btn:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px green;
+  margin-top: 2px;
+  box-shadow: 0 1px grey;
 }
 .reflect-btn:hover {
-  margin-top: 2px;
   background-color: #45C567;
-  box-shadow: 0 1px grey;
 }
 
 
