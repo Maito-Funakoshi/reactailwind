@@ -39,13 +39,13 @@ header.App-header h1 span#title {
   margin: 0;
   line-height: 60px;
 }
-header.App-header h1 div.recipients {
+/* header.App-header h1 div.recipients {
   margin-right: 20px;
 }
 header.App-header h1 div.recipients label {
   font-size: 16px;
   color: black;
-}
+} */
 /* .switch_outer {
   width: 48px;
   height: 24px;
@@ -94,11 +94,8 @@ header.App-header h1 div.recipients label {
   color: white;
   position: relative;
   font-size: 14px;
-  border-color: white;
+  border: 1px, solid white;
   border-radius: 8px;
-}
-.reflect-btn:active {
-  
 }
 .reflect-btn:hover {
   background-color: white;
