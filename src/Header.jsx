@@ -24,9 +24,12 @@ const Header = ({ messages, inputAble, setInputAble}) => {
     <header className="App-header">
       <h1>
         <span id="title">Open Dialogue Chatbot</span>
-        <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
+        {/* <div className={`switch_outer ${inputAble ? 'active' : ''}`} onClick={toggleSwitch}>
           <div className={`toggle_switch ${inputAble ? 'active' : ''}`}></div>
-        </div>
+        </div> */}
+        <button className="reflect-btn" onClick={toggleSwitch}>
+          リフレクティング
+        </button>
         <button onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
       </h1>
     </header>
