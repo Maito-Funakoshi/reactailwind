@@ -154,7 +154,7 @@ div.message {
   background-color: white;
 }
 .assistant.reflect {
-  background-color: grey;
+  background-color: rgb(249,188,230);
 }
 .system.chat {
   background-color: white;
