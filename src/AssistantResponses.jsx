@@ -44,16 +44,16 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 // ]
                 // response = await clients[0].getChatCompletions(deploymentId, complementMessages);
 
-                // 返答を要約する
-                const summaryMessages = [
-                    { role: "system", content: `${summary}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ]
-                response = await openai.chat.completions.create({
-                  model: "gpt-4o",
-                  messages: summaryMessages,
-                  temperature: 1.2
-                })
+                // // 返答を要約する
+                // const summaryMessages = [
+                //     { role: "system", content: `${summary}`},
+                //     { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                // ]
+                // response = await openai.chat.completions.create({
+                //   model: "gpt-4o",
+                //   messages: summaryMessages,
+                //   temperature: 1.2
+                // })
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
@@ -107,17 +107,17 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                         // ];
                         // response = await clients[j].getChatCompletions(deploymentId, complementMessages);
 
-                        // 返答を要約する
-                        const summaryMessages = [
-                            { role: "system", content: `${summary}` },
-                            { role: "user", content: `${response.choices[0].message.content.trim()}` }
-                        ];
-                        response = await openai.chat.completions.create({
-                          model: "gpt-4o",
-                          messages: summaryMessages,
-                          logit_bias: {177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 177401:2, 25885:2, 16407:2, 15121:2, 14429:2},
-                          temperature: 1.2
-                        })
+                        // // 返答を要約する
+                        // const summaryMessages = [
+                        //     { role: "system", content: `${summary}` },
+                        //     { role: "user", content: `${response.choices[0].message.content.trim()}` }
+                        // ];
+                        // response = await openai.chat.completions.create({
+                        //   model: "gpt-4o",
+                        //   messages: summaryMessages,
+                        //   logit_bias: {177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 177401:2, 25885:2, 16407:2, 15121:2, 14429:2},
+                        //   temperature: 1.2
+                        // })
 
                         if (response.choices && response.choices.length > 0) {
                             const botMessage = response.choices[0].message.content.trim();
