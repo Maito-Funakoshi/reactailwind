@@ -84,14 +84,16 @@ header.App-header h1 div.recipients label {
 
 
 .reflect-btn {
-  width: 48px;
-  height: 24px;
+  width: 120px;
+  height: 40px;
   display: flex;
   align-items: center;
-  margin-right: 20px;
-  background-color: lightgray;
+  justify-content: center;
+  margin-right: 30px;
+  background-color: #51E373;
+  color: white;
   position: relative;
-  font-size: 8px;
+  font-size: 14px;
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.1s, box-shadow 0.1s;
@@ -101,7 +103,7 @@ header.App-header h1 div.recipients label {
   box-shadow: 0 1px green;
 }
 .reflect-btn:hover {
-  background-color: green;
+  background-color: #45C567;
 }
 
 
