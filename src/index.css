@@ -84,25 +84,25 @@ header.App-header h1 div.recipients label {
 
 
 .reflect-btn {
-  background-color: #6200ea;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  width: 48px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  color: lightgreen;
+  background-color: lightgray;
+  position: relative;
+  font-size: 8px;
   cursor: pointer;
   border-radius: 8px;
-  box-shadow: 0 4px #4b00b5;
   transition: transform 0.1s, box-shadow 0.1s;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .reflect-btn:active {
   transform: translateY(3px);
-  box-shadow: 0 1px #4b00b5;
+  box-shadow: 0 1px green;
 }
 .reflect-btn:hover {
-  background-color: #7e57c2;
+  background-color: green;
 }
 
 
