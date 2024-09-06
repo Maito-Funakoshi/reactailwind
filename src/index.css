@@ -90,20 +90,19 @@ header.App-header h1 div.recipients label {
   align-items: center;
   justify-content: center;
   margin-right: 20px;
-  background-color: rgb(0, 102, 204);
-  color: white;
+  background-color: white;
+  color: #8CABD8;
   position: relative;
   font-size: 14px;
-  border: none;
+  border-color: white;
   border-radius: 8px;
-  box-shadow: 0 3px rgb(0, 82, 164);
 }
 .reflect-btn:active {
-  margin-top: 2px;
-  box-shadow: 0 1px rgb(0, 82, 164);
+  
 }
 .reflect-btn:hover {
-  background-color: rgb(51, 153, 255);
+  background-color: #8CABD8;
+  color: white;
 }
 
 
