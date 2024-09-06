@@ -89,7 +89,6 @@ header.App-header h1 div.recipients label {
   display: flex;
   align-items: center;
   margin-right: 20px;
-  color: lightgreen;
   background-color: lightgray;
   position: relative;
   font-size: 8px;
