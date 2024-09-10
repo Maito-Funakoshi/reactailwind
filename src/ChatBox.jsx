@@ -38,14 +38,11 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
 
   useEffect(() => {
     if (chatBoxRef.current) {
-      let Top = chatBoxRef.current.scrollHeight + 500;
-      chatBoxRef.current.scrollTo({
-        top: Top,
-        behavior: 'smooth'
-      });
-      console.log(chatBoxRef.current.scrollHeight);
+        var element = document.documentElement;
+        var bottom = element.scrollHeight - element.clientHeight;
+        window.scrollTo({ top: bottom, behavior: "smooth" });
     }
-  }, [messages]);
+}, [messages]);
 
   return (
     <>
