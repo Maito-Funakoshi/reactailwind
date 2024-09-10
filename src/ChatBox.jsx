@@ -38,10 +38,18 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
 
   useEffect(() => {
     if (chatBoxRef.current) {
-      var element = document.documentElement;
-      var bottom = element.scrollHeight - element.clientHeight;
-      window.scrollTo({ top: bottom, behavior: "smooth" });
-      console.log(bottom);
+      const chatBox = chatBoxRef.current;
+      
+      // スクロール位置を取得
+      const scrollTop = chatBox.scrollTop;
+      const scrollHeight = chatBox.scrollHeight;
+      const clientHeight = chatBox.clientHeight;
+
+      // 現在のスクロール位置が下から近いかどうかを判定
+      if (scrollHeight - (scrollTop + clientHeight) < 100) {  // 100px以内の誤差を許容
+        // メッセージが下に隠れた場合にのみスクロール
+        chatBox.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+      }
     }
   }, [messages]);
 
