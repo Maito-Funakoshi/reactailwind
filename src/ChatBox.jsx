@@ -34,24 +34,14 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
     }
   };
 
-  const [isFirstRender, setIsFirstRender] = useState(true);
-  const [isSecondRender, setIsSecondRender] = useState(false);
   const chatBoxRef = useRef(null);
 
   useEffect(() => {
-    if (isFirstRender) {
-      setIsFirstRender(false);
-      setIsSecondRender(true);
-    } 
-    else if(isSecondRender) {
-      setIsSecondRender(false);
-    }
-    else {
-      if (chatBoxRef.current) {
-        var element = document.documentElement;
-        var bottom = element.scrollHeight - element.clientHeight;
-        window.scrollTo({ top: bottom, behavior: "smooth" });
-      }
+    if (chatBoxRef.current) {
+      var element = document.documentElement;
+      var bottom = element.scrollHeight - element.clientHeight;
+      window.scrollTo({ top: bottom, behavior: "smooth" });
+      console.log(bottom);
     }
   }, [messages]);
 
