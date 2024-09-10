@@ -40,11 +40,8 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
     if (chatBoxRef.current) {
       var element = document.documentElement;
       var bottom = element.scrollHeight - element.clientHeight;
-      if (bottom == 60) {
-        bottom = 0;
-      }
+      console.log(chatBotRef.scrollHeight, chatBoxRef.clientHeight);
       window.scrollTo({ top: bottom, behavior: "smooth" });
-      console.log(element.scrollHeight, element.clientHeight, bottom);
     }
   }, [messages]);
 
