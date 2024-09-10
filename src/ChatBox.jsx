@@ -37,23 +37,16 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
   const chatBoxRef = useRef(null);
 
   useEffect(() => {
-      if (chatBoxRef.current) {
-          var element = document.documentElement;
-          var bottom = element.scrollHeight - element.clientHeight;
-          window.scrollTo({ top: bottom, behavior: "smooth" });
-
-        // これは動かなかった
-        // chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-        
-      }
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
   }, [messages]);
 
 
 
-  
   return (
     <>
-    <div className="chat-box">
+    <div className="chat-box" ref={chatBoxRef} style={{ overflowY: 'scroll', maxHeight: '400px' }}>
       {messages.map((msg, index) => {
         const name = getName(msg.name);
         const imageSrc = getImageSrc(msg.name);
