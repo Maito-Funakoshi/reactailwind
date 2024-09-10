@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import A from "../images/A.png";
 import B from "../images/B.png";
 import C from "../images/C.png"; 
@@ -34,15 +34,20 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
     }
   };
 
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const chatBoxRef = useRef(null);
 
   useEffect(() => {
-    if (chatBoxRef.current) {
+    if (isFirstRender) {
+      setIsFirstRender(false);
+    } else {
+      if (chatBoxRef.current) {
         var element = document.documentElement;
         var bottom = element.scrollHeight - element.clientHeight;
         window.scrollTo({ top: bottom, behavior: "smooth" });
+      }
     }
-}, [messages]);
+  }, [messages]);
 
   return (
     <>
