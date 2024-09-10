@@ -40,7 +40,7 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
     if (chatBoxRef.current) {
       var element = document.documentElement;
       var bottom = element.scrollHeight - element.clientHeight;
-      console.log(chatBoxRef.scrollHeight, chatBoxRef.clientHeight);
+      console.log(document.getElementByClassName("chat-box").scrollHeight);
       window.scrollTo({ top: bottom, behavior: "smooth" });
     }
   }, [messages]);
