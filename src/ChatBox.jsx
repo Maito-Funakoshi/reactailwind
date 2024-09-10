@@ -46,7 +46,7 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
 
   return (
     <>
-    <div className="chat-box" ref={chatBoxRef} style={{ overflowY: 'scroll', maxHeight: '400px' }}>
+    <div className="chat-box" ref={chatBoxRef} style={{ overflowY: 'scroll', maxHeight: '821px' }}>
       {messages.map((msg, index) => {
         const name = getName(msg.name);
         const imageSrc = getImageSrc(msg.name);
