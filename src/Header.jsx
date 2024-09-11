@@ -30,7 +30,7 @@ const Header = ({ messages, inputAble, setInputAble}) => {
         <button className="reflect-btn" onClick={reflect}>
           リフレクティング
         </button>
-        <button className="download" onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button>
+        {/* <button className="download" onClick={handleGetLog}><img src={downloadIcon} alt="ダウンロード" /></button> */}
       </h1>
     </header>
   );
