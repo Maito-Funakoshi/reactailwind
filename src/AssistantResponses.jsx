@@ -68,13 +68,12 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
     else if (!inputAble) {
         if (messages.length > 4 && messages[messages.length - 2].role == "user") {
             const makeResponse = async () => {
-              let currentMessages = [...messages].slice(-maxContextMessages);
                 for(let i = 0; i < names.length * reflectChatCount; i++){
                     let j = i % names.length;
                     try {
                         const reflectMessages = [
                             { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} あなたの特徴は以下の通りです。${characters[j]}` },
-                            ...currentMessages.map(message => ({ ...message, role: "user" }))
+                            ...messages.map(message => ({ ...message, role: "user" }))
                         ];
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
@@ -118,7 +117,6 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                         if (response.choices && response.choices.length > 0) {
                             const botMessage = response.choices[0].message.content.trim();
                             const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[j]}`, mode: "reflect" };
-                            currentMessages = [...currentMessages, assistantMessage];
                             setMessages(prevMessages => [...prevMessages, assistantMessage]); 
                         }
                         if (i == names.length * reflectChatCount - 1) {
