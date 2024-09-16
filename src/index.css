@@ -158,7 +158,6 @@ div.message {
   border-radius: 20px;
   word-wrap: break-word;
 } */
- 
 .message div {
   display: flex;
   flex-flow: column;
