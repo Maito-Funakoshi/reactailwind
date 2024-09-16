@@ -131,6 +131,7 @@ header.App-header h1 span#title {
 }
 .chat-box div {
   display: flex;
+  align-items: flex-start;
   margin: 0;
   padding: 10px;
 }
@@ -138,6 +139,7 @@ header.App-header h1 span#title {
   padding-right: 5px;
   height: 38px;
   width: 38px;
+  flex-shrink: 0;
 }
 div.message {
   display: flex;
@@ -149,12 +151,27 @@ div.message {
   padding-left: 5px;
   font-size: 12px;
 }
-.message p {
+/* .message p {
   margin: 0;
   padding: 10px;
   border: none;
   border-radius: 20px;
   word-wrap: break-word;
+} */
+.message div {
+  display: flex;
+  flex-flow: column;
+  margin: 0;
+  border: none;
+  border-radius: 20px;
+  word-wrap: break-word;
+}
+.message p {
+  margin: 0;
+}
+.message div p {
+  padding: 0;
+  margin: 0;
 }
 .chat-box div.You{
   align-self: flex-end;
