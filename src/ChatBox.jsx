@@ -4,6 +4,7 @@ import A from "../images/A.png";
 import B from "../images/B.png";
 import C from "../images/C.png"; 
 import system from "../images/system.png";
+import { marked } from 'marked';
 
 const ChatBox = ({ names, namesEng, messages, error }) => {
   const getName = (nameEng) => {
@@ -58,9 +59,13 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
             {imageSrc && <img src={imageSrc} alt={msg.name} />}
             <div className="message">
               {name && <p className="recipient">{name}</p>}
-              <p className={`${msg.role} ${msg.mode}`}>
+              <div
+                className={`${msg.role} ${msg.mode}`}
+                dangerouslySetInnerHTML={{ __html: marked(msg.content) }} // markedを使用してHTMLに変換
+              ></div>
+              {/* <p className={`${msg.role} ${msg.mode}`}>
                 {msg.content}
-              </p>
+              </p> */}
             </div>
           </div>
         );
