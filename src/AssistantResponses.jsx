@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import OpenAI from "openai";
 
-const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
+const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, setTheme, inputAble, setInputAble, characters, chat, reflect, common, complementChat, complementReflect, summary, reflectChatCount, endReflectingMessage, setError }) => {
   //openaidialogue1
   const openai = new OpenAI({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
@@ -14,7 +14,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
         const makeResponse = async () => {
               try {
                 const chatMessages = [
-                  { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[0]}` },
+                  { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} ただしトークテーマは${theme}です。あなたの特徴は以下の通りです。${characters[0]}` },
                     ...messages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await openai.chat.completions.create({
@@ -62,7 +62,11 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, inputAble,
                 console.error("The sample encountered an error:", err);
               }
         }
+        if (messages.length == 5){
+          setTheme(messages[messages.length - 1]);
+        }
         makeResponse();
+        console.log(theme);
       }
     }
     else if (!inputAble) {

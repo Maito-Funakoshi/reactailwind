@@ -123,16 +123,17 @@ function App() {
     { role: "assistant", content: `${greetingAssistantMessages[2]}`, name: `${namesEng[2]}`, mode: "chat"},
     { role: "assistant", content: `${greetingSystemMessage}`, name: `${namesEng[0]}`, mode: "chat" }
   ]);
+  const [theme, setTheme] = useState(null);
   //変数設定
   const [inputAble, setInputAble] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [reflectChatCount, setReflectChatCount] = useState(2);
 
   //HTML部分
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} endReflectingMessage = {endReflectingMessage} setError = {setError} />
+      <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} theme = {theme} setTheme = {setTheme} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} endReflectingMessage = {endReflectingMessage} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} reflectingKeyMessages = {reflectingKeyMessages} />
     </div>
