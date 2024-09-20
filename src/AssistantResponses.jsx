@@ -66,7 +66,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
           setTheme(messages[messages.length - 1]);
         }
         makeResponse();
-        console.log(theme.content);
+        console.log(theme);
       }
     }
     else if (!inputAble) {
