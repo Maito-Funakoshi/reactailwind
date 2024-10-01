@@ -127,7 +127,7 @@ function App() {
   //変数設定
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState("");
-  const [reflectChatCount, setReflectChatCount] = useState(2);
+  const [reflectChatCount, setReflectChatCount] = useState(4);
 
   //HTML部分
   return (
