@@ -14,7 +14,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
         const makeResponse = async () => {
               try {
                 const chatMessages = [
-                  { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} ユーザのお悩みは${theme}です。あなたの特徴は以下の通りです。${characters[0]}` },
+                  { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[0]}` },
                     ...messages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await openai.chat.completions.create({
