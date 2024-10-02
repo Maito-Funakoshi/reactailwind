@@ -14,15 +14,14 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
         const makeResponse = async () => {
               try {
                 const chatMessages = [
-                  { role: "system", content: `あなたは${names[0]}という名前の心理カウンセラーです。ユーザーとの会話でオープンダイアローグの原則に従って、共感的かつ受容的な姿勢で対話を行ってください。ユーザのお悩み「${theme}」から話題が離れないようにしてください。質問を通じてユーザーが自身の感情や問題に気づけるように導いてください。ユーザーの発言に対して深い洞察を示し、次の質問や確認のための発言を行ってください。` },
-                    ...messages.map(message => ({...message, role: "user"}))
+                  { role: "system", content: `あなたは${names[0]}という名前の心理カウンセラーです。ユーザーのお悩み「${theme}」に対して、共感的かつ受容的な姿勢で対話を行ってください。ユーザーが自身の感情や問題に気づけるよう、1つの具体的な質問を投げかけてください。ユーザーの発言に対して深い洞察を示してください。` },
+                  ...messages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await openai.chat.completions.create({
                   model: "gpt-4o",
                   messages: chatMessages,
                   temperature: 1.2
                 })
-                console.log(response.choices[0].message.content.trim())
 
                 // // 発言様式を整備する
                 // const commonMessages = [
@@ -76,8 +75,8 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                     let j = i % names.length;
                     try {
                         const reflectMessages = [
-                            { role: "system", content: `あなたは「${characters[j]}」という特徴を持つ${names[j]}という名前の心理カウンセラーでリフレクティング（反射的傾聴）を行っており、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。リフレクティングは、ユーザーの発言を整理し、理解を深め、内省を促すことを目的としています。ユーザのお悩み「${theme}」から話題が離れないようにしてください。ユーザーがこれまで話してきた内容を振り返り、感じたことや考えたことを述べてください。今後の展開に繋がる発言をしてください。` },
-                            ...messages.map(message => ({ ...message, role: "user" }))
+                          { role: "system", content: `あなたは「${characters[j]}」という特徴を持つ${names[j]}という名前の心理カウンセラーです。リフレクティングを行い、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}が話している内容を振り返り、感じたことや考えたことを述べてください。話題はユーザのお悩み「${theme}」に関連させてください。` },
+                          ...messages.map(message => ({ ...message, role: "user" }))
                         ];
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
@@ -86,7 +85,6 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                           // logit_bias: {4802:-100, 30:-100, 177776:-100, 177401:2.5, 25885:2.5, 16407:2.5, 15121:2.5, 14429:2.5},
                           temperature: 1.2
                         })
-                        console.log(response.choices[0].message.content.trim())
 
                         // 発言様式を整備する
                         const commonMessages = [
