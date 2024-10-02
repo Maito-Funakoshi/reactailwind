@@ -14,22 +14,12 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
         const makeResponse = async () => {
               try {
                 const chatMessages = [
-                  { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} あなたの特徴は以下の通りです。${characters[0]}` },
+                  { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[0]}` },
                     ...messages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await openai.chat.completions.create({
                   model: "gpt-4o",
                   messages: chatMessages,
-                  temperature: 1.2
-                })
-                // 話題が逸れたら戻す
-                const themeMessages = [
-                    { role: "system", content: `「${theme}」という悩みから話題が離れていたら話題をその悩みに戻すように発言を再構成してください。`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ];
-                response = await openai.chat.completions.create({
-                  model: "gpt-4o",
-                  messages: themeMessages,
                   temperature: 1.2
                 })
 
@@ -85,26 +75,14 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                     let j = i % names.length;
                     try {
                         const reflectMessages = [
-                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} あなたの特徴は以下の通りです。${characters[j]}` },
+                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[j]}` },
                             ...messages.map(message => ({ ...message, role: "user" }))
                         ];
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: reflectMessages,
                           // 4802=？　30=?　177776=あなた　157351=でしょう　44900=ください　42993=ょ　103554=しょう　7128=か　165732=かな　177401=ユー　25885=私　16407=思　15121=です　14429=ます
-                          logit_bias: {177776:-100, 177401:1, 25885:2, 16407:2, 15121:2, 14429:2},
-                          temperature: 1.2
-                        })
-
-                        // 話題が逸れたら戻す
-                        const themeMessages = [
-                            { role: "system", content: `「${theme}」という悩みから話題が離れていたら話題をその悩みに戻すように発言を再構成してください。`},
-                            { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                        ];
-                        response = await openai.chat.completions.create({
-                          model: "gpt-4o",
-                          messages: themeMessages,
-                          logit_bias: {177776:-100, 177401:1, 25885:2, 16407:2, 15121:2, 14429:2},
+                          logit_bias: {4802:-100, 30:-100, 177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 177401:1, 25885:2, 16407:2, 15121:2, 14429:2},
                           temperature: 1.2
                         })
 
@@ -116,7 +94,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                         response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: commonMessages,
-                          logit_bias: {177776:-100, 177401:1, 25885:2, 16407:2, 15121:2, 14429:2},
+                          logit_bias: {4802:-100, 30:-100, 177776:-100, 157351:-100, 44900:-100, 42993:-100, 103554:-100, 7128:-100, 165732:-100, 177401:2, 25885:2, 16407:2, 15121:2, 14429:2},
                           temperature: 1.2
                         })
 
