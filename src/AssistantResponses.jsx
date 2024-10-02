@@ -22,6 +22,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                   messages: chatMessages,
                   temperature: 1.2
                 })
+                console.log(response.choices[0].message.content.trim())
 
                 // 発言様式を整備する
                 const commonMessages = [
@@ -33,6 +34,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                   messages: commonMessages,
                   temperature: 1.2
                 })
+                console.log(response.choices[0].message.content.trim())
 
                 // // その他修正を適宜する
                 // const complementMessages = [
@@ -85,6 +87,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                           logit_bias: {4802:-100, 30:-100, 177776:-100, 177401:2.5, 25885:2.5, 16407:2.5, 15121:2.5, 14429:2.5},
                           temperature: 1.2
                         })
+                        console.log(response.choices[0].message.content.trim())
 
                         // 発言様式を整備する
                         const commonMessages = [
@@ -96,6 +99,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                           messages: commonMessages,
                           temperature: 1.2
                         })
+                        console.log(response.choices[0].message.content.trim())
 
                         // // その他修正を適宜する
                         // const complementMessages = [
