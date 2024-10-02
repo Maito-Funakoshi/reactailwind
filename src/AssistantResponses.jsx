@@ -75,7 +75,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                     let j = i % names.length;
                     try {
                         const reflectMessages = [
-                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} ユーザのお悩みは${theme}です。あなたの特徴は以下の通りです。${characters[j]}` },
+                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[j]}` },
                             ...messages.map(message => ({ ...message, role: "user" }))
                         ];
                         let response = await openai.chat.completions.create({
