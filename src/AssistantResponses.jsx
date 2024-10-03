@@ -20,7 +20,6 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                 let response = await openai.chat.completions.create({
                   model: "gpt-4o",
                   messages: chatMessages,
-                  logit_bias: {16407:50},
                   temperature: 1.2
                 })
                 console.log(response.choices[0].message.content.trim())
@@ -78,29 +77,28 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                     let j = i % names.length;
                     try {
                         const reflectMessages = [
-                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。以下の設定をもとに返答を作成してください。${reflect} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[j]}` },
+                            { role: "system", content: `あなたは${names[j]}という名前のアシスタントで、${names[(j + 1) % names.length]}と${names[(j + 2) % names.length]}に向かって話しています。あなたの次には${names[(j + 1) % names.length]}が発言します。以下の設定をもとに返答を作成してください。${reflect} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[j]}` },
                             ...messages.map(message => ({ ...message, role: "user" }))
                         ];
                         let response = await openai.chat.completions.create({
                           model: "gpt-4o",
                           messages: reflectMessages,
                           // 4802=？　30=?　177776=あなた　157351=でしょう　44900=ください　42993=ょ　103554=しょう　7128=か　165732=かな　177401=ユー　25885=私　16407=思　15121=です　14429=ます
-                          logit_bias: {4802:-100, 30:-100, 177776:-100, 177401:3, 25885:3, 16407:3, 15121:3, 14429:3},
+                          logit_bias: {177776:-100, 44900:-100, 177401:3},
                           temperature: 1.2
                         })
-                        console.log(response.choices[0].message.content.trim())
 
-                        // 発言様式を整備する
-                        const commonMessages = [
-                            { role: "system", content: `${common}` },
-                            { role: "user", content: `${response.choices[0].message.content.trim()}` }
-                        ];
-                        response = await openai.chat.completions.create({
-                          model: "gpt-4o",
-                          messages: commonMessages,
-                          temperature: 1.2
-                        })
-                        console.log(response.choices[0].message.content.trim())
+                        // // 発言様式を整備する
+                        // const commonMessages = [
+                        //     { role: "system", content: `${common}` },
+                        //     { role: "user", content: `${response.choices[0].message.content.trim()}` }
+                        // ];
+                        // response = await openai.chat.completions.create({
+                        //   model: "gpt-4o",
+                        //   messages: commonMessages,
+                        //   temperature: 1.2
+                        // })
+                        // console.log(response.choices[0].message.content.trim())
 
                         // // その他修正を適宜する
                         // const complementMessages = [
