@@ -20,7 +20,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                 let response = await openai.chat.completions.create({
                   model: "gpt-4o",
                   messages: chatMessages,
-                  logit_bias: {16407:100},
+                  logit_bias: {16407:10},
                   temperature: 1.2
                 })
                 console.log(response.choices[0].message.content.trim())
