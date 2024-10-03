@@ -20,6 +20,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                 let response = await openai.chat.completions.create({
                   model: "gpt-4o",
                   messages: chatMessages,
+                  logit_bias: {16407:100},
                   temperature: 1.2
                 })
                 console.log(response.choices[0].message.content.trim())
@@ -84,7 +85,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                           model: "gpt-4o",
                           messages: reflectMessages,
                           // 4802=？　30=?　177776=あなた　157351=でしょう　44900=ください　42993=ょ　103554=しょう　7128=か　165732=かな　177401=ユー　25885=私　16407=思　15121=です　14429=ます
-                          logit_bias: {4802:-100, 30:-100, 177776:-100, 177401:2.5, 25885:2.5, 16407:99, 15121:2.5, 14429:2.5},
+                          logit_bias: {4802:-100, 30:-100, 177776:-100, 177401:3, 25885:3, 16407:3, 15121:3, 14429:3},
                           temperature: 1.2
                         })
                         console.log(response.choices[0].message.content.trim())
