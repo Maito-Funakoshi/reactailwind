@@ -45,7 +45,8 @@ function App() {
     // "- 西村\n" +
     // "- 山田\n" +
     "## 発言の条件\n" +
-    "- 質問はオープンエンドの形でする。\n" +
+    "- オープンダイアローグらしい発言をする。" +
+    "- オープンエンドの質問を1個だけする。\n" +
     "- 一番最初に提示された話題からは離れないようにする。\n" +
     "- 5回に一回「あなたの友達だったらなんと言いますか？」など他者の視点を想起させる。\n" +
     "- 診断、説得、議論、説明、尋問、アドバイス、提案は絶対しない。\n"
@@ -70,6 +71,7 @@ function App() {
     "## 発言条件\n" +
     // "- ユーザに対して思うことや後で聞きたい事柄を述べる。\n" +
     // "- 適宜話題を転換し、異なる話題の軽い質問を尋ねる。\n" +
+    "- オープンダイアローグらしい発言をする。" +
     "- ユーザには決して話しかけない。\n" +
     "- 「ユーザには話しかけません」とは言わない。\n" +
     "- 疑問文や命令文は使わない" +
@@ -128,6 +130,7 @@ function App() {
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState("");
   const [reflectChatCount, setReflectChatCount] = useState(4);
+  const [assistantIndex, setAssistantIndex] = useState(0);
 
   //HTML部分
   return (

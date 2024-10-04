@@ -13,8 +13,10 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
       if (messages.length > 4　&& messages[messages.length - 1].role == "user") {
         const makeResponse = async () => {
               try {
+                const randomIndex = Math.floor(Math.random() * names.length);
+
                 const chatMessages = [
-                  { role: "system", content: `あなたは${names[0]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[0]}` },
+                  { role: "system", content: `あなたは${names[randomIndex]}という名前のアシスタントです。以下の設定をもとに返答を作成してください。${chat} ユーザのお悩み「${theme}」から話題が離れないようにしてください。あなたの特徴は以下の通りです。${characters[randomIndex]}` },
                     ...messages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await openai.chat.completions.create({
@@ -22,19 +24,18 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                   messages: chatMessages,
                   temperature: 1.2
                 })
-                console.log(response.choices[0].message.content.trim())
 
-                // 発言様式を整備する
-                const commonMessages = [
-                    { role: "system", content: `${common}`},
-                    { role: "user", content: `${response.choices[0].message.content.trim()}`}
-                ];
-                response = await openai.chat.completions.create({
-                  model: "gpt-4o",
-                  messages: commonMessages,
-                  temperature: 1.2
-                })
-                console.log(response.choices[0].message.content.trim())
+                // // 発言様式を整備する
+                // const commonMessages = [
+                //     { role: "system", content: `${common}`},
+                //     { role: "user", content: `${response.choices[0].message.content.trim()}`}
+                // ];
+                // response = await openai.chat.completions.create({
+                //   model: "gpt-4o",
+                //   messages: commonMessages,
+                //   temperature: 1.2
+                // })
+                // console.log(response.choices[0].message.content.trim())
 
                 // // その他修正を適宜する
                 // const complementMessages = [
@@ -56,7 +57,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
 
                 if (response.choices && response.choices.length > 0) {
                   const botMessage = response.choices[0].message.content.trim();
-                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[0]}`, mode: "chat"};
+                  const assistantMessage = { role: "assistant", content: `${botMessage}`, name: `${namesEng[randomIndex]}`, mode: "chat"};
                   setMessages(prevMessages => [...prevMessages, assistantMessage]);
                 }
               } catch (err) {

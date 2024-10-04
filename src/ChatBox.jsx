@@ -39,8 +39,8 @@ const ChatBox = ({ names, namesEng, messages, error }) => {
 
   useEffect(() => {
     if (chatBoxRef.current) {
-      var element = document.documentElement;
-      var bottom = element.scrollHeight - element.clientHeight;
+      const element = document.documentElement;
+      let bottom = element.scrollHeight - element.clientHeight;
       if (chatBoxRef.current.clientHeight < document.body.scrollHeight - document.querySelector('h1').clientHeight) {
         bottom = 0;
       }
