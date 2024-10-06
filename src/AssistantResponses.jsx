@@ -10,7 +10,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
 
   useEffect(() => {
     if (inputAble) {
-      if (messages.length > 4　&& messages[messages.length - 1].role == "user") {
+      if (messages.length > names.length + 1　&& messages[messages.length - 1].role == "user") {
         const makeResponse = async () => {
               try {
                 const randomIndex = Math.floor(Math.random() * names.length);

@@ -125,8 +125,8 @@ function App() {
     { role: "assistant", content: `${greetingAssistantMessages[2]}`, name: `${namesEng[2]}`, mode: "chat"},
     { role: "assistant", content: `${greetingSystemMessage}`, name: `${namesEng[0]}`, mode: "chat" }
   ]);
-  const [theme, setTheme] = useState(null);
   //変数設定
+  const [theme, setTheme] = useState(null);
   const [inputAble, setInputAble] = useState(true);
   const [error, setError] = useState("");
   const [reflectChatCount, setReflectChatCount] = useState(4);
