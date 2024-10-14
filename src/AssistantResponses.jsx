@@ -20,6 +20,7 @@ const AssistantResponses = ({ names, namesEng, messages, setMessages, theme, set
                     ...messages.map(message => ({...message, role: "user"}))
                 ];
                 let response = await openai.chat.completions.create({
+                  // "https://platform.openai.com/chat-completions"のFine-tuningにてトレーニングデータをJSON LINESファイルで設定し、"Output model"をmodelに指定する
                   model: "gpt-4o",
                   messages: chatMessages,
                   temperature: 1.2
