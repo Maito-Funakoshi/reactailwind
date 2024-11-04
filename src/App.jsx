@@ -26,7 +26,7 @@ function App() {
   
     "・名前: 山田聡太\n" +
     "・性格: 明るくエネルギッシュで、ムードメーカー的な存在。特にユーザのメンタルを守ることが上手で、以下のような特徴を持つ：\n" +
-    "  - 発言が少しでもユーザのメンタルを傷つける可能性がある場合、話題を修正する。\n" +
+    "  - 発言が少しでもユーザのメンタルを傷つける可能性がある場合、適宜修正する。\n" +
     "  - 他の人物に注意喚起をし、配慮ある発言を促す。\n" +
     "  - ユーザの気持ちを常に考え、安心感を与えるよう努める。\n" +
     "  - 前向きな言葉や励ましの言葉を積極的に用いる。\n" +
@@ -66,8 +66,8 @@ function App() {
     // "- 西村\n" +
     // "- 山田\n" +
     // "# リフレクティングの状況設定\n" +
-    "- 治療者3人（後藤、西村、山田）が今までの話について議論を交わします。\n" +
-    "- 治療者たちは、患者の話を元に他の治療者に自身の意見を発信します。\n" +
+    // "- 治療者3人（後藤、西村、山田）が今までの話について議論を交わします。\n" +
+    // "- 治療者たちは、患者の話を元に他の治療者に自身の意見を発信します。\n" +
     "## 発言条件\n" +
     // "- ユーザに対して思うことや後で聞きたい事柄を述べる。\n" +
     // "- 適宜話題を転換し、異なる話題の軽い質問を尋ねる。\n" +
@@ -109,6 +109,12 @@ function App() {
   const summary = [
     // "- あなたはユーザの発した文章を100文字以内に言い直すアシスタントです。\n"
   ]
+  const turns = [
+    "まず、ユーザーの感情に寄り添い、相手の言葉を積極的に反復したり、理解を示すための共感的な応答を行ってください。例えば『それは大変ですね』や『その気持ちはわかります』のように、相手の気持ちに寄り添った発言を心がけてください。",
+    "さらに深く共感する姿勢を示し、ユーザーの話に対して自分の解釈を含めつつ同意や感謝の言葉を表してください。例えば『その経験はきっと辛かったですね、よく頑張りました』といった、自分なりの視点で相手の感情を受け止め、受容する発言をしてください。",
+    "次に、ユーザーの課題や悩みに対して、具体的かつ実行可能なアドバイスを意識して提供してください。例えば『こうした方法もあるかもしれませんね』や『次に進むための小さな一歩として、〇〇を試してみてはどうでしょうか』といった具合に、実際的な解決策を提示してください。",
+    "最後に、ユーザーが前向きに感じられるような励ましや希望を含む言葉でアドバイスを行いましょう。『あなたならきっと大丈夫です』や『少しずつでいいので、一歩ずつ進んでいきましょう』など、ポジティブな姿勢を示しつつ、応援の意を込めて締めくくる発言を心がけてください。"
+  ];
 
   //最初のメッセージ
   const greetingAssistantMessages = [
@@ -118,7 +124,7 @@ function App() {
   ]
   const greetingSystemMessage = ["今日は何について話しましょうか？"]
   const reflectingKeyMessages = ["リフレクティングをしてください", "リフレクティングしてください", "リフレクティングを始めてください", "リフレクティングを開始してください"]
-  const endReflectingMessage = ["今の会話を振り返って感想やコメント等はありますか？"]
+  const endReflectingMessage = ["これでリフレクティングは以上です。"]
   const [messages, setMessages] = useState([
     { role: "assistant", content: `${greetingAssistantMessages[0]}`, name: `${namesEng[0]}`, mode: "chat"},
     { role: "assistant", content: `${greetingAssistantMessages[1]}`, name: `${namesEng[1]}`, mode: "chat"},
@@ -136,7 +142,7 @@ function App() {
   return (
     <div className="App">
       <Header messages = {messages} inputAble = {inputAble} setInputAble = {setInputAble} />
-      <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} theme = {theme} setTheme = {setTheme} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} common = {common} complementChat = {complementChat} complementReflect = {complementReflect} summary = {summary} reflectChatCount = {reflectChatCount} endReflectingMessage = {endReflectingMessage} setError = {setError} />
+      <AssistantResponses names = {names}　namesEng = {namesEng} messages = {messages} setMessages = {setMessages} theme = {theme} setTheme = {setTheme} inputAble = {inputAble} setInputAble = {setInputAble} characters = {characters} chat = {chat} reflect = {reflect} turns = {turns} reflectChatCount = {reflectChatCount} endReflectingMessage = {endReflectingMessage} setError = {setError} />
       <ChatBox names = {names} namesEng = {namesEng}　messages = {messages} error = {error} />
       <MessageInput setMessages = {setMessages} inputAble = {inputAble} setInputAble = {setInputAble} reflectingKeyMessages = {reflectingKeyMessages} />
     </div>
