@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import sendIcon from "../images/sendIcon.png"
 
-const MessageInput = ({ setMessages, inputAble, setInputAble, reflectingKeyMessages }) => {
+const MessageInput = ({ setMessages, setChatMessages, inputAble, setInputAble, reflectingKeyMessages }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim()) {
       setMessages(prevMessages => [...prevMessages, { role: "user", content: input, name:"You", mode:"chat" }]);
+      setChatMessages(prevChatMessages => [...prevChatMessages, { role: "user", content: input, name:"You", mode:"chat" }])
+
       // if (reflectingKeyMessages.some(message => input.includes(message))) {
       //   setInputAble(!inputAble);
       // }
